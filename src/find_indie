@@ -44,7 +44,7 @@ PROJECT_ROOT = SCRIPT_DIR.parent                        # .../Gainz-for-XBox
 DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
 
 TAGS_PATH = DATA_PROCESSED / "tags_one_row_per_app.csv"
-GENRES_PATH = DATA_PROCESSED / "onehot" / "genres_onehot.csv"
+GENRES_PATH = DATA_PROCESSED / "genres_onehot.csv"
 
 OUT_CSV = DATA_PROCESSED / "indie_games.csv"
 OUT_XLSX = DATA_PROCESSED / "indie_games.xlsx"
