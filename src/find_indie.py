@@ -1,0 +1,135 @@
+"""
+find_indie_games.py
+
+Cross-references your tags file and your (translated, one-hot) genres file
+to find every app where "Indie" shows up in its tags and/or its genres.
+
+Lives in src/, reads from data/processed, writes back to data/processed -
+matching how the rest of this repo (combine_datasets.py,
+extract_owners_price.py) is laid out.
+
+Source files, two different shapes:
+    - tags_one_row_per_app.csv:  app_id, tag_count, tag_1, tag_2, ... tag_20
+      Positional slots - tag_7 doesn't mean anything fixed, it's just
+      "whatever the 7th tag happened to be for this app". Still needs a
+      case-insensitive .str.contains("indie") search, since raw tags were
+      never translated/standardized.
+    - onehot/genres_onehot.csv:  app_id, 360 Video, Accounting, Action, ...
+      True one-hot - each column IS a genre, values are 0/1. Because this
+      file went through clean_genres.py first (translated + deduped to 33
+      canonical English genres), there's no more spelling/language variance
+      to search for - "does this app have Indie" is just "is the Indie
+      column 1", not a text search.
+    Both loaders below convert their source back into the same shape - long
+    format, one row per (app_id, value) - so steps 2 onward don't need to
+    know or care which shape either file arrived in.
+
+Paths:
+    Built from this file's own location (Path(__file__)), not from the
+    current working directory, so the script finds its data the same way
+    whether you run it from an integrated terminal, VS Code's Run button,
+    or a notebook.
+
+Output:
+    indie_games.csv / indie_games.xlsx - one row per matching app_id, with
+    ALL of that app's genres and ALL of its tags listed (not just the
+    "Indie" hit) so you can see the full context of each match.
+"""
+
+from pathlib import Path
+import pandas as pd
+
+SCRIPT_DIR = Path(__file__).resolve().parent          # .../Gainz-for-XBox/src
+PROJECT_ROOT = SCRIPT_DIR.parent                        # .../Gainz-for-XBox
+DATA_PROCESSED = PROJECT_ROOT / "data" / "processed"
+
+TAGS_PATH = DATA_PROCESSED / "tags_one_row_per_app.csv"
+GENRES_PATH = DATA_PROCESSED / "genres_onehot.csv"
+
+OUT_CSV = DATA_PROCESSED / "indie_games.csv"
+OUT_XLSX = DATA_PROCESSED / "indie_games.xlsx"
+
+
+def load_tags_as_long(path):
+    """
+    Load the wide/positional tags file and return it as long format: one
+    row per (app_id, tag). tag_count is metadata (how many slots are
+    filled), not a tag itself, so it's excluded. Unused slots are NaN (an
+    app with 17 tags leaves tag_18..tag_20 empty) and get dropped.
+    """
+    df = pd.read_csv(path)
+    tag_cols = [c for c in df.columns if c.startswith("tag_") and c != "tag_count"]
+    long_df = df.melt(id_vars="app_id", value_vars=tag_cols, value_name="tag")
+    long_df = long_df.dropna(subset=["tag"])
+    return long_df[["app_id", "tag"]]
+
+
+def load_genres_onehot_as_long(path):
+    """
+    Load the true one-hot genres file (one binary column per genre) and
+    return it as long format: one row per (app_id, genre), keeping only the
+    combinations where that genre is actually present (column value == 1).
+    """
+    df = pd.read_csv(path)
+    genre_cols = [c for c in df.columns if c != "app_id"]
+    long_df = df.melt(id_vars="app_id", value_vars=genre_cols,
+                       var_name="genre", value_name="present")
+    long_df = long_df[long_df["present"] == 1]
+    return long_df[["app_id", "genre"]]
+
+
+def main():
+    # ---- 1. Load the two source files, both normalized to long format -----
+    tags_df = load_tags_as_long(TAGS_PATH)
+    genres_df = load_genres_onehot_as_long(GENRES_PATH)
+
+    # ---- 2. Find which app_ids have "Indie" in tags and/or genres ---------
+    # case=False/na=False still matter on the tags side (untranslated, raw
+    # spelling); harmless but unnecessary on the genres side since those
+    # values are already the exact canonical string "Indie".
+    indie_tag_mask = tags_df["tag"].str.contains("indie", case=False, na=False)
+    indie_genre_mask = genres_df["genre"].str.contains("indie", case=False, na=False)
+
+    indie_tag_ids = set(tags_df.loc[indie_tag_mask, "app_id"])
+    indie_genre_ids = set(genres_df.loc[indie_genre_mask, "app_id"])
+
+    # "and/or" -> union of both sets (an app counts if it matches in EITHER file)
+    indie_app_ids = indie_tag_ids | indie_genre_ids
+
+    print(f"Apps with 'Indie' in tags:   {len(indie_tag_ids):,}")
+    print(f"Apps with 'Indie' in genres: {len(indie_genre_ids):,}")
+    print(f"Apps matching either:        {len(indie_app_ids):,}")
+
+    # ---- 3. Collapse each file down to one row per app_id ------------------
+    genres_agg = (
+        genres_df.groupby("app_id")["genre"]
+        .apply(lambda vals: ", ".join(sorted(set(vals))))
+        .rename("genres")
+    )
+    tags_agg = (
+        tags_df.groupby("app_id")["tag"]
+        .apply(lambda vals: ", ".join(sorted(set(vals))))
+        .rename("tags")
+    )
+
+    # ---- 4. Build the final table ------------------------------------------
+    result = pd.DataFrame({"app_id": sorted(indie_app_ids)})
+    result = result.merge(genres_agg, on="app_id", how="left")
+    result = result.merge(tags_agg, on="app_id", how="left")
+
+    # ---- 5. Save it ----------------------------------------------------------
+    DATA_PROCESSED.mkdir(parents=True, exist_ok=True)
+    result.to_csv(OUT_CSV, index=False)
+    result.to_excel(OUT_XLSX, index=False)
+
+    print(f"\nSaved {len(result):,} rows to:\n  {OUT_CSV}\n  {OUT_XLSX}")
+    print(result.head())
+
+
+# This guard means the code only runs when you execute this file directly
+# (python src/find_indie_games.py or the VS Code Run button). If someone
+# later does `from find_indie_games import load_tags_as_long` in another
+# script or notebook, main() won't fire automatically - only what they
+# actually asked for gets imported.
+if __name__ == "__main__":
+    main()
