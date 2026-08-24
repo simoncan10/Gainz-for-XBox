@@ -1,0 +1,85 @@
+{
+  "eligible_pool_n": 638,
+  "eligible_pool_n_metacritic_share_pct": 48.0,
+  "reported_yield_verification": {
+    "coordinator_claimed_pool": 926,
+    "coordinator_claimed_pool_metacritic_pct": 44.2,
+    "verified_pool_WITHOUT_controller_gate": 926,
+    "verified_pool_WITH_controller_gate_as_literally_specified": 638,
+    "finding": "The coordinator-forwarded 'reported yield' (pool=926) matches EXACTLY the count with review_total>=5000, owners_mid<=750000, and no adult-content tag applied WITHOUT has_controller_support=true -- confirmed by direct query. The rebuild spec's own bullet list explicitly instructs adding the controller-support gate, and the named top-10 (Temtem, ICARUS) both have has_controller_support=False in this dataset -- they could not appear in a pool that actually applied the gate. This run implements the gate literally as instructed (pool=638) and flags the discrepancy rather than silently reproducing the ungated number."
+  },
+  "composite_diagnostics": {
+    "recognition_vs_headroom_spearman": 0.5422,
+    "pillar_influence_on_composite_spearman": {
+      "recognition": 0.8701,
+      "headroom": 0.8124,
+      "fit": 0.179
+    },
+    "interpretation": "Recognition and Headroom are now moderately POSITIVELY correlated (not the -0.762 cancellation in v1) and each pillar shows real, distinguishable influence on the composite -- the RT-02 defect (a pillar with ~0 effective weight) does not reproduce."
+  },
+  "qualifying_bar": 0.6,
+  "n_qualifying": 215,
+  "bar_sensitivity_n_qualifying": {
+    "0.5": 301,
+    "0.55": 261,
+    "0.6": 215,
+    "0.65": 172,
+    "0.7": 134,
+    "0.75": 84
+  },
+  "top30_jaccard_under_reweighting": {
+    "recognition_heavy_60_25_15": 0.875,
+    "headroom_heavy_25_60_15": 0.5789,
+    "fit_heavy_25_25_50": 0.4286
+  },
+  "tier_counts": {
+    "Anchor": 131,
+    "Depth": 74,
+    "Low-cost option": 10
+  },
+  "monoculture_check_v2": {
+    "n_qualifying_rows": 215,
+    "n_distinct_licensable_properties_after_collapsing_chapters": 213,
+    "serial_franchises_with_2plus_qualifying_rows": {
+      "Artefacts Studio / Garfield Kart": 2,
+      "Telltale Games / The Walking Dead": 2
+    },
+    "developers_with_2plus_qualifying_titles": {
+      "Square Enix": 3,
+      "Telltale Games": 3,
+      "CAPCOM Co., Ltd.": 2,
+      "Shiying Studio": 2,
+      "NEOWIZ": 2,
+      "ATLUS": 2,
+      "Artefacts Studio": 2,
+      "SEGA": 2,
+      "Square Enix, ACQUIRE Corp.": 2,
+      "BlackMill Games": 2,
+      "Capcom": 2,
+      "DONTNOD Entertainment": 2,
+      "Total Mayhem Games": 2,
+      "Teyon": 2
+    },
+    "genre_share_of_qualifying_TITLES_pct": {
+      "Indie": 64.2,
+      "Adventure": 57.7,
+      "Action": 50.7,
+      "Casual": 19.5,
+      "Simulation": 20.0,
+      "Strategy": 13.0,
+      "RPG": 28.4,
+      "Free To Play": 0.0,
+      "Early Access": 8.4,
+      "Sports": 1.9,
+      "Racing": 5.6,
+      "Massively Multiplayer": 2.3
+    },
+    "price_band_distribution": {
+      "$10-20": 86,
+      "$20-40": 62,
+      "$5-10": 33,
+      ">$40": 19,
+      "<=$5": 15
+    }
+  }
+}

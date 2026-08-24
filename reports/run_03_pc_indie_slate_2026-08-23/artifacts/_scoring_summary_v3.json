@@ -1,0 +1,157 @@
+{
+  "eligible_pool_n": 802,
+  "eligible_pool_metacritic_pct": 47.3,
+  "weights": {
+    "recognition": 0.5,
+    "headroom": 0.4,
+    "fit": 0.1,
+    "old_weights_for_reference": {
+      "recognition": 0.45,
+      "headroom": 0.35,
+      "fit": 0.2
+    }
+  },
+  "a4_reweight_effect_pool_held_at_v2_638": {
+    "pool_held_fixed_at": "v2 screen, n=638 (isolates the reweight from the floor move)",
+    "n_qualifying_old_weights_0.45_0.35_0.20": 215,
+    "n_qualifying_new_weights_0.50_0.40_0.10": 228,
+    "membership_changed": 33,
+    "membership_changed_pct_of_union": 13.9,
+    "top30_overlap_count": 27,
+    "top30_changed_count": 3
+  },
+  "a3_headroom_within_bucket_verification": {
+    "pool_tested": "v2 screen, n=638 (same pool the red team used)",
+    "n_distinct_owners_mid_values": 5,
+    "bucket_counts": {
+      "10000.0": 2,
+      "35000.0": 2,
+      "150000.0": 31,
+      "350000.0": 243,
+      "750000.0": 360
+    },
+    "pooled_spearman_recognition_headroom": 0.5422,
+    "within_bucket_spearman": {
+      "150000.0": {
+        "n": 31,
+        "spearman_recognition_headroom": 1.0
+      },
+      "350000.0": {
+        "n": 243,
+        "spearman_recognition_headroom": 1.0
+      },
+      "750000.0": {
+        "n": 360,
+        "spearman_recognition_headroom": 1.0
+      }
+    },
+    "share_in_top3_buckets_pct": 99.4,
+    "verdict": "CONFIRMED. Within every owners_mid bucket with n>=5, Spearman(recognition_raw, headroom_raw) = 1.0000 (to 4 decimal places). Headroom is Recognition minus a per-bucket constant -- the pooled +0.54 correlation is entirely between-bucket variation. This is a property of owners_mid having only 5-6 distinct values in this pool, not a scoring bug, and it is NOT fixable within the current data -- only disclosable."
+  },
+  "composite_diagnostics_on_v3_pool": {
+    "recognition_vs_headroom_spearman_pooled": 0.4921,
+    "pillar_influence_on_composite_spearman": {
+      "recognition": 0.8826,
+      "headroom": 0.824,
+      "fit": 0.0427
+    }
+  },
+  "b5_ceiling_echo": {
+    "qualifying_list_share_in_750k_bucket_pct": 60.0,
+    "eligible_pool_share_in_750k_bucket_pct": 48.1,
+    "note": "Known property of the design, stated here per the coordinator's instruction; the downstream portfolio document is not reopened this round. The ownership ceiling concentrates the qualifying list toward its own bucket because Recognition is continuous and weighted 0.50-0.90 combined with Headroom, while ownership itself only acts as a coarse pre-screen step (A-3) -- the model reliably selects the most-owned titles that still clear the cut."
+  },
+  "qualifying_bar": 0.6,
+  "n_qualifying": 275,
+  "bar_sensitivity_n_qualifying": {
+    "0.5": 393,
+    "0.55": 324,
+    "0.6": 275,
+    "0.65": 230,
+    "0.7": 185,
+    "0.75": 144
+  },
+  "tier_counts": {
+    "Anchor": 157,
+    "Depth": 106,
+    "Low-cost option": 12
+  },
+  "monoculture_check": {
+    "n_qualifying_rows": 275,
+    "n_distinct_licensable_properties_after_collapsing_chapters": 273,
+    "serial_franchises_with_2plus_qualifying_rows": {
+      "Artefacts Studio / Garfield Kart": 2,
+      "Telltale Games / The Walking Dead": 2
+    },
+    "developers_with_2plus_qualifying_titles": {
+      "ATLUS": 3,
+      "Square Enix": 3,
+      "SEGA": 3,
+      "Telltale Games": 3,
+      "Total Mayhem Games": 3,
+      "Shiying Studio": 2,
+      "CAPCOM Co., Ltd.": 2,
+      "NEOWIZ": 2,
+      "BlackMill Games": 2,
+      "Artefacts Studio": 2,
+      "Square Enix, ACQUIRE Corp.": 2,
+      "RewindApp": 2,
+      "Sloclap": 2,
+      "DONTNOD Entertainment": 2,
+      "Capcom": 2,
+      "CyberConnect2 Co. Ltd.": 2,
+      "Teyon": 2,
+      "Team17": 2
+    },
+    "genre_share_of_qualifying_TITLES_pct": {
+      "Indie": 63.3,
+      "Adventure": 57.8,
+      "Action": 53.8,
+      "Casual": 18.2,
+      "Simulation": 20.7,
+      "Strategy": 13.8,
+      "RPG": 26.9,
+      "Free To Play": 0.0,
+      "Early Access": 7.3,
+      "Sports": 2.5,
+      "Racing": 5.1,
+      "Massively Multiplayer": 2.9
+    },
+    "price_band_distribution": {
+      "$10-20": 111,
+      "$20-40": 79,
+      "$5-10": 42,
+      ">$40": 23,
+      "<=$5": 20
+    }
+  },
+  "deep_rock_galactic_survivor_data_quality_check": {
+    "app_id": 2321470,
+    "name": "Deep Rock Galactic: Survivor",
+    "flags": {
+      "has_coop": false,
+      "has_multiplayer": false,
+      "has_singleplayer": true
+    },
+    "raw_categories": [
+      "Family Sharing",
+      "Full controller support",
+      "Single-player",
+      "Steam Achievements",
+      "Steam Cloud"
+    ],
+    "raw_tags_sample": [
+      "Action",
+      "Action Roguelike",
+      "Aliens",
+      "Arcade",
+      "Arena Shooter",
+      "Atmospheric",
+      "Bullet Hell",
+      "Combat",
+      "Dark",
+      "Dwarf"
+    ],
+    "verdict": "FLAGS ARE CORRECT, not a data defect. Raw categories are clean English text ('Single-player', 'Full controller support', ...) with NO Co-op/Multi-player category present, and no Co-op/Multiplayer tag either -- this is not an instance of the documented non-English-metadata undercount hazard (02_cleaning_report.md), since the source data is neither non-English nor ambiguous. Deep Rock Galactic: Survivor is a genuinely single-player roguelite spin-off, distinct from the base Deep Rock Galactic (app_id 548430, correctly flagged has_coop=True/has_multiplayer=True, a 4-player co-op game). The error was in the downstream portfolio artifact's alternate-title labelling, not in this dataset's cleaning or flags. No cleaning-stage fix needed."
+  }
+}

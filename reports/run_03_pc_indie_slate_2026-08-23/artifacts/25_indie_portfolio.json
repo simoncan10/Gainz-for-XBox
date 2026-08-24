@@ -1,0 +1,1519 @@
+{
+ "stage": 25,
+ "generated": "2026-08-22",
+ "supersedes_scope_of": "artifacts/17_portfolio_final.json (console-gated, non-indie-specific)",
+ "built_from": {
+  "candidates": "23_indie_candidates_v2.csv (201 qualifying, bar 0.60)",
+  "availability": "24_availability_indie.json (top 25 screened)",
+  "thesis": "21_indie_thesis.md (revised)",
+  "script": "scripts/25_build_indie_portfolio.py"
+ },
+ "headline": "21 named indie titles in three role tiers, ordered by deal structure. Two further screened titles are named and deliberately NOT picked, with the case for each recorded. PC availability is confirmed for all 21; Xbox console exists for 14 and is a reach bonus, not a requirement.",
+ "the_investment_argument": {
+  "one_line": "A subscription does not buy owners per title — it buys catalogue breadth against a fixed monthly fee. On that yardstick indie delivers 63.47 qualifying titles per $1,000 against non-indie's 41.39: 1.53x more breadth per dollar. That, and not engagement, is the case.",
+  "what_it_does_NOT_rest_on": "It does not rest on an engagement claim. The dataset has NO playtime data — every playtime column is constant zero — so engagement is UNMEASURABLE here in either direction, and the two nearest proxies show no real indie penalty once stratified by owners bucket (propensity 92-108% of non-indie within every bucket with n>=30). The 'high engagement' half of the original thesis is withdrawn, not softened.",
+  "what_is_conceded": "Indie reach per title is genuinely WORSE, and survivorship understates the gap rather than overstating it: hit-rate ratios run 72.2% at >=150k owners down to 29.4% at >=7.5M. Per OWNER reached indie costs $92.81 per million against non-indie's $61.93 — 1.50x MORE expensive. Both yardsticks are true; they answer different questions; the per-slot one matches how a subscription is monetised.",
+  "what_is_solid": "Cheaper is TRUE and large: 30.1% cheaper on mean ($8.74 vs $12.51), 25.0% at median ($5.99 vs $7.99), n=48,682, consistent across every cohort and price band tested.",
+  "honest_erosion_of_the_edge_DERIVED": {
+   "note": "Selecting the RECOGNISABLE top of the indie list costs most of the breadth advantage, because recognition and price rise together. This is computed on this portfolio, not asserted.",
+   "non_indie_benchmark_titles_per_1000": 41.39,
+   "indie_pool_benchmark_titles_per_1000": 63.47,
+   "indie_pool_advantage_pct": 53.3,
+   "whole_201_qualifying_list_titles_per_1000": 58.62,
+   "this_portfolio_21_picks_titles_per_1000": 50.28,
+   "this_portfolio_advantage_over_non_indie_pct": 21.5,
+   "share_of_the_pool_edge_retained_pct": 40.0,
+   "if_temtem_is_cut_titles_per_1000": 53.66,
+   "calculation": "21 picks, summed retail $417.69; 1000 * 21 / 417.69 = 50.28 titles per $1,000.",
+   "caveat": "RETAIL PRICE IS NOT LICENSING COST. Every figure in this block uses retail price as a directional proxy, exactly as 21_indie_thesis.md does, and inherits its caveat: retail price tracks production budget at best. These are directional comparisons between groups measured the same way, NOT cost figures, and must not be spoken as if they were."
+  }
+ },
+ "known_property_disclosed": {
+  "statement": "The composite is not a multi-factor blend. It is approximately 90% log review count: pooled R2 of the composite against ln(review_total) alone is 0.775, and in the top 20 owners_mid takes only TWO distinct values (350,000 and 750,000).",
+  "mechanism": "Recognition (percentile of ln review_total, 0.50) and Headroom (percentile of ln review_total minus ln owners_mid, 0.40) are Spearman 1.0000 within every owners bucket with n>=5, because owners_mid is a constant inside a bucket. Headroom's only real job is moving a title between bands, not ordering it within one.",
+  "consequence_acted_on": "This is why KovaaK's is named and not picked: a ranking that is a review-count ranking will favour a utility with a large, highly-motivated review-writing population. The disclosure is not decorative — it changed a pick.",
+  "source": "23_indie_v2.md A-5"
+ },
+ "counterparty_instability": {
+  "finding": "Four of the strongest candidates sit behind two publishers that lost their entire staff in 2024: Annapurna Interactive (What Remains of Edith Finch, Journey) and Humble Games (Unpacking, Temtem).",
+  "reasoning_both_ways": "It cuts both ways and the honest answer depends on something no source establishes. A distressed rights holder with a dormant catalogue and no staff may license cheaply, because a back-catalogue licence is close to free money against an asset nobody is actively working; or it may be impossible to transact with at all, because there is no one with signing authority left to answer. These are not opposite ends of a price range — they are different failure modes, one cheap and one impossible, and the second is not priced, it is binary.",
+  "what_this_portfolio_does_about_it": "It does not withdraw the four titles: their measured cases are among the strongest here, and no source reports that any catalogue rights were lost, sold or disputed. Instead (1) the two stable restarts are ordered AHEAD of the three distressed ones inside Tier 2, so the tier can be executed in order and stop; (2) a 30-day counterparty-identification condition is written into Tier 2's removal rule, which converts an unpriceable risk into a dated go/no-go; (3) both clean-add and breadth tiers are populated independently of these publishers, so the portfolio does not fail if all four fall over.",
+  "publishers": {
+   "Annapurna Interactive": "Entire ~24-person game-division staff resigned en masse in September 2024 after a dispute with owner Megan Ellison [Bloomberg, 2024-09-12; Deadline, Sept 2024]. No report found that catalogue rights were sold or disputed — this is counterparty-continuity risk, not a confirmed rights blocker.",
+   "Humble Games": "Laid off its entire ~36-person staff in July 2024, widely reported as a de facto shutdown; the company disputed 'full shutdown', called it a restructure, and later signalled it would keep supporting its catalogue [Forbes 2024-07-23; Game Developer, July 2024; PC Games Insider, July 2024]. Catalogue rights not reported as lost or sold."
+  }
+ },
+ "counts": {
+  "qualifying": 201,
+  "screened": 25,
+  "picks": 21,
+  "named_not_picked": 2,
+  "excluded_nothing_to_license": 2
+ },
+ "tiers": [
+  {
+   "presentation_order": 1,
+   "tier_name": "Clean adds",
+   "leads_the_pitch": true,
+   "role": "Confirmed never on Game Pass, PC availability confirmed, no blocker, and no counterparty carrying reported instability. These open the pitch because they are the only titles with nothing at all to explain: no prior run to account for, no publisher in the middle of an HR crisis, no status to check first.",
+   "execution_cost_rank_1_cheapest": 2,
+   "cost_basis": "A cold negotiation with a small, intact rights holder. No prior deal to reprice, no distressed counterparty to locate. More expensive to execute than a restart, and the most certain to complete.",
+   "confidence": "medium-high",
+   "confidence_driver": "4/4 confirmed 'Not Included' on current Game Pass with no evidence of prior inclusion; 4/4 PC confirmed; 4/4 Xbox console SKU also exists (reach bonus under this scope, not a requirement). 3 of 4 carry Metacritic 79-89 — an independent press signal the composite never uses.",
+   "removal_rule": "Remove a title here if evidence of a PRIOR Game Pass run surfaces — it then belongs in Tier 2 and must answer Tier 2's question first. Rogue Legacy is the specific exposure: its 'never included' verdict rests on absence of dated evidence, and its sequel Rogue Legacy 2 (a different app) has a well-documented Game Pass history that repeatedly contaminated the search.",
+   "n": 4,
+   "tier_titles_per_1000_retail_DERIVED": 47.98,
+   "titles": [
+    {
+     "position": 1,
+     "app_id": 253230,
+     "name": "A Hat in Time",
+     "rank": 2
+    },
+    {
+     "position": 2,
+     "app_id": 653530,
+     "name": "Return of the Obra Dinn",
+     "rank": 18
+    },
+    {
+     "position": 3,
+     "app_id": 241600,
+     "name": "Rogue Legacy",
+     "rank": 20
+    },
+    {
+     "position": 4,
+     "app_id": 1703340,
+     "name": "The Stanley Parable: Ultra Deluxe",
+     "rank": 24
+    }
+   ],
+   "named_alternate": {
+    "app_id": 736260,
+    "name": "Baba Is You",
+    "developer": "Hempuli Oy",
+    "rank": 35,
+    "composite_score": 0.8689,
+    "review_total": 20757,
+    "price_usd": 14.99,
+    "metacritic_score": "87",
+    "owners_range": "500,000 .. 1,000,000",
+    "has_multiplayer": "False",
+    "has_coop": "False",
+    "availability_verdict": "NONE — outside the Stage 24 top-25 screen",
+    "why_alternate_not_pick": "Baba Is You — v2 rank 35, Metacritic 87, 20,757 reviews, Hempuli (1-title developer). It is an alternate and not a pick for exactly one reason: it sits at rank 35, outside the top 25 that Stage 24 screened, so NO availability verdict exists for it. Screen it and it is promotable on merit alone."
+   }
+  },
+  {
+   "presentation_order": 2,
+   "tier_name": "Precedent restarts",
+   "leads_the_pitch": false,
+   "role": "Licences Microsoft has already signed once. The deal was struck, the PC build shipped into the service, and the rights holder has said yes before. This is the cheapest tier to EXECUTE because the work is done. It is deliberately second, not first: cheap to execute is not the same as good to buy, and three of these five sit behind a publisher that has had its staff leave.",
+   "execution_cost_rank_1_cheapest": 1,
+   "cost_basis": "Cheapest to execute: no new build, no cold introduction, an existing contract template and a counterparty that has transacted before. The licence FEE is unknown and is NOT assumed to be lower — a lapsed deal can reprice upward as easily as down.",
+   "confidence": "medium-high on executability, LOW on desirability, and LOWER still on counterparty reachability for three of the five",
+   "confidence_driver": "5/5 confirmed rotated_out with dated sources; 5/5 PC confirmed. Desirability is low because no source establishes WHY any of them left — either the publisher declined renewal (the price is above what Microsoft would pay) or Microsoft declined (its own data already said no), and nothing external distinguishes these. Reachability is separately impaired for the three distressed-publisher titles.",
+   "removal_rule": "Two independent removal conditions, either sufficient. (1) Microsoft's own record of the title's prior run places it in the bottom quartile of engagement per licensing dollar among comparable back-catalogue titles — a condition on five NAMED picks that stand without it, not a request to measure before deciding. (2) No counterparty with clear authority to grant the licence can be identified within 30 days — the specific failure mode for a publisher whose entire staff has left.",
+   "n": 5,
+   "tier_titles_per_1000_retail_DERIVED": 50.03,
+   "titles": [
+    {
+     "position": 5,
+     "app_id": 447530,
+     "name": "VA-11 Hall-A: Cyberpunk Bartender Action",
+     "rank": 6
+    },
+    {
+     "position": 6,
+     "app_id": 1256670,
+     "name": "Library Of Ruina",
+     "rank": 12
+    },
+    {
+     "position": 7,
+     "app_id": 1135690,
+     "name": "Unpacking",
+     "rank": 3
+    },
+    {
+     "position": 8,
+     "app_id": 501300,
+     "name": "What Remains of Edith Finch",
+     "rank": 9
+    },
+    {
+     "position": 9,
+     "app_id": 638230,
+     "name": "Journey",
+     "rank": 13
+    }
+   ],
+   "named_alternate": {
+    "app_id": 384190,
+    "name": "ABZU",
+    "developer": "Giant Squid",
+    "rank": 40,
+    "composite_score": 0.8586,
+    "review_total": 25304,
+    "price_usd": 19.99,
+    "metacritic_score": "83",
+    "owners_range": "500,000 .. 1,000,000",
+    "has_multiplayer": "False",
+    "has_coop": "False",
+    "availability_verdict": "NONE — outside the Stage 24 top-25 screen",
+    "why_alternate_not_pick": "ABZU — v2 rank 40, Metacritic 83, 25,304 reviews, Giant Squid (2-title developer). Named as this tier's alternate with an honest qualification: no alternate at ranks 26+ can be confirmed to BE a restart, because rotated-out status is only knowable from the availability check and that check stopped at rank 25. Whether ABZU is a restart or a clean add is precisely what screening it would determine — which is why it is the first title to screen if a restart falls over."
+   }
+  },
+  {
+   "presentation_order": 3,
+   "tier_name": "Breadth block",
+   "leads_the_pitch": false,
+   "role": "This tier IS the investment case. The argument for an indie-weighted portfolio is breadth per dollar, and breadth is delivered by title count at a quality bar, not by any single name. Twelve titles across horror, metroidvania, wuxia RPG, language puzzle, crafting-sim, platformer, monster-collector and open-world exploration — genres Tiers 1 and 2 do not cover between them. Each resolves with one storefront check or one cold call.",
+   "execution_cost_rank_1_cheapest": 3,
+   "cost_basis": "Individually the cheapest counterparties in the analysis — mostly 1-2 title developers, several first-time licensors. The aggregate is what matters: this tier is where the 1.53x breadth-per-dollar advantage is actually realised or lost.",
+   "confidence": "medium on executability, medium-high on merit",
+   "confidence_driver": "PC availability is confirmed for 12/12 by construction of the dataset. Game Pass status splits: 5 were confirmed ADDED at some point with no dated departure (status unknown), 7 have no Game Pass evidence either way. 4 of 12 carry Metacritic (75-86). None carries a publisher-instability flag except Temtem.",
+   "removal_rule": "Remove on either branch of the status check: currently included -> nothing to buy; confirmed departed -> it moves to Tier 2 and inherits Tier 2's conditions. Separately, remove any title whose licence is quoted at a level that pushes the tier's realised titles-per-dollar below the non-indie benchmark of 41.39 per $1,000 — that is the number the whole investment case rests on, and a tier that fails it is not delivering the thesis.",
+   "n": 12,
+   "tier_titles_per_1000_retail_DERIVED": 51.2,
+   "titles": [
+    {
+     "position": 10,
+     "app_id": 1288310,
+     "name": "Firework",
+     "rank": 1
+    },
+    {
+     "position": 11,
+     "app_id": 2593370,
+     "name": "The Hungry Lamb: Traveling in the Late Ming Dynasty",
+     "rank": 4
+    },
+    {
+     "position": 12,
+     "app_id": 1562700,
+     "name": "SANABI",
+     "rank": 8
+    },
+    {
+     "position": 13,
+     "app_id": 1369630,
+     "name": "ENDER LILIES: Quietus of the Knights",
+     "rank": 10
+    },
+    {
+     "position": 14,
+     "app_id": 1876890,
+     "name": "Wandering Sword",
+     "rank": 11
+    },
+    {
+     "position": 15,
+     "app_id": 1055540,
+     "name": "A Short Hike",
+     "rank": 14
+    },
+    {
+     "position": 16,
+     "app_id": 1189630,
+     "name": "Path Of Wuxia",
+     "rank": 15
+    },
+    {
+     "position": 17,
+     "app_id": 1210320,
+     "name": "Potion Craft: Alchemist Simulator",
+     "rank": 16
+    },
+    {
+     "position": 18,
+     "app_id": 1931770,
+     "name": "Chants of Sennaar",
+     "rank": 19
+    },
+    {
+     "position": 19,
+     "app_id": 1880330,
+     "name": "Sanfu",
+     "rank": 23
+    },
+    {
+     "position": 20,
+     "app_id": 953490,
+     "name": "CARRION",
+     "rank": 25
+    },
+    {
+     "position": 21,
+     "app_id": 745920,
+     "name": "Temtem",
+     "rank": 7
+    }
+   ],
+   "named_alternate": {
+    "app_id": 242860,
+    "name": "Verdun",
+    "developer": "BlackMill Games",
+    "rank": 26,
+    "composite_score": 0.8804,
+    "review_total": 37045,
+    "price_usd": 14.99,
+    "metacritic_score": "70",
+    "owners_range": "500,000 .. 1,000,000",
+    "has_multiplayer": "True",
+    "has_coop": "False",
+    "availability_verdict": "NONE — outside the Stage 24 top-25 screen",
+    "why_alternate_not_pick": "Verdun — v2 rank 26, 37,045 reviews, Metacritic 70, $14.99, has_multiplayer=True (verified in this script). It is the highest-composite title with no availability verdict, and it doubles as the top of the concentration-remedy band described below. Alternate and not a pick solely because rank 26 falls one place outside the Stage 24 screen."
+   }
+  }
+ ],
+ "titles": [
+  {
+   "position": 1,
+   "tier": 1,
+   "tier_name": "Clean adds",
+   "app_id": 253230,
+   "name": "A Hat in Time",
+   "developer": "Gears for Breakfast",
+   "publisher": "Gears for Breakfast",
+   "why": "50,390 reviews — the highest volume anywhere in the 201-title qualifying list — with Metacritic 79, from a 1-title developer. The single most recognisable name available that carries no history and no counterparty risk.",
+   "removal_trigger": "Gears for Breakfast's publishing partner will not license into a subscription.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Gears for Breakfast",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 2,
+    "composite_score": 0.9699,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 1.0,
+    "headroom_pct_collinear_with_recognition": 0.9808,
+    "fit_pct_tiebreaker_10pct": 0.7762,
+    "review_total": 50390,
+    "review_positive_ratio": 0.9786,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 29.99,
+    "metacritic_score": "79",
+    "has_controller_support": "True",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "genres": "Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "no",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Currently 'Not Included' on Game Pass (PC or Xbox) per subscription tracker; no evidence found it was ever added.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://gamepasscompare.com/app/6705/a-hat-in-time"
+    ]
+   }
+  },
+  {
+   "position": 2,
+   "tier": 1,
+   "tier_name": "Clean adds",
+   "app_id": 653530,
+   "name": "Return of the Obra Dinn",
+   "developer": "Lucas Pope",
+   "publisher": "3909",
+   "why": "Metacritic 89 on 26,518 reviews from Lucas Pope, a 2-title developer who both develops and publishes — the simplest counterparty in the entire portfolio, and one of the titles the retracted `is_self_published` definition wrongly excluded (his label is called '3909').",
+   "removal_trigger": "Lucas Pope declines; a sole rights holder can refuse outright with no second party to negotiate with.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "3909 (self-published, Lucas Pope)",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 18,
+    "composite_score": 0.9045,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.965,
+    "headroom_pct_collinear_with_recognition": 0.8654,
+    "fit_pct_tiebreaker_10pct": 0.7587,
+    "review_total": 26518,
+    "review_positive_ratio": 0.9682,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 13.39,
+    "metacritic_score": "89",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "no",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Not currently on Game Pass (PC or Xbox) per subscription tracker; no evidence found it was ever added.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://gamepasscompare.com/app/9643/return-of-the-obra-dinn"
+    ]
+   }
+  },
+  {
+   "position": 3,
+   "tier": 1,
+   "tier_name": "Clean adds",
+   "app_id": 241600,
+   "name": "Rogue Legacy",
+   "developer": "Cellar Door Games",
+   "publisher": "Cellar Door Games",
+   "why": "Metacritic 85 on 18,349 reviews at $14.99, in the 200k-500k owner bucket — one of only five picks below the top ownership bucket, so it is among the few that genuinely satisfies 'recognised but not widely owned'.",
+   "removal_trigger": "Any dated evidence that the ORIGINAL Rogue Legacy (app 241600, not Rogue Legacy 2) was previously on Game Pass.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Cellar Door Games",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 20,
+    "composite_score": 0.8949,
+    "score_tier": "Anchor",
+    "developer_title_count": 3,
+    "recognition_pct": 0.8969,
+    "headroom_pct_collinear_with_recognition": 0.965,
+    "fit_pct_tiebreaker_10pct": 0.6049,
+    "review_total": 18349,
+    "review_positive_ratio": 0.9272,
+    "owners_range_steamspy_bucket_ESTIMATE": "200,000 .. 500,000",
+    "owners_mid": 350000,
+    "price_usd_retail_NOT_licence_cost": 14.99,
+    "metacritic_score": "85",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Action|Adventure|Indie|RPG"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "NEW title for this pass. Confirmed native Xbox One release via the developer's own press page, and a native Steam/PC release. Extensive searching found no dated evidence of a Game Pass listing for the ORIGINAL Rogue Legacy (as distinct from Rogue Legacy 2, which dominates search results and has been an Xbox console-exclusive console launch and separate Game Pass history) -- treat as not verified, not assumed absent.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://press.cellardoorgames.com/sheet.php?p=rogue_legacy_xbox_one_version"
+    ]
+   }
+  },
+  {
+   "position": 4,
+   "tier": 1,
+   "tier_name": "Clean adds",
+   "app_id": 1703340,
+   "name": "The Stanley Parable: Ultra Deluxe",
+   "developer": "Crows Crows Crows",
+   "publisher": "Crows Crows Crows",
+   "why": "28,048 reviews in the 500k-1M bucket from Crows Crows Crows; the portfolio's only satirical/meta narrative title, and the tier's breadth entry.",
+   "removal_trigger": "Evidence of a prior Game Pass run surfaces.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Crows Crows Crows",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 24,
+    "composite_score": 0.892,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.972,
+    "headroom_pct_collinear_with_recognition": 0.8899,
+    "fit_pct_tiebreaker_10pct": 0.5,
+    "review_total": 28048,
+    "review_positive_ratio": 0.9421,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 24.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Casual|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "no",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "NEW title for this pass. Native day-one release on Xbox, PlayStation, Switch and PC in 2022 (its first-ever console release for the franchise). Currently 'Not Included' on Game Pass, PC or Xbox, per subscription tracker; no evidence found of prior inclusion -- treat as never added rather than rotated out.",
+    "n_sources": 2,
+    "source_urls": [
+     "https://www.thexboxhub.com/the-stanley-parable-ultra-deluxe-releases-on-xbox-playstation-switch-and-pc/",
+     "https://gamepasscompare.com/app/113119/the-stanley-parable-ultra-deluxe"
+    ]
+   }
+  },
+  {
+   "position": 5,
+   "tier": 2,
+   "tier_name": "Precedent restarts",
+   "app_id": 447530,
+   "name": "VA-11 Hall-A: Cyberpunk Bartender Action",
+   "developer": "Sukeban Games",
+   "publisher": "Ysbryd Games, PLAYISM",
+   "why": "The clearest PC-Game-Pass-specific precedent in the whole list: added Dec 1 2020 as a PC-tier inclusion and removed ~Nov 30 2021 — a full add-and-remove cycle of exactly the deal type this rescope asks about, on 34,897 reviews and Metacritic 77. Publisher Ysbryd/PLAYISM carries no reported instability.",
+   "removal_trigger": "Ysbryd/PLAYISM declines a re-add, or the departure proves to have been Microsoft's decision on performance grounds.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Ysbryd Games / PLAYISM",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 6,
+    "composite_score": 0.949,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.9878,
+    "headroom_pct_collinear_with_recognition": 0.9476,
+    "fit_pct_tiebreaker_10pct": 0.7605,
+    "review_total": 34897,
+    "review_positive_ratio": 0.9749,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 14.99,
+    "metacritic_score": "77",
+    "has_controller_support": "False",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie|Simulation"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "rotated_out",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "not_verified",
+    "blockers": [],
+    "note": "NEW title for this pass. Notably, this was previously added specifically to 'Xbox Game Pass for PC' (Dec 1, 2020) — a direct precedent for the exact PC-tier eligibility this scope change is about. Confirmed to have left the subscription around November 30, 2021 (contemporaneous social-media and trade coverage). No source found confirming a native Xbox console release (as opposed to PC); PS4 and Switch releases are well documented instead. Under the new scope this does not disqualify it — PC availability is confirmed and sufficient.",
+    "n_sources": 2,
+    "source_urls": [
+     "https://www.gamespress.com/Xbox-Game-Pass-for-PC-Gets-Cyberpunk-Visual-Novel-VA-11-HALL-A-Dec-1",
+     "https://www.gamespot.com/articles/all-the-xbox-game-pass-titles-leaving-november-30/1100-6498062/"
+    ]
+   }
+  },
+  {
+   "position": 6,
+   "tier": 2,
+   "tier_name": "Precedent restarts",
+   "app_id": 1256670,
+   "name": "Library Of Ruina",
+   "developer": "ProjectMoon",
+   "publisher": "ProjectMoon",
+   "why": "29,181 reviews in the 500k-1M bucket from ProjectMoon, a 2-title developer — the only restart with both a single, intact, identifiable counterparty and no publisher-instability flag.",
+   "removal_trigger": "The departure cannot be pinned well enough to establish the prior deal lapsed rather than was terminated.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "ProjectMoon",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 12,
+    "composite_score": 0.9196,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.9738,
+    "headroom_pct_collinear_with_recognition": 0.9003,
+    "fit_pct_tiebreaker_10pct": 0.7255,
+    "review_total": 29181,
+    "review_positive_ratio": 0.9368,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 29.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Indie|RPG|Strategy"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "rotated_out",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Launched day-and-date on Windows, Xbox One, Xbox Series X|S and Xbox Game Pass, Aug 10, 2021 (primary Xbox Wire source); confirmed later left the subscription per player reports, exact date not pinned.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://news.xbox.com/en-us/2021/08/10/library-of-ruina-is-now-available-for-windows-10-xbox-one-and-xbox-series-xs-xbox-game-pass/"
+    ]
+   }
+  },
+  {
+   "position": 7,
+   "tier": 2,
+   "tier_name": "Precedent restarts",
+   "app_id": 1135690,
+   "name": "Unpacking",
+   "developer": "Witch Beam",
+   "publisher": "Humble Games",
+   "why": "Left Game Pass roughly two months ago (~late June 2026) — the freshest lapsed deal in the screened set, so whatever remains of the counterparty is warm and the renewal window is open now. Metacritic 83 on 32,385 reviews.",
+   "removal_trigger": "No party with authority to license can be reached at Humble Games within 30 days; or Humble confirms the departure was its own move to a competing subscription.",
+   "counterparty_risk": {
+    "flag": "counterparty_instability",
+    "publisher": "Humble Games",
+    "detail": "Laid off its entire ~36-person staff in July 2024, widely reported as a de facto shutdown; the company disputed 'full shutdown', called it a restructure, and later signalled it would keep supporting its catalogue [Forbes 2024-07-23; Game Developer, July 2024; PC Games Insider, July 2024]. Catalogue rights not reported as lost or sold."
+   },
+   "trace_23_candidates": {
+    "rank": 3,
+    "composite_score": 0.9593,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.9825,
+    "headroom_pct_collinear_with_recognition": 0.9301,
+    "fit_pct_tiebreaker_10pct": 0.9598,
+    "review_total": 32385,
+    "review_positive_ratio": 0.9298,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 19.99,
+    "metacritic_score": "83",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Casual|Indie|Simulation"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "rotated_out",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [
+     "publisher_instability"
+    ],
+    "note": "GP verdict unchanged (left the subscription ~late June 2026). NEW since last pass, per coordinator's flag: publisher Humble Games laid off its entire ~36-person staff in July 2024 and was widely reported as functionally shut down; the company itself disputed 'full shutdown' and described it as a 'restructure,' later signaling plans to continue supporting its existing catalogue. Net effect: the counterparty for any renewed licence is destabilized — this is a deal-risk flag, not a rights-ownership blocker (Humble Games denies it lost the rights to its catalogue).",
+    "n_sources": 5,
+    "source_urls": [
+     "https://www.forbes.com/sites/mattgardner1/2024/07/23/indie-publisher-humble-games-reportedly-shuts-down-36-jobs-lost/",
+     "https://www.gamedeveloper.com/business/humble-bumble-shuts-down-game-publishing-label",
+     "https://www.pcgamesinsider.biz/news/74597/humble-games-says-it-is-not-shutting-down/",
+     "https://www.gamespress.com/en-US/Humble-Games-Signals-Future-Plans-For-New-Games-in-the-Pipeline-and-Pr",
+     "https://www.purexbox.com/news/2026/06/eight-games-are-leaving-xbox-game-pass-in-late-june-2026"
+    ]
+   }
+  },
+  {
+   "position": 8,
+   "tier": 2,
+   "tier_name": "Precedent restarts",
+   "app_id": 501300,
+   "name": "What Remains of Edith Finch",
+   "developer": "Giant Sparrow",
+   "publisher": "Annapurna Interactive",
+   "why": "Metacritic 89 on 41,326 reviews — the strongest independent press signal of any rotated-out title here, from Giant Sparrow, a 2-title developer.",
+   "removal_trigger": "Annapurna's post-2024 position leaves no identifiable counterparty able to grant a subscription licence within 30 days.",
+   "counterparty_risk": {
+    "flag": "counterparty_instability",
+    "publisher": "Annapurna Interactive",
+    "detail": "Entire ~24-person game-division staff resigned en masse in September 2024 after a dispute with owner Megan Ellison [Bloomberg, 2024-09-12; Deadline, Sept 2024]. No report found that catalogue rights were sold or disputed — this is counterparty-continuity risk, not a confirmed rights blocker."
+   },
+   "trace_23_candidates": {
+    "rank": 9,
+    "composite_score": 0.9409,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.9983,
+    "headroom_pct_collinear_with_recognition": 0.9703,
+    "fit_pct_tiebreaker_10pct": 0.5367,
+    "review_total": 41326,
+    "review_positive_ratio": 0.9572,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 19.99,
+    "metacritic_score": "89",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "rotated_out",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [
+     "publisher_instability"
+    ],
+    "note": "GP verdict unchanged (confirmed left the subscription in a prior rotation). NEW since last pass, per coordinator's flag: Annapurna Interactive's entire video-game staff (~24 people) resigned en masse in September 2024 after a dispute with owner Megan Ellison over a failed spin-off negotiation (Bloomberg, Deadline). This is a real publisher-instability flag for any Annapurna-published title in this list (also affects Journey, rank 13). It is a deal-risk/counterparty-continuity issue, not a confirmed rights blocker — no report found of Annapurna's catalogue rights being sold or in dispute, only its operating staff.",
+    "n_sources": 3,
+    "source_urls": [
+     "https://www.bloomberg.com/news/articles/2024-09-12/annapurna-video-game-team-resigns-leaving-partners-scrambling",
+     "https://deadline.com/2024/09/annapurna-interactive-staff-quits-1236087352/",
+     "https://www.videogameschronicle.com/news/hades-nba-2k22-edith-finch-twelve-minutes-and-others-leave-game-pass-this-month/"
+    ]
+   }
+  },
+  {
+   "position": 9,
+   "tier": 2,
+   "tier_name": "Precedent restarts",
+   "app_id": 638230,
+   "name": "Journey",
+   "developer": "thatgamecompany",
+   "publisher": "Annapurna Interactive",
+   "why": "The second clean PC-Game-Pass precedent: added July 2024 as a PC Game Pass inclusion specifically, since removed, on 32,370 reviews. Together with VA-11 Hall-A it establishes that this exact deal shape has been done twice.",
+   "removal_trigger": "Same Annapurna reachability condition as Edith Finch; and if the two Annapurna titles must be bought as one package, take Edith Finch and drop this.",
+   "counterparty_risk": {
+    "flag": "counterparty_instability",
+    "publisher": "Annapurna Interactive",
+    "detail": "Entire ~24-person game-division staff resigned en masse in September 2024 after a dispute with owner Megan Ellison [Bloomberg, 2024-09-12; Deadline, Sept 2024]. No report found that catalogue rights were sold or disputed — this is counterparty-continuity risk, not a confirmed rights blocker."
+   },
+   "trace_23_candidates": {
+    "rank": 13,
+    "composite_score": 0.9184,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.9808,
+    "headroom_pct_collinear_with_recognition": 0.9283,
+    "fit_pct_tiebreaker_10pct": 0.5664,
+    "review_total": 32370,
+    "review_positive_ratio": 0.9442,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 14.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "genres": "Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "rotated_out",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "not_verified",
+    "blockers": [
+     "publisher_instability"
+    ],
+    "note": "GP verdict unchanged: added specifically to PC Game Pass around July 2024, confirmed no longer included today. Under the new PC-focused scope this is a stronger signal than before, since it establishes the exact deal type (PC-tier) sought. Same Annapurna Interactive staff mass-resignation flag as Edith Finch (rank 9) applies. Xbox console version existence still not independently confirmed -- press framed the 2024 addition specifically as a 'PC Game Pass' release, which reads as a signal that it may be PC-only, but this was not conclusively established.",
+    "n_sources": 3,
+    "source_urls": [
+     "https://gamerant.com/xbox-game-pass-july-2024-games-journey-nickelodeon-all-star-brawl-2/",
+     "https://gamepasscompare.com/app/1352/journey",
+     "https://www.bloomberg.com/news/articles/2024-09-12/annapurna-video-game-team-resigns-leaving-partners-scrambling"
+    ]
+   }
+  },
+  {
+   "position": 10,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1288310,
+   "name": "Firework",
+   "developer": "Shiying Studio",
+   "publisher": "Gamera Games",
+   "why": "The highest composite in the entire 201-title qualifying list (0.9753) on 39,637 reviews, with a dated Game Pass addition (June 4 2024, PC and console) and no dated departure — the strongest measured case in the portfolio.",
+   "removal_trigger": "Either branch of the status check.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Gamera Games",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 1,
+    "composite_score": 0.9753,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.9965,
+    "headroom_pct_collinear_with_recognition": 0.9668,
+    "fit_pct_tiebreaker_10pct": 0.9038,
+    "review_total": 39637,
+    "review_positive_ratio": 0.9793,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 9.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "unknown",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Carried over from the previous (console-required) pass, verdict unchanged by the scope change since it already had console+PC+GP day-one confirmation. Added to Xbox Game Pass (console and PC) June 4, 2024, day-and-date with a native Xbox Series X|S / Xbox One release. Not found in the current (Aug 2026) lineup check; no dated departure article located, so current status is unknown rather than confirmed rotated-out.",
+    "n_sources": 2,
+    "source_urls": [
+     "https://screenrant.com/game-pass-firework-horror/",
+     "https://beebom.com/xbox-game-pass-games-list/"
+    ]
+   }
+  },
+  {
+   "position": 11,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 2593370,
+   "name": "The Hungry Lamb: Traveling in the Late Ming Dynasty",
+   "developer": "零创游戏(ZerocreationGame)",
+   "publisher": "零创游戏(ZerocreationGame), 2P Games",
+   "why": "38,601 reviews at $7.49 — the second-highest review volume in the tier at the second-lowest price, which is the single best titles-per-dollar contribution among the picks.",
+   "removal_trigger": "Either branch of the status check; no Game Pass evidence exists either way, so this is a cold approach.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Zerocreation Game / 2P Games",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 4,
+    "composite_score": 0.9589,
+    "score_tier": "Anchor",
+    "developer_title_count": 4,
+    "recognition_pct": 0.9948,
+    "headroom_pct_collinear_with_recognition": 0.9633,
+    "fit_pct_tiebreaker_10pct": 0.7622,
+    "review_total": 38601,
+    "review_positive_ratio": 0.967,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 7.49,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie|RPG"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "not_verified",
+    "blockers": [],
+    "note": "SCOPE-CHANGE RE-CHECK: previously flagged as needing an unconfirmed console port; that no longer disqualifies it. The title is a native Steam release (that is how it entered this dataset), so Windows PC availability is confirmed by construction. No Xbox console release was found in any source, and no Game Pass listing (past or present) was found either. Now a clean PC-eligible candidate pending a direct Game Pass check.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://www.gamespress.com/Harrowing-Visual-Novel-The-Hungry-Lamb-Launches-on-Nintendo-Switch-Tod"
+    ]
+   }
+  },
+  {
+   "position": 12,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1562700,
+   "name": "SANABI",
+   "developer": "WONDER POTION",
+   "publisher": "NEOWIZ",
+   "why": "30,102 reviews from WONDER POTION, a 1-title developer, at $14.99. Its publisher NEOWIZ was checked specifically for the instability affecting Annapurna and Humble and none was found — stated as absence of evidence, not confirmed stability.",
+   "removal_trigger": "Either branch of the status check.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "NEOWIZ",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 8,
+    "composite_score": 0.9446,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 0.9773,
+    "headroom_pct_collinear_with_recognition": 0.9091,
+    "fit_pct_tiebreaker_10pct": 0.9231,
+    "review_total": 30102,
+    "review_positive_ratio": 0.9745,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 14.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Action|Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "not_verified",
+    "blockers": [],
+    "note": "SCOPE-CHANGE RE-CHECK: previously not fully assessed pending a console check that no longer matters. Confirmed native Steam (PC) title by construction of the dataset; Windows PC availability = yes. No evidence found of an Xbox console release (still unconfirmed) and no evidence found of any Game Pass listing. No recent NEOWIZ restructuring found in searches despite the coordinator's flag to check — treated as no evidence of instability, not confirmed stable.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://worthplaying.com/article/2023/10/26/news/139516-sanabi-gets-nintendo-switch-and-pc-release-date-trailer/"
+    ]
+   }
+  },
+  {
+   "position": 13,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1369630,
+   "name": "ENDER LILIES: Quietus of the Knights",
+   "developer": "Live Wire, Adglobe",
+   "publisher": "Binary Haze Interactive",
+   "why": "Metacritic 86 on 35,018 reviews — the portfolio's only metroidvania and its highest-reviewed press-covered title outside Tier 2.",
+   "removal_trigger": "Either branch of the status check.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Binary Haze Interactive",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 10,
+    "composite_score": 0.9301,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 0.9895,
+    "headroom_pct_collinear_with_recognition": 0.9493,
+    "fit_pct_tiebreaker_10pct": 0.5559,
+    "review_total": 35018,
+    "review_positive_ratio": 0.9417,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 24.99,
+    "metacritic_score": "86",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Action|Indie|RPG"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Native Xbox and PC releases confirmed; no Game Pass listing found either way.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://gamingbolt.com/ender-lilies-quietus-of-the-knights-out-now-for-xbox-series-x-s-and-xbox-one"
+    ]
+   }
+  },
+  {
+   "position": 14,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1876890,
+   "name": "Wandering Sword",
+   "developer": "The Swordman Studio",
+   "publisher": "Spiral Up Games",
+   "why": "19,877 reviews in the 200k-500k bucket. Under the previous console-required scope this was the portfolio's hardest blocker — no Xbox console SKU until 21 January 2027. Under PC eligibility it is available today, with console reach arriving five months from now if the date holds. It is the clearest single illustration of what the rescope bought.",
+   "removal_trigger": "Either branch of the status check. The Jan 2027 console date slipping is NOT a removal condition under this scope — it only defers the reach bonus.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Spiral Up Games",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 11,
+    "composite_score": 0.9206,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 0.9161,
+    "headroom_pct_collinear_with_recognition": 0.972,
+    "fit_pct_tiebreaker_10pct": 0.7378,
+    "review_total": 19877,
+    "review_positive_ratio": 0.9335,
+    "owners_range_steamspy_bucket_ESTIMATE": "200,000 .. 500,000",
+    "owners_mid": 350000,
+    "price_usd_retail_NOT_licence_cost": 24.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie|RPG|Strategy"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "no (delayed to 2027)",
+    "blockers": [],
+    "note": "VERDICT FLIP due to scope change. Previously excluded/flagged as blocked because no Xbox console version exists; that is no longer a disqualifying condition. It is a native Steam (Windows PC) release today, which is what Game Pass eligibility now turns on. Console versions (PS5, Switch/Switch 2, Xbox Series) remain delayed to January 21, 2027 (unchanged fact from prior pass) -- relevant as a note on future reach expansion, not a blocker. GP status not verified.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://www.vgchartz.com/article/467889/wandering-sword-delayed-to-january-21-2027-launches-for-switch-2-ps5-xbox-series-and-switch/"
+    ]
+   }
+  },
+  {
+   "position": 15,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1055540,
+   "name": "A Short Hike",
+   "developer": "adamgryu",
+   "publisher": "adamgryu",
+   "why": "Metacritic 82 on 17,323 reviews at $7.99 in the 200k-500k bucket — the 'recognised but not widely owned' profile at its purest, from a solo developer.",
+   "removal_trigger": "Either branch of the status check.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "adamgryu (self-published)",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 14,
+    "composite_score": 0.9164,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 0.8811,
+    "headroom_pct_collinear_with_recognition": 0.9598,
+    "fit_pct_tiebreaker_10pct": 0.9196,
+    "review_total": 17323,
+    "review_positive_ratio": 0.992,
+    "owners_range_steamspy_bucket_ESTIMATE": "200,000 .. 500,000",
+    "owners_mid": 350000,
+    "price_usd_retail_NOT_licence_cost": 7.99,
+    "metacritic_score": "82",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "unknown",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Added to Xbox Game Pass Aug 3, 2023, day-and-date with native Xbox and PC release. Current status not reconfirmed with a dated source either way.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://www.purexbox.com/news/2023/08/a-short-hike-is-available-today-with-xbox-game-pass-august-3"
+    ]
+   }
+  },
+  {
+   "position": 16,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1189630,
+   "name": "Path Of Wuxia",
+   "developer": "香港商河洛互動娛樂股份有限公司",
+   "publisher": "香港商河洛互動娛樂股份有限公司",
+   "why": "30,091 reviews in the 500k-1M bucket; wuxia RPG is a segment nothing else in the portfolio touches.",
+   "removal_trigger": "Either branch of the status check; at $34.99 it is the tier's second-worst titles-per-dollar contribution.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "河洛工作室 (Heluo Studio)",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 15,
+    "composite_score": 0.9128,
+    "score_tier": "Anchor",
+    "developer_title_count": 4,
+    "recognition_pct": 0.9755,
+    "headroom_pct_collinear_with_recognition": 0.9073,
+    "fit_pct_tiebreaker_10pct": 0.6206,
+    "review_total": 30091,
+    "review_positive_ratio": 0.7859,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 34.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Indie|RPG"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "not_verified",
+    "blockers": [],
+    "note": "SCOPE-CHANGE RE-CHECK: previously flagged pending a console check that no longer applies. Confirmed native Steam (Windows PC) title by construction of the dataset. No Xbox console release or Game Pass listing found in any source. Now a clean PC-eligible candidate pending a direct Game Pass check.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://store.steampowered.com/app/1189630/Path_Of_Wuxia/"
+    ]
+   }
+  },
+  {
+   "position": 17,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1210320,
+   "name": "Potion Craft: Alchemist Simulator",
+   "developer": "niceplay games",
+   "publisher": "tinyBuild",
+   "why": "31,904 reviews in a crafting/alchemy simulation genre no other pick covers, from a 1-title developer.",
+   "removal_trigger": "Either branch of the status check.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "tinyBuild",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 16,
+    "composite_score": 0.9072,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 0.979,
+    "headroom_pct_collinear_with_recognition": 0.9213,
+    "fit_pct_tiebreaker_10pct": 0.4913,
+    "review_total": 31904,
+    "review_positive_ratio": 0.9137,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 19.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Indie|Simulation"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "unknown",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Version 1.0 launched day-and-date on PC, Xbox and Game Pass, Dec 13, 2022. Current status not reconfirmed either way.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://news.xbox.com/en-us/2022/12/16/potion-craft-is-now-available-on-xbox/"
+    ]
+   }
+  },
+  {
+   "position": 18,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1931770,
+   "name": "Chants of Sennaar",
+   "developer": "Rundisc",
+   "publisher": "Focus Entertainment",
+   "why": "Metacritic 86 on 17,036 reviews at $12.99 in the 200k-500k bucket, occupying a language-puzzle genre unique in this portfolio.",
+   "removal_trigger": "Either branch of the status check.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Focus Entertainment",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 19,
+    "composite_score": 0.9028,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.8689,
+    "headroom_pct_collinear_with_recognition": 0.9545,
+    "fit_pct_tiebreaker_10pct": 0.8654,
+    "review_total": 17036,
+    "review_positive_ratio": 0.9837,
+    "owners_range_steamspy_bucket_ESTIMATE": "200,000 .. 500,000",
+    "owners_mid": 350000,
+    "price_usd_retail_NOT_licence_cost": 12.99,
+    "metacritic_score": "86",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "unknown",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Confirmed added to Xbox/PC Game Pass at some point (Focus Entertainment's own support page and contemporaneous press). Current status not independently reconfirmed either way.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://www.trueachievements.com/news/chants-of-sennaar-joins-xbox-game-pass"
+    ]
+   }
+  },
+  {
+   "position": 19,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 1880330,
+   "name": "Sanfu",
+   "developer": "Shiying Studio",
+   "publisher": "Gamera Games",
+   "why": "15,929 reviews from Shiying Studio — the same developer as Firework, so one counterparty conversation covers two picks. That efficiency is a real part of its case.",
+   "removal_trigger": "Either branch of the status check; drop if the Firework conversation fails, since the shared-counterparty efficiency is half its rationale.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Gamera Games",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 23,
+    "composite_score": 0.8921,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.8497,
+    "headroom_pct_collinear_with_recognition": 0.9388,
+    "fit_pct_tiebreaker_10pct": 0.9178,
+    "review_total": 15929,
+    "review_positive_ratio": 0.8253,
+    "owners_range_steamspy_bucket_ESTIMATE": "200,000 .. 500,000",
+    "owners_mid": 350000,
+    "price_usd_retail_NOT_licence_cost": 10.99,
+    "metacritic_score": null,
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Adventure|Indie|RPG"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "not_verified",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "not_verified",
+    "blockers": [],
+    "note": "SCOPE-CHANGE RE-CHECK: previously flagged pending a console check that no longer applies. Confirmed native Steam (Windows PC) title by construction of the dataset. No Xbox console release or Game Pass listing found in any source.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://store.steampowered.com/app/1880330/Sanfu/"
+    ]
+   }
+  },
+  {
+   "position": 20,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 953490,
+   "name": "CARRION",
+   "developer": "Phobia Game Studio",
+   "publisher": "Devolver Digital",
+   "why": "24,708 reviews with Metacritic 75 — the portfolio's only pure horror title, a genre Tiers 1 and 2 have none of.",
+   "removal_trigger": "Either branch of the status check; Metacritic 75 is the weakest press score among the picks, so it is the first cut if the tier must shrink.",
+   "counterparty_risk": {
+    "flag": "none_reported",
+    "publisher": "Devolver Digital",
+    "detail": "No reported organisational instability found in Stage 24. Absence of evidence, not confirmed stability."
+   },
+   "trace_23_candidates": {
+    "rank": 25,
+    "composite_score": 0.8902,
+    "score_tier": "Anchor",
+    "developer_title_count": 1,
+    "recognition_pct": 0.9563,
+    "headroom_pct_collinear_with_recognition": 0.8339,
+    "fit_pct_tiebreaker_10pct": 0.785,
+    "review_total": 24708,
+    "review_positive_ratio": 0.9453,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 19.99,
+    "metacritic_score": "75",
+    "has_controller_support": "True",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Action|Adventure|Indie"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "unknown",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [],
+    "note": "Unchanged from previous pass. Launched day-and-date on Xbox, Xbox Game Pass, Switch and PC, July 2020. Current subscription status not reconfirmed with a dated source either way.",
+    "n_sources": 1,
+    "source_urls": [
+     "https://www.thexboxhub.com/keep-calm-and-carrion-as-devolvers-2d-horror-lands-on-xbox-xbox-game-pass-switch-and-pc/"
+    ]
+   }
+  },
+  {
+   "position": 21,
+   "tier": 3,
+   "tier_name": "Breadth block",
+   "app_id": 745920,
+   "name": "Temtem",
+   "developer": "Crema",
+   "publisher": "Humble Games",
+   "why": "Metacritic 79 on 38,583 reviews with a native Xbox Series SKU and no Game Pass listing found anywhere — a genuinely un-lapsed monster-collector MMO, and the portfolio's only massively-multiplayer title. Ranked LAST in the tier on purpose: at $44.99 it is by a wide margin the worst titles-per-dollar contribution in the portfolio, and its publisher Humble Games carries the same instability flag as Unpacking.",
+   "removal_trigger": "Either branch of the status check; the Humble reachability condition from Tier 2; OR a quote at large-publisher scale. This is the designated first cut for the whole portfolio — dropping it alone raises realised titles-per-$1,000 from 50.28 to 53.66.",
+   "counterparty_risk": {
+    "flag": "counterparty_instability",
+    "publisher": "Humble Games",
+    "detail": "Laid off its entire ~36-person staff in July 2024, widely reported as a de facto shutdown; the company disputed 'full shutdown', called it a restructure, and later signalled it would keep supporting its catalogue [Forbes 2024-07-23; Game Developer, July 2024; PC Games Insider, July 2024]. Catalogue rights not reported as lost or sold."
+   },
+   "trace_23_candidates": {
+    "rank": 7,
+    "composite_score": 0.9474,
+    "score_tier": "Anchor",
+    "developer_title_count": 2,
+    "recognition_pct": 0.993,
+    "headroom_pct_collinear_with_recognition": 0.9615,
+    "fit_pct_tiebreaker_10pct": 0.6626,
+    "review_total": 38583,
+    "review_positive_ratio": 0.8192,
+    "owners_range_steamspy_bucket_ESTIMATE": "500,000 .. 1,000,000",
+    "owners_mid": 750000,
+    "price_usd_retail_NOT_licence_cost": 44.99,
+    "metacritic_score": "79",
+    "has_controller_support": "False",
+    "has_coop": "False",
+    "has_multiplayer": "False",
+    "genres": "Aventura|Indie|Multijugador masivo|Rol"
+   },
+   "trace_24_availability": {
+    "on_gamepass": "no",
+    "windows_pc": "yes",
+    "xbox_console_REACH_BONUS_NOT_A_GATE": "yes",
+    "blockers": [
+     "publisher_instability"
+    ],
+    "note": "NEW title for this pass. Complicated release history: PS4 and Xbox One versions were cancelled in 2020 to focus on next-gen consoles, but the game did launch natively on Xbox Series X|S (and PS5, Switch, PC) at its 1.0 release in September 2022. No evidence found of any Game Pass listing, past or present, despite extensive searching (multiple 'will this be on Game Pass?' forum questions found, no confirmed answer). Same publisher-instability flag as Unpacking: Humble Games' July 2024 mass layoffs (see rank 3 sources) apply here too, since Humble Games also publishes Temtem.",
+    "n_sources": 3,
+    "source_urls": [
+     "https://screenrant.com/temtem-ps4-xbox-one-canceled-platforms-kickstarter-update/",
+     "https://www.purexbox.com/news/2022/05/pokemon-like-mmo-temtem-finally-releases-on-xbox-this-september",
+     "https://gamefaqs.gamespot.com/boards/297626-temtem/79333866"
+    ]
+   }
+  }
+ ],
+ "named_but_not_picked": [
+  {
+   "rank": 22,
+   "name": "KovaaK's",
+   "review_total": 32859,
+   "price_usd": 9.99,
+   "composite_score": 0.8923,
+   "app_id": 824270,
+   "verdict": "excluded_on_positioning",
+   "summary": "KovaaK's — an aim trainer, not a game.",
+   "case_for": "v2 rank 22 on 32,859 reviews — the 4th-highest review volume in the whole screened set — at $9.99, in the 200k-500k owner bucket. On the composite alone it outranks Sanfu, The Stanley Parable and CARRION, all of which are picks. Under a pure titles-per-dollar reading it is a cheap slot.",
+   "case_against": "The composite is ~90% log review count (R2 0.775 against log reviews). A training utility accumulates review volume through a mechanism that does not convert into what a catalogue slot is for: it is bought once by a large, highly-motivated competitive-FPS population and reviewed at a rate no narrative title matches. This is the clearest case in the list where the composite's disclosed degeneracy produces a title the METRIC likes for a reason the STRATEGY does not share. The red team raised exactly this as a positioning question (22_redteam_indie.md A-3) and it is answered here as one.",
+   "decision": "EXCLUDED from the board-facing portfolio. This is a positioning judgment, stated as such and reversible by the board: if the objective is raw slot count rather than perceived catalogue quality, this row is the reinstatement candidate."
+  },
+  {
+   "rank": 17,
+   "name": "Milk inside a bag of milk inside a bag of milk",
+   "review_total": 26566,
+   "price_usd": 1.49,
+   "composite_score": 0.9059,
+   "app_id": 1392820,
+   "verdict": "excluded_on_positioning",
+   "summary": "Milk inside a bag of milk inside a bag of milk — a $1.49 novelty short.",
+   "case_for": "v2 rank 17 on 26,566 reviews in the 500k-1M owner bucket at $1.49. It is the single best titles-per-dollar entry available anywhere in the screened set — the breadth-per-dollar thesis taken to its logical limit, and excluding it is in genuine tension with the argument this portfolio rests on. That tension is stated rather than hidden.",
+   "case_against": "Two reasons. (1) Positioning: the opening tiers set the perceived quality of the whole catalogue addition, and a $1.49 novelty is what a hostile board quotes back. (2) Series duplication: Milk inside (rank 17) and Milk outside (rank 28) are one licensable property contributing two rows, so the slot-count contribution is smaller than the ranking implies. NOTE: the dataset has NO playtime data, so this document does not and cannot assert a runtime — 'very short novelty' is the coordinator's characterisation, not a measured finding here.",
+   "decision": "EXCLUDED from the board-facing portfolio, on positioning, with the counter-argument recorded above so the board can overturn it knowingly."
+  }
+ ],
+ "excluded_nothing_to_license": [
+  {
+   "app_id": 2273430,
+   "name": "BlazBlue Entropy Effect",
+   "rank": 5,
+   "reason": "already_included",
+   "detail": "Ships on Xbox/PC Game Pass as 'BlazBlue Entropy Effect X' (different SKU, same franchise), added Feb 2026. Nothing to license."
+  },
+  {
+   "app_id": 2218750,
+   "name": "Halls of Torment",
+   "rank": 21,
+   "reason": "already_included",
+   "detail": "Confirmed current on Game Pass Premium, Aug 2026. Nothing to license."
+  }
+ ],
+ "concentration": {
+  "picks": {
+   "n": 21,
+   "action_pct": 19.0,
+   "multiplayer_pct": 9.5,
+   "coop_pct": 9.5
+  },
+  "qualifying_list": {
+   "n": 201,
+   "action_pct": 47.3,
+   "multiplayer_pct": 27.4,
+   "coop_pct": 23.4
+  },
+  "by_band": {
+   "ranks 1-25": {
+    "n": 25,
+    "action_pct": 28.0,
+    "multiplayer_pct": 12.0,
+    "coop_pct": 12.0
+   },
+   "ranks 26-60": {
+    "n": 35,
+    "action_pct": 45.7,
+    "multiplayer_pct": 40.0,
+    "coop_pct": 34.3
+   },
+   "ranks 61-120": {
+    "n": 60,
+    "action_pct": 56.7,
+    "multiplayer_pct": 28.3,
+    "coop_pct": 20.0
+   },
+   "ranks 121-201": {
+    "n": 81,
+    "action_pct": 46.9,
+    "multiplayer_pct": 25.9,
+    "coop_pct": 24.7
+   }
+  },
+  "remedy_that_actually_works": "Unlike the previous run's portfolio — where the adjacent rank band was IDENTICAL to the screened one on multiplayer and the proposed remedy did nothing — the band immediately below this screen is the multiplayer PEAK of the whole list: ranks 26-60 are 40.0% multiplayer and 34.3% co-op against 12.0% and 12.0% in ranks 1-25. Extending the availability screen from rank 25 to rank 60 (35 more titles) is a bounded ask that lands exactly where the gap closes.",
+  "verified_social_titles_ranks_26_60": [
+   {
+    "rank": 26,
+    "app_id": 242860,
+    "name": "Verdun",
+    "has_coop": "False",
+    "has_multiplayer": "True",
+    "review_total": 37045,
+    "price_usd": 14.99,
+    "metacritic_score": "70"
+   },
+   {
+    "rank": 33,
+    "app_id": 895400,
+    "name": "Deadside",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 34895,
+    "price_usd": 24.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 36,
+    "app_id": 774181,
+    "name": "Rhythm Doctor",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 20321,
+    "price_usd": 15.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 39,
+    "app_id": 2212330,
+    "name": "Your Only Move Is HUSTLE",
+    "has_coop": "False",
+    "has_multiplayer": "True",
+    "review_total": 25746,
+    "price_usd": 4.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 43,
+    "app_id": 512900,
+    "name": "Streets of Rogue",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 21224,
+    "price_usd": 19.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 47,
+    "app_id": 330020,
+    "name": "Children of Morta",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 19988,
+    "price_usd": 6.59,
+    "metacritic_score": "82"
+   },
+   {
+    "rank": 48,
+    "app_id": 774801,
+    "name": "Crab Champions",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 23847,
+    "price_usd": 9.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 50,
+    "app_id": 285920,
+    "name": "TerraTech",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 22400,
+    "price_usd": 24.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 52,
+    "app_id": 1084600,
+    "name": "My Time at Sandrock",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 24605,
+    "price_usd": 27.99,
+    "metacritic_score": "80"
+   },
+   {
+    "rank": 54,
+    "app_id": 238430,
+    "name": "Contagion",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 15219,
+    "price_usd": 9.99,
+    "metacritic_score": "62"
+   },
+   {
+    "rank": 55,
+    "app_id": 1361510,
+    "name": "Teenage Mutant Ninja Turtles: Shredder's Revenge",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 13209,
+    "price_usd": 24.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 56,
+    "app_id": 585420,
+    "name": "Trailmakers",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 23890,
+    "price_usd": 24.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 58,
+    "app_id": 2532550,
+    "name": "LIZARDS MUST DIE",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 25278,
+    "price_usd": 1.99,
+    "metacritic_score": null
+   },
+   {
+    "rank": 60,
+    "app_id": 1211020,
+    "name": "Wobbly Life",
+    "has_coop": "True",
+    "has_multiplayer": "True",
+    "review_total": 23104,
+    "price_usd": 17.99,
+    "metacritic_score": null
+   }
+  ],
+  "caveat": "None of these can be a pick today: all sit outside the Stage 24 screen and have no availability verdict. This is stated as the cost of closing the gap, not as a gap already closed."
+ },
+ "portfolio_composition_MEASURED": {
+  "metacritic_present": "11 of 21",
+  "owners_top_bucket_500k_1M": 16,
+  "xbox_console_sku_exists": 14,
+  "no_controller_support": [
+   "VA-11 Hall-A: Cyberpunk Bartender Action",
+   "Temtem"
+  ],
+  "no_controller_note": "Playable on PC by construction; the cost is console reach, which under this scope is a bonus and not a gate. Reported because 22_redteam_indie.md A-3 asked for the keyboard-only share to be visible per tier rather than pooled.",
+  "max_titles_from_one_developer": 2,
+  "developer_note": "Shiying Studio (Firework, Sanfu). No other developer contributes 2.",
+  "mean_price": 19.89,
+  "median_price": 19.99,
+  "genre_metadata_note": "Temtem's genre strings are Spanish in the source data (Aventura / Rol / Multijugador masivo), a known non-English metadata case from 02_cleaning_report.md. It is counted separately in the genre tallies above, which slightly understates Action/RPG share."
+ },
+ "sizing": {
+  "position": "No sourced indie or back-catalogue Game Pass licensing figure exists in the public record. None is invented here and nothing is extrapolated from the AAA numbers.",
+  "what_is_offered_instead": "An execution ordering by DEAL STRUCTURE — restarts first because the work is done, then clean adds with intact counterparties, then cold approaches — so the board can commit tier by tier and stop when quotes stop making sense; plus a per-slot aggregate test the tier must pass (above 41.39 titles per $1,000 of retail-price proxy).",
+  "why_not_price_ranked": "Retail price does NO ranking work in this portfolio. Stage 11 (RT-04) established price in this catalogue is a monotone proxy for production budget and press coverage. It is used ONLY in the aggregate breadth-per-dollar comparison, measured identically on both groups, and carries that comparison's caveat.",
+  "qa_context_not_an_anchor": "AAA day-one $5M-$300M and GTA V back-catalogue $12-15M/month [Axios 2023-09-19]; $50K to over $50M across 500+ deals [MacIntyre via TweakTown 2025-07-13]. A 1,000x span with no breakdown supports no budget approval and is not presented as sizing."
+ },
+ "standing_caveats": [
+  "NO engagement or playtime data exists — every playtime column is constant zero across all 140,077 rows. No claim about retention or session length is made for any title.",
+  "Owners are bucketed SteamSpy ESTIMATES, not measured sales; owners_mid has 6 distinct values and the ceiling (750,000) is bucket-equivalent to 1,000,000.",
+  "Review counts are self-selected and vary by genre, price and audience size.",
+  "The composite is ~90% log review count (R2 0.775) — see known_property_disclosed.",
+  "Availability was screened on the top 25 only. Every title named outside that set is labelled as unscreened and none is a pick.",
+  "Data is Steam PC and the deployment target is now PC Game Pass, so the platform transfer risk that dominated earlier stages is largely dissolved by the rescope. Console ARPPU remains +47.3% ($81.68/$55.47-1; MIDiA 2024 estimates via Plarium), which is why console SKUs are tracked as a reach bonus.",
+  "release_date is right-truncated (nothing after Oct 2024) and 20.4% missing.",
+  "Every FIGURE here is joined from the two source artifacts; tier membership, ordering and rationale text are authored judgments, not derived."
+ ]
+}

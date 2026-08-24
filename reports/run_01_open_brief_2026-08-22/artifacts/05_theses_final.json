@@ -1,0 +1,319 @@
+{
+  "run": "run_2026-08-22",
+  "stage": "5 (final, revision 3, post red-team round 2)",
+  "date": "2026-08-22",
+  "supersedes": "artifacts/05_theses.json (v1) and artifacts/05_theses_v2.json (v2), both retained unchanged \u2014 the progression is part of the deliverable.",
+  "revision_basis": "artifacts/06_redteam_v2.md. The round-2 review verified that every round-1 concession was real rather than cosmetic, re-derived the 12.59% decomposition and the rollback sensitivity (both exact), and WITHDREW R3 \u2014 accepting that recognition and console penetration are separable and conceding that R3 itself transferred Steam penetration to console while objecting to population transfer. Revision 3 is scoped to exactly four items: N1 (no branch for good news \u2014 the material one), N2 (price trigger not decidable as scoped), N3 (20 titles not derivable from experimental design), N4 (unsourced 'nine-figure'). Nothing else was reopened. Companion: artifacts/05_decision_tree.md.",
+  "verification_of_critique": {
+    "note": "I did not accept the critic's arithmetic on trust. Re-derived from parquet/fact_games.parquet and parquet/genres_long.parquet.",
+    "R1_confirmed": "Distinct titles meeting F6's bar across the ENTIRE catalogue = 1,094. Action 635 / RPG 244 / Indie 417, deduplicating to 885 \u2014 v1 summed three overlapping genre counts to 1,160, exceeding the whole qualifying population. Confirmed fatal. Cumulative screens: 1,094 -> 917 (excl. 177 free-to-play) -> 727 (released <=2022) -> ~650 (excl. Bethesda 24, Valve 19, Xbox Game Studios 18, Activision 8, Rockstar 6).",
+    "R4_confirmed": "Probability of reaching 1M+ owners by reference class: all real titles 1.00% (n=122,191); publisher with >=20 titles 3.24% (n=15,003); priced $30-60 12.32% (n=1,542); priced >=$30 AND publisher >=20 titles 12.59% (n=842). The 12.5x gap is real and the category error is exactly the one conceded for F4 at O4.",
+    "R5_confirmed": "v1's first_tranche implied a $1.0M average deal ($20M/20) while size.basis called $1.5M the conservative central case. At $1.5M the tranche is $30M licensing, not $20M.",
+    "R6_confirmed": "$23M / $21.8B = 0.106%, not the 0.5% v1 claimed. The error ran in the direction that flattered the argument.",
+    "R12_confirmed_and_bounded": "The critic's $840M assumes 10M Ultimate subscribers, which is not sourced. Tested across the plausible range: 5M/10M/15M Ultimate subscribers at a $7/month reduction = $420M / $840M / $1,260M per year forgone. The objection survives at every point in that range \u2014 4.7x to 14x v1's withdrawn $90M/year steady state, and 14x to 42x the surviving tranche. The exact figure is unsourced; the order of magnitude is not in doubt.",
+    "M1_confirmed": "Action titles meeting the bar = 635, not 574; the 61-title difference is the `unknown` vintage bucket (release_date is NULL). v1 inherited F6's four named buckets and understated its own pool.",
+    "M2_confirmed": "36,286 of 122,191 real games (29.7%) have no publisher, biasing every publisher residual in F4 upward by an unquantified amount. Not load-bearing in any surviving thesis; recorded so it is not resurrected.",
+    "pool_discrepancy_cause_CORRECTED": "v2 attributed the 646-vs-652 gap to 'publisher-string matching'. That explanation was wrong and is corrected. Re-derived: the screened base is 727; the five named publishers account for 75 of it; 727-75 = 652 by direct counting. A `NOT IN` filter returns 650, because two rows in the screened set carry a NULL publisher and SQL's NOT IN silently drops them \u2014 that is the real cause of the 650/652 gap, exactly as the round-2 review states. On the remaining gap to 646 I record a partial non-reproduction rather than accepting it: the review attributes it to excluding PlayStation Publishing (4 titles), but I find ZERO titles in the screened set under 'PlayStation Publishing', 'Sony Interactive Entertainment' or 'PlayStation PC LLC', so I cannot reproduce that exclusion from this data and do not assert it. The defensible statement is a range of 646-652, immaterial to every conclusion, with the NULL-handling cause confirmed and the PlayStation component unreproduced. The substantive point stands either way: Sony will not license back catalogue non-exclusively into Game Pass, so the true screened pool sits at or below this range."
+  },
+  "objective_function_assumed": {
+    "statement": "Game Pass subscription margin and retention, plus console attach \u2014 NOT unit sales and NOT catalogue breadth.",
+    "basis": "04_context.md s2 + gp-price-history-2025-2026, xbox-studio-closures-2026-07, msft-ceo-pressure-console-profit-2027. Confidence MEDIUM (the FY26 Q4 transcript that would state it explicitly returned 403 at Stage 4).",
+    "revision_note_R12": "v1 cited the April 2026 Ultimate rollback ($29.99 -> $22.99) as evidence FOR catalogue investment, reasoning that it establishes perceived catalogue value per dollar as the live constraint. That inference runs backwards and is withdrawn. The rollback shows Microsoft identified churn as the problem and reached for PRICE, at a scale of roughly $420M-$1.26B/year forgone revenue depending on the Ultimate subscriber split \u2014 between 4.7x and 14x the catalogue programme v1 proposed. The correct reading of the company's revealed preference is that price, not catalogue, is its chosen churn lever, and any catalogue thesis must now clear that comparison rather than cite it as support."
+  },
+  "standing_evidence_limits": {
+    "no_engagement_data": "Zero playtime/engagement signal exists in this dataset (all four SteamSpy playtime columns constant 0 across 140,077 rows, dropped at Stage 2). Nothing here measures retention. This is why both surviving theses are measurement-gated rather than committed.",
+    "owners_is_a_bucket_proxy": "owners_mid is a bucket midpoint, not a count; 83.2% of the catalogue sits in the single bottom bucket. Per M7, F1's '78-93%' is a shape, not a measured share, and must not be quoted to one decimal place in a board room.",
+    "model_is_weak": "The genre x price-band model validates at Pearson r=0.114 out of sample (n=57,522) \u2014 roughly 1% of variance. It is not used to rank or select anything in v2.",
+    "population_validity": "Steam PC data. Console ARPPU ~48% higher (arppu-console-vs-pc-2024); genre mix differs materially (F8; pc-vs-console-genre-2024). This caveat did more work in v2 than v1: it is now the reason T1's pool cannot be sized at all (R3) rather than a footnote.",
+    "survivorship_runs_in_our_favour_here": "Per M6, accepted: delisted and failed titles are absent from a storefront snapshot, so restoring them would add near-zero-owner rows and RAISE the top-decile share. F1's concentration is conservative, and F6's proven-hit inventory is unaffected by survivorship since proven hits are the survivors by construction. Recorded so the board is not sold false conservatism elsewhere."
+  },
+  "ranking_rationale": "v1 ranked the licensing tranche first on the argument that measurement with no decision downstream is worth nothing. R2 destroyed that argument using v1's own cited source: Microsoft has already negotiated 500+ Game Pass licensing deals (gp-deal-cost-range), so the decision downstream already exists in the standing renewal book, and a 500-deal add/remove history staggered across years, territories and genres is a larger, better-powered and already-paid-for natural experiment than the 20-title block v1 proposed to buy for $23M. The ranking is inverted accordingly. T2 (measurement) is now first, T1 (licensing tranche) second and conditional on T2's retrospective failing to identify the effect, and T3 is withdrawn as argued and re-proposed in a materially smaller form as T3-prime.",
+  "theses": [
+    {
+      "rank": 1,
+      "id": "T2",
+      "status": "STANDS, NARROWED \u2014 promoted from rank 2",
+      "claim": "Spend $8M over 18 months to build a Game Pass retention-attribution capability that produces a tranche-level causal readout plus explicitly correlational per-title descriptives \u2014 beginning with a zero-cost retrospective on Microsoft's existing 500+ licensing deals and a cost-per-retained-subscriber comparison against the April 2026 price action \u2014 before allocating further catalogue capital.",
+      "changes_from_v1": [
+        "R8 \u2014 'per-title cohort retention attribution' is REMOVED from the causal claim. A single randomised holdout against a multi-title block identifies one tranche-level average treatment effect, not N per-title effects. Per-title effects within a shared catalogue are observational and self-selected: subscribers who choose to play title X are the more engaged subscribers, who were likelier to renew anyway. That is the identical reverse-causality failure F5's own caveat documents for publishers, and v1 proposed to spend $8M rebuilding it. The claim now promises what the design can identify and labels the rest correlational.",
+        "R9 \u2014 the '$9-18M/year, payback inside a year' figure is STRUCK. It computed 20% of a SPEND as a return. Improving selection of a tranche is worth 20% of that tranche's VALUE, and the tranche's value is precisely what T2 exists to establish, so the ROI was circular.",
+        "R2 \u2014 a fourth question added to the audit: can per-title cohort retention be reconstructed retrospectively from the existing 500-deal add/remove history?",
+        "R12 \u2014 a fifth question added, and made the FIRST named deliverable: what did the April 2026 price action cost per retained subscriber?"
+      ],
+      "evidence": [
+        "The finding underneath every finding in this run: all four SteamSpy playtime columns are constant 0 across 140,077 rows and were dropped in cleaning. No engagement or retention signal exists in the available data.",
+        "04_context.md s3 [NOT VERIFIED] \u2014 no credible primary source quantifies subscriber acquisition versus retention value by genre for Game Pass. The gap is not an artifact of this dataset; it is unpublished anywhere.",
+        "gp-deal-cost-range \u2014 Microsoft has negotiated 500+ Game Pass licensing deals. Per R2 this is the strongest evidence in the run FOR building the retrospective, and against buying a forward experiment before running it.",
+        "gp-price-history-2025-2026 \u2014 the Ultimate rollback, at a re-derived $420M-$1.26B/year of forgone revenue against churn, is the largest retention intervention this company has recently made and its cost-effectiveness is unmeasured in any source available here.",
+        "F8 + F6 + pc-vs-console-genre-2024 \u2014 sports is the top Xbox console genre and has only 31 proven-hit titles on Steam against a ~3.5x shooter-over-sports tag skew. The available evidence is structurally blind to the platform's largest genre.",
+        "F5 (uncertainty/caveats) \u2014 the documented reverse-causality failure that R8 shows a naive per-title design would reproduce. Cited here as a design constraint, not as support."
+      ],
+      "mechanism": "Xbox allocates capital in a subscription business against an outcome \u2014 retention \u2014 that it cannot currently attribute to any intervention, and no external source supplies the attribution. The causal argument is option value, not revenue: an attribution capability converts a recurring series of blind bets into staged ones. What changed under criticism is the sequencing argument. v1 held that measurement was worthless without a decision downstream and therefore ranked it second. R2 showed the decision downstream already exists and is large: a standing renewal book across 500+ deals whose add/remove history is a staggered, multi-year, multi-territory natural experiment that has already been paid for and already sits in Xbox's telemetry. Note a point the critique did not make, which strengthens its own objection: licence EXPIRIES are plausibly closer to exogenous than licence additions, because expiry timing is set by contract terms negotiated years earlier rather than by a judgement about the current catalogue \u2014 so removals may offer better identification than additions, and the retrospective may be better-powered than R2 argued. This is why measurement now leads: the cheapest, fastest and best-identified evidence available is retrospective, and buying a forward experiment before running it would be paying $30M for a weaker version of something already owned.",
+      "size": {
+        "amount": "$8M over 18 months (band $5-12M), of which the first step is ~$0.",
+        "basis": "Approximately 15-25 FTE-equivalent of data engineering, telemetry and analytics at a fully loaded ~$300-400K/year, plus experiment-platform work. UNSOURCED INTERNAL BUILD ESTIMATE \u2014 order-of-magnitude only, with no basis in this run's artifacts. It assumes console telemetry already exists and the gap is attribution and experiment design rather than instrumentation from zero; if that assumption is wrong the figure is materially too low. The audit tests the assumption before any money moves."
+      },
+      "return": {
+        "horizon": "6-8 weeks to the retrospective and the price-action comparison; 12-18 months to a forward-design readout if one proves necessary.",
+        "expected_outcome": "OPTION VALUE ON A DECISION OF CURRENTLY UNKNOWN MAGNITUDE. Per R9 no dollar return and no payback period is quoted, because any such figure would be computed against a base whose value this thesis exists to establish. What can be said without circularity: it gates the standing renewal book across 500+ deals, it gates T1 entirely, and it produces the price-versus-catalogue comparison described below, which is the actual decision in front of this board.",
+        "named_first_deliverable_price_vs_catalogue": "Per R12 the highest-value output, and per N2 an INPUT, NOT A GATE. Report the April 2026 Ultimate rollback's implied cost per retained subscriber AS A RANGE WITH ITS IDENTIFICATION CAVEAT ATTACHED, set beside T1's ~$100 contribution-margin hurdle. Microsoft deployed on the order of $420M-$1.26B/year of forgone revenue against churn via price (re-derived across a 5-15M Ultimate subscriber range; the range excludes the concurrent PC Game Pass cut and so understates total price deployment) and did so months ago, having already run a 500+ deal catalogue programme. IDENTIFICATION CAVEAT, which v2 omitted: this was a universal price change with no holdout, so no clean counterfactual churn path exists. The interrupted time series is confounded with the July 2026 restructuring, catalogue turnover, competitor launches and seasonality \u2014 partial identification at best. It should be reported with explicit bounds and never as a point estimate. WHAT WOULD MAKE IT DECIDABLE, and this costs nothing to adopt: run the NEXT price action with a regional or cohort holdout. Any future pricing change instrumented that way yields a directly identified cost per retained subscriber and settles the price-versus-catalogue question permanently. That is a forward recommendation this analysis can make with confidence even though it cannot settle the question retrospectively.",
+        "named_second_deliverable_sports": "Sports is the largest identified blind spot in the run: top genre on Xbox console, 31 proven-hit titles on Steam (F6), a ~3.5x shooter-over-sports skew (F8). F6's n=31 is a Steam PC-skew artifact and is NOT evidence about sports in either direction \u2014 which is exactly why this was never made a thesis and is instead the first genre question for a console-side readout.",
+        "assumptions": [
+          "Console telemetry exists and is retained at sufficient grain. Untested until the audit.",
+          "The 500-deal add/remove history is reconstructible and its timing is not wholly endogenous to catalogue judgement. Plausible for expiries, less so for additions; the audit establishes which.",
+          "The organisation routes catalogue decisions through the readout once it exists. Capability without decision rights delivers nothing."
+        ]
+      },
+      "confidence": {
+        "level": "high, on the narrowed claim",
+        "drivers_up": [
+          "The premise is directly verified rather than inferred \u2014 playtime columns confirmed constant-zero at row level; external equivalent searched for at Stage 4 and not found.",
+          "The first step costs nothing and can kill the thesis outright.",
+          "Its value survives T1's withdrawal or failure \u2014 the renewal book, the price comparison and the sports question are all independent of T1."
+        ],
+        "drivers_down": [
+          "High confidence that the capability is absent from THE EVIDENCE AVAILABLE TO THIS ANALYSIS; materially lower that it is absent from Microsoft. An outside analysis cannot see internal telemetry.",
+          "The $8M is unsourced.",
+          "Per R8, even the narrowed design yields one tranche-level effect. Genuine per-title causal attribution requires randomisation written into licence terms before signature and is otherwise unavailable at any price."
+        ]
+      },
+      "falsifier": "The retrospective on the existing 500+ deals identifies the catalogue-to-retention effect adequately \u2014 in which case the $8M forward build is unnecessary and the answer is already owned. Or, in the other direction: Xbox already holds this capability, in which case the thesis is redundant. Both are established by the zero-cost audit before any money moves. A third: the price action's measured cost per retained subscriber comes in below T1's ~$100 hurdle, which does not falsify T2 but does terminate T1.",
+      "first_step": {
+        "action": "A 6-8 week internal audit at essentially zero incremental cost, answering five questions: (1) does retention attribution already exist internally in any form; (2) is console telemetry retained at sufficient grain to build it; (3) can a randomised subscriber holdout be run legally and technically in the main markets; (4) can per-title cohort retention be reconstructed retrospectively from the existing 500+ deal add/remove history, exploiting licence expiries as the better-identified variation; (5) what did the April 2026 price action cost per retained subscriber? Approve the $8M only if (1) no, (2) yes, and (4) returns an inadequate answer.",
+        "cost": "~$0",
+        "why_this_is_the_right_first_step": "The thesis rests on an absence observed from outside the company, which is the weakest kind of evidence. Six weeks of internal review either kills it for free or converts its premise from inference to fact \u2014 and question (5) alone may terminate the entire catalogue line of argument at zero cost, which is the correct outcome if price is the cheaper lever."
+      },
+      "risks": [
+        {
+          "risk": "The capability already exists internally and the spend is redundant.",
+          "severity": "medium",
+          "mitigation": "Question (1) of a zero-cost audit, before any commitment."
+        },
+        {
+          "risk": "Built but not used \u2014 attribution exists, decisions continue on conviction.",
+          "severity": "high",
+          "mitigation": "Tie the build to standing decisions: make the annual licence renewal book and any T1 continuation formally contingent on its output."
+        },
+        {
+          "risk": "The retrospective is not identifiable \u2014 title selection was non-random and no holdout ever existed.",
+          "severity": "medium",
+          "mitigation": "This is a genuinely possible answer and is the specific condition under which T1's forward tranche becomes justified. Establish it rather than assume it in either direction. Exploit licence expiries as the more plausibly exogenous variation."
+        },
+        {
+          "risk": "Randomised holdouts unacceptable commercially or legally in key markets.",
+          "severity": "medium",
+          "mitigation": "Fall back to staggered regional rollout with difference-in-differences. Question (3) establishes this upfront."
+        },
+        {
+          "risk": "Reads as analysis paralysis to a board that has just acted decisively.",
+          "severity": "medium",
+          "mitigation": "The first step is six weeks and costs nothing, and its headline output is a direct price-versus-catalogue cost comparison \u2014 an answer, not a study."
+        }
+      ],
+      "changes_from_v2_N2": "N2 \u2014 audit question (5), the April 2026 price action's cost per retained subscriber, is DEMOTED FROM A BINARY GATE TO A REPORTED INPUT. v2 treated it as a threshold test capable of terminating the catalogue argument in six to eight weeks. It cannot bear that weight, for the identical reason v2 itself conceded at R8 and failed to flag here: the rollback was a UNIVERSAL price change with NO HOLDOUT, so recovering cost-per-retained-subscriber requires a counterfactual churn path at $29.99 that does not exist. An interrupted time series (increase late 2025, rollback April 2026) gives partial identification only, and it is confounded with the July 2026 restructuring, ordinary catalogue turnover, competitor launches and seasonality. Compounding this, the ~$100 threshold it would be compared against is itself three unsourced assumptions stacked multiplicatively (30M subscribers, $14 blended ARPU, 60% margin). v2 set a noisy partially-identified estimate against an assumption stack and called the comparison a decision. It is now reported as a RANGE WITH ITS IDENTIFICATION CAVEAT, informing the branch weighting rather than determining it. It remains the highest-value question in the audit \u2014 R12 stands \u2014 but it is an input, not a trigger."
+    },
+    {
+      "rank": 2,
+      "id": "T1",
+      "status": "STANDS NARROWED, RE-SEQUENCED, AND NOW THREE-BRANCHED \u2014 the $90M/year steady state remains withdrawn; a route back to a sized programme now exists via Branch A",
+      "claim": "Do not commit capital to catalogue licensing today. Run T2's zero-cost audit first, then follow a three-branch rule: if the retrospective identifies a POSITIVE catalogue-to-retention effect, skip the experiment and size a standing programme directly off the measured effect, using the break-even rule below; if it returns NULL or is not identifiable, run a single bounded $30M, 20-title, 24-month instrumented tranche; if it identifies a NEGATIVE or negligible effect, drop the catalogue argument entirely.",
+      "changes_from_v1": [
+        "R1 \u2014 the $90M/year steady state is WITHDRAWN. v1's pool arithmetic double-counted overlapping genre tags and produced a three-genre figure (1,160) larger than the entire qualifying population (1,094, re-derived). After deduplication and v1's own screens the pool is 652 before netting the ~500 titles already in Game Pass. At 60 titles/year that is >=9.2% of inventory annually and exhausts within v1's own 3-5 year horizon, so the sizing rationale ('roughly 5%, deliberately small so selection can be top-decile') was false in its own terms.",
+        "R2 \u2014 re-sequenced behind T2 and made explicitly conditional on the retrospective failing.",
+        "R3 \u2014 the selection rule is now penetration-adjusted (see mechanism). The pool CANNOT be sized from this dataset.",
+        "R5 \u2014 one central deal price. At the stated conservative $1.5M, 20 titles cost $30M, not $20M.",
+        "R6 \u2014 materiality corrected from '~0.5% of segment revenue' to 0.14% ($30M / $21.8B), and noted as strengthening rather than answering the materiality objection.",
+        "R7 \u2014 hurdle and falsifier reconciled to common units; licence windows extended to 24 months so the treatment outlives the readout.",
+        "R8 \u2014 per-title randomisation (staggered territory/date add windows) added as precondition (d); it is nearly free before signature and impossible afterwards.",
+        "R12 \u2014 the price rollback is removed from the evidence list and moved to a prior condition that T1 must clear.",
+        "M5 \u2014 the Silksong citation is retained only with its qualifier attached."
+      ],
+      "evidence": [
+        "F6 (corrected per M1) \u2014 a licensable inventory of already-proven titles exists and is countable, but far smaller than v1 stated. Re-derived: 1,094 distinct titles meet the bar catalogue-wide (Action 635 including the previously-omitted unknown-vintage bucket, RPG 244, Indie 417, deduplicating to 885 across those three). After screening: 917 non-free, 727 released <=2022, 652 excluding Microsoft-owned and structurally unlicensable publishers. Before netting Game Pass's existing ~500 titles.",
+        "F1 \u2014 reach is extremely hit-concentrated (top decile takes 78-93% of a genre's audience; per M7 read as a shape, not a measured share). Buying breadth is worthless; this is why the tranche is 20 titles and not 200.",
+        "F2 \u2014 supply grew ~6.5x, 2,487 titles (2015) to 16,050 (2024, 10-month partial). A direct count immune to censoring. Content is abundant; scarcity is in rights and in curation.",
+        "gp-deal-cost-range \u2014 $50K to $50M+ across 500+ deals, establishing that a genuine low-cost end exists. NOTE: this same source is now the primary evidence AGAINST T1's priority (R2), because it establishes that the experiment T1 proposes to buy has largely already been run.",
+        "silksong-2025-sales \u2014 WITH ITS QUALIFIER, per M5: day-one inclusion did not fully cannibalise premium sales for a strong title, but Silksong is a brand-new premium release and T1 proposes 3+ year-old back catalogue. The evidence transfers only weakly and is cited only against the cannibalisation risk, where the structural argument is independently stronger."
+      ],
+      "mechanism": "A subscription is renewed on perceived catalogue value, not catalogue size. F1 establishes that reach concentrates in a top decile the market has already identified; F6 establishes that several hundred such titles exist. Licensing them converts capital into recognisable catalogue density at a marginal cost far below producing equivalents, because discovery, production and marketing risk were borne by someone else and have already resolved. It is operating expense against time-boxed licences: reversible, no headcount, no writedown, no integration cost \u2014 a materially different instrument from the studio portfolio exited in July 2026. WHAT CHANGED UNDER R3: v1's selection rule was internally inconsistent and the critique is substantially right, though I bound the remedy rather than concede it whole. F6 selects on owners_low >= 1M \u2014 maximum EXISTING penetration \u2014 while the mechanism requires access to a title the subscriber wants and does NOT already own. v1 conflated two separable properties: recognition (which the thesis wants HIGH) and penetration among the target subscribers (which it wants LOW). The critique treats these as one and concludes the rule runs backwards; strictly it runs UNDERSPECIFIED, and the distinction matters because Steam PC ownership and Xbox console ownership are different quantities \u2014 this run's own population-validity caveat says so, and F8 quantifies the genre divergence. A title with 1M+ Steam owners may have low console penetration and would then be exactly right. But that separation cannot be made from this dataset, which contains no console ownership data at all. The consequence is the same as the critique demands and is stated plainly: the correct screen is high recognition x low console penetration, THE POOL CANNOT BE SIZED FROM THIS DATASET, and identifying it requires the console-side data only T2 delivers. This is a second, independent reason T1 sits behind T2.",
+      "size": {
+        "amount": "$30M for a single 20-title, 24-month tranche. ONE central deal price: $1.5M, the conservative case stated in v1's own size.basis (R5). Instrumentation is not costed here \u2014 it is part of T2's $8M build and would be double-counted if added.",
+        "basis": "Per-title price anchored on gp-deal-cost-range; non-exclusive, non-day-one, 3+ year-old proven titles sit at the low end. ONE central deal price: $1.5M. TITLE COUNT IS A BOUNDED JUDGEMENT, NOT A DERIVATION (N3). v2 claimed 20 was 'the minimum block giving a detectable tranche-level effect'. That is withdrawn: no power calculation exists anywhere in this run, and the reasoning was inverted. With a ~10% holdout on ~30M subscribers, statistical power comes from the SUBSCRIBER n, not the title count \u2014 a 1.0pp effect is detectable whether the tranche holds 5 titles or 50. Title count sets treatment DOSE, and the dose required to move annual churn is precisely the unknown the exercise exists to measure, so 20 cannot be derived from experimental design either. 20 is a judgement: large enough to plausibly register a dose, small enough to stay bounded and reversible. It is labelled as a judgement here for the same reason T3-prime's threshold is.",
+        "no_steady_state": "Per R1, no annual programme figure is offered. Any future steady state requires a pool recomputed deduplicated, screened, netted against the live Game Pass catalogue and penetration-adjusted on console data, none of which this analysis can do. A board-facing annual number would be fabricated.",
+        "pool_bound_on_R1": "R1's remedy is accepted with one bound: the 652-title figure is itself Steam-only, and the licensable universe includes console titles never released on Steam \u2014 so 652 is a lower bound of unknown tightness, not a ceiling. This does NOT rescue the $90M/year figure, because the console-inclusive pool cannot be sized from this data either. The withdrawal stands; the bound only prevents the 652 from being quoted as a hard ceiling in the other direction."
+      },
+      "return": {
+        "horizon": "24 months to a readout on Branch B, matching the licence window (R7). Branch A resolves in 8-12 weeks (pool recomputation), not 24 months.",
+        "expected_outcome": "A hurdle in reconciled units, not a forecast. At ~30M subscribers (gp-subscribers-estimate-2026, LOW confidence) and ~$14/month blended across the published tiers, one percentage point of ANNUAL churn is worth ~300,000 subscribers x $168 = ~$50M/year gross, or ~$30M at an assumed 60% contribution margin. A $30M tranche therefore needs roughly 1.0pp of annual churn improvement to cover its licensing cost on contribution margin.",
+        "unit_reconciliation_R7": "v1 denominated the hurdle in ANNUAL churn and the falsifier in 90-DAY churn with no conversion, which are not interchangeable: a 90-day delta decaying to zero by month twelve produces no annual improvement, and the mapping depends on an unobserved hazard shape. v2 fixes this by (a) denominating hurdle and falsifier both in annual churn, (b) extending licence windows to 24 months so the treatment outlives the readout \u2014 v1's 12-month window would have expired as the measurement closed \u2014 and (c) requiring the 90-day reading to be treated as an interim indicator only, never as the continuation decision.",
+        "assumptions": [
+          "~30M subscribers \u2014 a low-confidence third-party estimate, not a Microsoft disclosure.",
+          "~$14/month blended ARPU \u2014 derived from published tier prices, NOT from a published mix. The mix is unknown here.",
+          "60% contribution margin \u2014 unsourced assumption.",
+          "Per M8, the hurdle should be read as a RANGE, not a point: it is conservative in one direction (retention compounds, so a sustained 1pp raises the steady-state base by more than 300,000) and optimistic in another (the $30M excludes platform, certification and marketing costs). The two partially offset; neither is quantified; net direction unknown.",
+          "That churn responds to catalogue composition at all. UNTESTED, AND THIS DATASET CANNOT TEST IT."
+        ]
+      },
+      "confidence": {
+        "level": "low-to-medium (reduced from medium in v1)",
+        "drivers_up": [
+          "Bounded, reversible operating expense with no headcount and no writedown risk. Downside capped at the tranche.",
+          "F1's concentration and F6's corrected inventory are robust findings that do not depend on the weak F4 model.",
+          "Compatible with the board's July 2026 direction rather than a reversal of it.",
+          "The decision rule now terminates in an action on every branch, including the branch that spends money. v2 did not, which made it unfalsifiable (N1)."
+        ],
+        "drivers_down": [
+          "R12 is the heaviest single mark against it: the company's own revealed preference was to spend 14x-42x this tranche on price rather than catalogue, months ago, having already run 500+ catalogue deals.",
+          "R2: the experiment has largely already been run and is sitting unanalysed.",
+          "R3: the selection rule cannot be specified from this dataset at all.",
+          "The catalogue-to-retention link remains wholly unobserved here."
+        ]
+      },
+      "falsifier": "On Branch B, stated in annual-churn units to match the hurdle (R7): the tranche shows no statistically significant difference in 12-month churn or win-back between the exposed cohort and a matched control, or measured cost per incremental retained subscriber-year exceeds contribution margin (~$100), not gross ARPU. On Branch A, the falsifier is the break-even rule itself: a measured per-title-year effect below ~0.025pp of annual churn kills the programme at $1.5M/title. Note that per N2 the price-action comparison is NO LONGER a prior falsifier \u2014 it is an input reported with its identification caveat, because a universal price change with no holdout cannot decide a binary.",
+      "first_step": {
+        "action": "Do not approve capital now. Run T2's zero-cost audit, then follow the three branches above. On Branch B only, approve $30M subject to four preconditions: (a) net the candidate pool against the ~500 titles already in Game Pass; (b) confirm rights availability and indicative pricing on ~60 candidates before committing to 20; (c) screen on high recognition x LOW console penetration using console-side ownership data, never on Steam rank; (d) per R8, write per-title randomisation \u2014 staggered territory and date add-windows \u2014 into the licence terms BEFORE signature. Precondition (d) is nearly free beforehand and impossible afterwards. On Branch A, preconditions (a)-(c) become the pool recomputation and (d) still applies to every deal signed.",
+        "cost": "$0 now. $30M on Branch B; ~$1-2M then a programme sized by the break-even rule on Branch A; $0 on Branch C.",
+        "why_this_is_the_right_first_step": "Per R6 the tranche is 0.14% of segment revenue, not the 0.5% v1 claimed \u2014 which strengthens rather than answers the materiality objection. The honest position is that this is a small, bounded, conditional experiment that should not be run at all until two cheaper internal questions have been asked."
+      },
+      "risks": [
+        {
+          "risk": "Price proves the cheaper churn lever and the tranche is wasted.",
+          "severity": "high",
+          "mitigation": "This is now a prior condition, not a risk: T2's fifth audit question answers it at zero cost before the tranche is approved."
+        },
+        {
+          "risk": "Selection made on Steam evidence lands badly with a console audience.",
+          "severity": "high",
+          "mitigation": "Precondition (c). If console-side ownership data cannot be obtained, the tranche does not proceed \u2014 per R3 the screen is unspecifiable without it."
+        },
+        {
+          "risk": "Desirable titles unavailable or priced at the top of the range.",
+          "severity": "high",
+          "mitigation": "Precondition (b), a low-cost BD exercise preceding the spend. If fewer than ~30 acceptable candidates clear under $1.5M, do not proceed."
+        },
+        {
+          "risk": "The tranche design forecloses per-title measurement.",
+          "severity": "high",
+          "mitigation": "Precondition (d), which must be executed before signature or not at all."
+        },
+        {
+          "risk": "Cannibalisation of premium sales.",
+          "severity": "low",
+          "mitigation": "Structurally low for 3+ year-old back catalogue whose sales curve has decayed. Silksong is weak supporting evidence only, per M5, being a new premium release rather than back catalogue."
+        },
+        {
+          "risk": "Reads externally as a return to the breadth strategy exited in July 2026.",
+          "severity": "medium",
+          "mitigation": "Different instrument \u2014 time-boxed third-party licences, no headcount, no equity. Communicate as subscriber value, not portfolio expansion."
+        }
+      ],
+      "decision_branches_N1": {
+        "why_this_was_added": "N1, and it was the material objection against v2. v2's T1 fired 'IF AND ONLY IF the retrospective CANNOT identify the effect' \u2014 so the tranche was triggered by IGNORANCE and BLOCKED BY SUCCESS. In the single state of the world most favourable to the thesis, a retrospective that works and shows a large positive catalogue effect, v2 recommended NOTHING: condition 1 failed, the steady state had been withdrawn, and no_steady_state forbade offering an annual figure. No audit outcome led to spending money, which made the whole recommendation unfalsifiable and would have read to a board as an analyst refusing to ever be accountable for a call. That is a fair reading and the hole is now closed. Full readable version in artifacts/05_decision_tree.md.",
+        "BRANCH_A_positive": {
+          "trigger": "The retrospective on the existing 500+ deal add/remove history identifies a positive catalogue-to-retention effect that is statistically distinguishable from zero AND survives the identification checks \u2014 principally that the effect is visible on licence EXPIRIES (whose timing is set by contracts negotiated years earlier and is therefore closer to exogenous) and not only on additions (which are chosen and marketed).",
+          "action": "Do NOT run the $30M tranche \u2014 it would buy a weaker version of an answer already in hand. Instead: (1) run the pool recomputation R1 specifies, which becomes the gating work; (2) size a standing annual programme directly off the measured effect using the break-even rule below.",
+          "the_break_even_rule_with_a_real_number": "This is the answer to 'what would size it', stated as a number rather than a promise to size it later. One percentage point of annual churn is worth 300,000 subscribers x $168 x 0.60 = $30.24M/year of contribution. A $1.5M licence over a 24-month window costs $750K per title-year. Dividing: **the break-even effect size is 0.025 percentage points of annual churn per title-year** (750,000 / 30,240,000 = 0.0248pp). That is the decision rule. If the retrospective measures a per-title-year effect ABOVE ~0.025pp, licensing clears its cost and the programme should be scaled to the pool ceiling; BELOW it, licensing does not pay at $1.5M and the correct response is to negotiate price down or stop. Worked illustration of the shape: a measured 0.5pp across a 50-title cohort-year is 0.01pp/title-year = $302K of contribution against a $750K cost \u2014 it FAILS at 2.5x. A measured 2.0pp across the same cohort is 0.04pp/title-year = $1.21M against $750K \u2014 it CLEARS. The threshold is sharp and the retrospective measures exactly the quantity it turns on.",
+          "programme_size": "Programme size then falls out mechanically: ANNUAL SPEND = (titles licensable per year) x (price per title), capped where the marginal per-title effect falls below the marginal price, and bounded above by the netted pool. The pool number is the ONLY input still missing, and it is missing for reasons R1 and R3 established rather than for want of effort: the Steam-screened pool is 646-652 titles BEFORE netting against Game Pass's existing ~500 titles, before rights availability, and before the console-penetration screen that R3 showed cannot be applied from this dataset at all. For order of magnitude only, and as neither a floor nor a ceiling on the true licensable universe: 650 titles at $1.5M is ~$975M for a one-time full sweep, so a standing programme is bounded in the high hundreds of millions in the limit and realistically far below it. I decline to name the annual figure today because the netted pool is the term that sets it and it is genuinely unknown \u2014 but I name exactly what would set it, what each input costs to obtain, and the threshold the effect must clear.",
+          "what_the_retrospective_also_fixes": "A positive retrospective additionally REPLACES the three unsourced assumptions in the break-even rule with measured internal values \u2014 true subscriber count, true blended ARPU from actual tier mix, true contribution margin. So Branch A is better-founded than today's estimate, not merely larger: the same rule, recomputed on real inputs, yields a defensible number where today it yields only a threshold.",
+          "cost_of_this_branch": "~$1-2M and 8-12 weeks for the pool recomputation (BD rights sweep plus console-penetration screen), then a programme sized as above."
+        },
+        "BRANCH_B_null_or_unidentifiable": {
+          "trigger": "The retrospective returns a null result, or cannot identify the effect at all because title selection was non-random and no holdout ever existed. This is a genuinely possible outcome and is the specific condition under which buying a forward experiment is justified.",
+          "action": "Run the single bounded $30M, 20-title, 24-month instrumented tranche, subject to preconditions (a)-(d) below.",
+          "note": "This is the only branch that reaches the tranche, and it is the branch triggered by the WEAKEST evidence \u2014 which is correct: an experiment is what you buy when observation has failed, not when it has succeeded."
+        },
+        "BRANCH_C_negative": {
+          "trigger": "The retrospective identifies a negative or negligible catalogue-to-retention effect; and/or the price-action range (reported per N2 as an input, with its identification caveat) sits clearly below the ~$100 hurdle.",
+          "action": "Drop the catalogue argument. Recommend no catalogue capital, redirect the renewal book to cost reduction on existing deals, and report the finding. This is a legitimate terminal outcome, not a failure of the analysis."
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "id": "T3-prime",
+      "status": "T3 AS ARGUED IS WITHDRAWN. Re-proposed here in a materially smaller, non-quantitative form.",
+      "withdrawal_note": "v1's T3 argued that studio investment is a bet on ex-ante selection ability against a base rate so low that selection is the entire value of the strategy, citing F1's catalogue-wide concentration. Re-derived: that base rate is 1.00% across all 122,191 real titles, but 12.59% among titles priced >=$30 from publishers with >=20 titles (n=842) \u2014 the reference class a studio-scale commitment actually occupies. A factor of 12.5. This is precisely the category error conceded at O4 for F4, committed again on the leg that survived that concession, and the self-critique did not catch it. With F4 demoted at O4, F1 disqualified here, and the breakout evidence self-declared at n=3 and outcome-selected at O5, the quantitative case is gone. It is withdrawn rather than patched, because at 12.6% a portfolio of premium titles from established publishers is not a lottery and the argument that it is cannot be repaired.",
+      "claim": "Route any studio-side commitment whose exit cost cannot be reversed within one fiscal year to the board as an escalation, with the reference-class hit rate and the July 2026 exit costs attached \u2014 an escalation gate on irreversibility, not a prohibition, and with no quantitative base-rate claim attached.",
+      "changes_from_v1": [
+        "R4 \u2014 the base-rate leg is REMOVED ENTIRELY, not re-anchored. What remains is explicitly non-quantitative and is presented as such.",
+        "R10 \u2014 v1's claim was a prohibition ('decline any... no acquisitions, no equity funding') while its own risk mitigation four levels down described an escalation gate ('escalates rather than prohibits... they are not banned'). The board would have voted on the headline while the fine print implemented something else. The claim is now the escalation gate, stated in the headline sentence.",
+        "R11 \u2014 the $50M threshold is REMOVED. A content-licensing per-deal ceiling has no analytic relationship to a studio-equity threshold, and both T1 and T3 argue at length that these are different instruments \u2014 which is exactly why one cannot calibrate the other. The gate is now defined by an irreversibility criterion rather than a dollar figure.",
+        "M4 \u2014 the wording 'none was funded or acquired pre-launch by a platform holder' was false as written for Silksong, which shipped day-one on Game Pass. Licensing is not acquisition, so this is not a strict contradiction, but the claim is corrected to 'none was acquired or equity-funded pre-launch'."
+      ],
+      "evidence": [
+        "R4's re-derived reference-class table, presented AGAINST this thesis's original form and in favour of its narrowed one: all titles 1.00% (n=122,191); publisher >=20 titles 3.24% (n=15,003); priced $30-60 12.32% (n=1,542); priced >=$30 and publisher >=20 titles 12.59% (n=842).",
+        "The irreversibility record: xbox-studio-closures-2026-07 \u2014 Ninja Theory, Double Fine and Compulsion Games closed or divested, ~325 staff. This is the board's own revealed exit cost, paid three times, and it is the entire remaining basis for the gate.",
+        "04_context.md s4 \u2014 the 2025-26 breakouts (silksong-2025-sales, schedule1-2025-revenue, meccha-chameleon-10m) were not acquired or equity-funded pre-launch by a platform holder (corrected per M4). n=3 and outcome-selected, per O5: this CANNOT establish a base rate and is not used as one. It supports only a tempo observation \u2014 a two-person, two-month, $5.99 title reaching 10M copies in 16 days is unreachable by multi-month acquisition diligence regardless of selection skill.",
+        "M2 \u2014 36,286 of 122,191 real games (29.7%) lack a publisher, biasing publisher-level residuals upward. Recorded so F4's Xbox Game Studios 5.80x and Bethesda 6.23x are not resurrected as an argument in either direction."
+      ],
+      "mechanism": "The surviving argument is about instrument reversibility, not about selection skill, and it is deliberately not quantitative. Studio equity is the least reversible instrument available \u2014 permanent headcount, multi-year commitments, and an exit cost this board has just paid three times over. Licensing is reversible at a licence window; equity is not. A gate that routes irreversible commitments to the board with the relevant reference-class evidence attached is defensible on that ground alone and needs no base-rate claim. BOUND ON R4'S REMEDY, stated because the board will otherwise adopt 12.59% as the operative number: that figure is the rate of reaching 1M+ OWNERS, which is not the rate of returning a studio-scale commitment. Re-derived from the same population, of the 106 hits in that class, 92 (87%) sit in the 1M-5M owner band, 13 in 5M-20M, and 1 above 20M. The modal 'hit' is a 1-5M owner title, which at premium pricing after platform cut, refunds and discounting is plausibly of the same order as \u2014 and frequently below \u2014 a studio-scale commitment (N4: v2 asserted 'nine-figure' here while correctly declining elsewhere to assert Xbox acquisition prices, which I do not have; the unsourced figure is removed and the comparison is left qualitative). The class is also conditioned on titles that SHIPPED from publishers that already had 20+ titles, which a studio being acquired may not. So 12.59% is a ceiling on the return-relevant rate, not an estimate of it. This bounds the remedy; it does not rescue v1's argument, which used a number 12.5x too low and is withdrawn regardless.",
+      "size": {
+        "amount": "No capital deployed, and no dollar threshold proposed.",
+        "basis": "PRESENTED PLAINLY AS AN UNANCHORED JUDGEMENT, per R11. v1 anchored a $50M threshold on the top of the observed Game Pass per-deal range, which is a non-sequitur \u2014 a licensing price ceiling cannot calibrate an equity threshold. I have no sourced FY27 studio envelope and no defensible basis for any specific figure, so none is offered. The gate is defined instead by a stated irreversibility criterion: commitments carrying permanent headcount or whose exit cost cannot be absorbed within one fiscal year. Where the board wants a dollar line, it should be set from the FY27 envelope by people who can see it, and labelled a judgement call rather than a derivation."
+      },
+      "return": {
+        "horizon": "FY27, reviewed annually.",
+        "expected_outcome": "Process value only. It does not decide any proposal; it ensures irreversible commitments reach the board with the correct reference class attached rather than the catalogue-wide one \u2014 which is exactly the error this run's own v1 committed and which R4 caught. No avoided-loss figure is claimed, because on the corrected base rate no such figure is derivable.",
+        "assumptions": [
+          "That routing decisions to the board with better evidence improves them. Unfalsifiable in the ordinary course and offered as process discipline, not as a return."
+        ]
+      },
+      "confidence": {
+        "level": "low-to-medium, on the narrowed non-quantitative claim",
+        "drivers_up": [
+          "Consistent with the board's own July 2026 revealed preference.",
+          "Costs nothing and forecloses nothing.",
+          "The irreversibility asymmetry between licensing and equity is real and is not disputed by the critique."
+        ],
+        "drivers_down": [
+          "Non-quantitative and therefore weak. A board can reasonably regard it as a procedural note rather than a recommendation.",
+          "Its predecessor was withdrawn for a reference-class error, which should lower confidence in this line of argument generally.",
+          "The tempo argument rests on n=3 outcome-selected observations and can support only an existence claim."
+        ]
+      },
+      "falsifier": "A retrospective on Xbox's 2020-2026 greenlight and acquisition pipeline showing it identified eventual breakouts pre-launch at materially better than the 12.59% reference-class rate \u2014 in which case selection skill is demonstrated and the gate should be relaxed rather than imposed. Free to run from internal records. Note this falsifier is now benchmarked against the CORRECTED reference class, not the catalogue-wide rate v1 used.",
+      "first_step": {
+        "action": "Before FY27 planning closes, run that retrospective against the 12.59% benchmark rather than the 1.00% one, and put the corrected reference-class table into any deck that discusses studio investment.",
+        "cost": "~$0-1M internal analysis",
+        "why_this_is_the_right_first_step": "Per the critique's second hostile-board question, being caught having used a whole-catalogue base rate to argue against studio investment would cost the credibility of all three theses, not just this one. Correcting the number publicly is the minimum required before any studio-investment discussion, whichever way it points."
+      },
+      "risks": [
+        {
+          "risk": "The corrected 12.59% is adopted as an argument FOR studio investment without its bounds.",
+          "severity": "high",
+          "mitigation": "Attach the bound every time: 87% of those hits are 1-5M owner titles, the class conditions on shipped titles from already-established publishers, and reaching 1M owners is not returning a studio-scale commitment."
+        },
+        {
+          "risk": "A genuinely good opportunity is delayed by the gate.",
+          "severity": "low",
+          "mitigation": "It is an escalation, not a prohibition \u2014 the distinction R10 forced, and the reason the prohibition version was withdrawn."
+        },
+        {
+          "risk": "Talent and developer-relations damage following the July 2026 closures.",
+          "severity": "medium",
+          "mitigation": "Internal capital-allocation process, never a public statement."
+        },
+        {
+          "risk": "Presented as quantitative when it is not.",
+          "severity": "medium",
+          "mitigation": "Stated as an unanchored judgement in size.basis and again in confidence."
+        }
+      ]
+    }
+  ],
+  "null_option_assessment": {
+    "verdict": "Unchanged in substance and now falsifiable. What is recommended TODAY is $0: a six-week, zero-cost internal audit. What changed in revision 3 is that the audit now has a branch for every outcome INCLUDING the ones that spend money \u2014 a positive retrospective sizes a standing programme off a stated break-even rule (0.025pp of annual churn per title-year at $1.5M/24-month terms), a null one buys the $30M tranche, a negative one ends the catalogue argument. v2 recommended $0 today and, on inspection, $0 in every reachable future state, which is not caution but unaccountability. '$0 today' is defensible only because two specific internal questions are free, already answered by data Microsoft holds, and demonstrably not yet consulted. On the studio side, with the base rate corrected 12.5x, the null option does NOT clearly win and this analysis cannot say whether studio investment is a good idea \u2014 only that irreversible commitments deserve the correct reference class.",
+    "what_would_change_this": "The two internal numbers named in T2's audit: whether the 500-deal retrospective identifies the effect, and what the price action cost per retained subscriber. Both are available internally at near-zero cost and neither is substitutable by anything in this dataset."
+  },
+  "materiality_objection_answered": {
+    "objection": "The recommendation is immaterial against a ~$21.8B segment.",
+    "response_updated_for_R6": "It is more immaterial than v1 admitted: v1 claimed its tranche was ~0.5% of segment revenue when the correct figure is 0.106% ($23M) \u2014 a 5x error running in the direction that flattered the argument. Corrected, T1's revised $30M tranche is 0.14% and the full sequence including T2 is ~0.17%. R6 is right that this strengthens rather than answers the objection, and the answer must therefore change. v1 argued the board-scale content was T3's threshold; R4 withdrew T3 and R11 withdrew the threshold, so that answer is gone too. What remains is the honest one: this evidence base cannot support a board-scale recommendation, and the two decisions that ARE board-scale \u2014 whether price or catalogue is the cheaper churn lever, and how much irreversible studio capital to commit in FY27 \u2014 both turn on internal data this analysis has never seen. The correct output is therefore a sequenced set of cheap internal questions, not a large number. Recommending a material-looking figure from this evidence would be the failure mode, not the success."
+  },
+  "what_this_analysis_cannot_tell_the_board": [
+    "Whether any title or catalogue composition affects Game Pass retention. No engagement or playtime data exists here and no public source supplies it. This is why the recommendation is a decision rule rather than a number.",
+    "What the April 2026 price action cost per retained subscriber. Per N2 this is not cleanly recoverable even internally: it was a universal price change with no holdout, confounded with the July 2026 restructuring and seasonality. It can be bounded, not decided \u2014 and the fix is forward-looking, namely instrumenting the NEXT price action with a holdout.",
+    "The size of the addressable licensing pool, which is the single term that would size a standing programme. The Steam-screened figure is 646-652 before netting against Game Pass, before rights availability, and before a console-penetration screen this dataset cannot support at all (R3).",
+    "Anything reliable about Xbox's console audience by genre \u2014 least of all sports, the top console genre, whose 31 Steam titles are a measurement artifact.",
+    "Whether Microsoft's greenlight process picks better than the 12.59% reference-class rate. That is the pivot on which the entire studio question turns and it is an internal fact."
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "stage": "16 - scoring v3 (after Stage 15 red team of v2 rebuild + portfolio, artifacts/15_redteam_portfolio.md, Part A)",
+  "scope_note": "Per the coordinator's explicit instruction, ONLY the two Part-A scoring findings (A-4 reweight, A-3 disclosure) plus two cheap fixes (A-2 floor, Deep Rock Galactic: Survivor data-quality check) are addressed here. Part B (the downstream portfolio/tiering document, T1-T4) is NOT reopened this round.",
+  "credit_where_due": "The Stage 15 critic verified the analyst's Stage-12 controller-gate catch was correct and its own Stage-11 reported yield (926) was wrong (A-0); confirmed the v2 determinism fix across 5 consecutive full-pipeline re-runs, byte-identical output, md5 104ad4df... (A-1); and confirmed the 5,000-review elbow finding reproduces exactly, while sharpening it to show the true plateau starts at 4,000 (A-2).",
+  "a2_floor_moved_to_4000": {
+    "finding": "Critic re-derived the metacritic-presence curve at 500-unit granularity and found the plateau begins at review_total>=4,000 (47.3%), not 5,000 (48.0%) -- flat within 0.8pp from 4,000 out to 7,000. Choosing 5,000 over 4,000 cost 164 titles (-20% of the pool) for +0.7pp of metacritic density.",
+    "verified_independently": "sql/19_threshold_sensitivity_v3_fine.sql reproduces the critic's finer table exactly: floor=4000 -> n=802, 47.3%; floor=5000 -> n=638, 48.0%.",
+    "decision": "Moved the floor to 4,000. This is a strict improvement (larger pool, negligible recognition-density cost) with no offsetting reason found to prefer 5,000 -- per the coordinator's explicit instruction, 'it is where the critic put it' is not a justification, and none better was found for keeping 5,000.",
+    "new_eligible_pool_n": 802,
+    "new_eligible_pool_metacritic_pct": 47.3
+  },
+  "a4_fit_reweighted": {
+    "finding": "Fit's in-population R^2 (scoped to the eligible pool, per 12_model_v2_fit.json) is -1.34 -- the model predicts WORSE than simply using the population mean. A pillar performing below a constant-prediction baseline cannot be permitted to carry 20% of the ranking.",
+    "new_weights": {
+      "recognition": 0.5,
+      "headroom": 0.4,
+      "fit": 0.1,
+      "old_weights_for_reference": {
+        "recognition": 0.45,
+        "headroom": 0.35,
+        "fit": 0.2
+      }
+    },
+    "what_moved": {
+      "pool_held_fixed_at": "v2 screen, n=638 (isolates the reweight from the floor move)",
+      "n_qualifying_old_weights_0.45_0.35_0.20": 215,
+      "n_qualifying_new_weights_0.50_0.40_0.10": 228,
+      "membership_changed": 33,
+      "membership_changed_pct_of_union": 13.9,
+      "top30_overlap_count": 27,
+      "top30_changed_count": 3
+    },
+    "interpretation": "Isolating the reweight's own effect (pool held fixed at v2's 638 titles, only the weights changed from 0.45/0.35/0.20 to 0.50/0.40/0.10): 33 of 638 titles' qualifying status changed (13.9% of the affected union), and 3 of the top 30 changed. This is a smaller swing than the critic's own 'drop Fit entirely' test (21/215 memberships, 10/30 top-30) because cutting a weight from 20% to 10% is a materially smaller intervention than removing it outright -- both are reported so the two are not conflated.",
+    "pillar_influence_on_final_v3_composite": {
+      "recognition": 0.8826,
+      "headroom": 0.824,
+      "fit": 0.0427
+    }
+  },
+  "a3_headroom_is_not_independent_HONEST_STATEMENT": {
+    "verified": true,
+    "evidence": {
+      "pool_tested": "v2 screen, n=638 (same pool the red team used)",
+      "n_distinct_owners_mid_values": 5,
+      "bucket_counts": {
+        "10000.0": 2,
+        "35000.0": 2,
+        "150000.0": 31,
+        "350000.0": 243,
+        "750000.0": 360
+      },
+      "pooled_spearman_recognition_headroom": 0.5422,
+      "within_bucket_spearman": {
+        "150000.0": {
+          "n": 31,
+          "spearman_recognition_headroom": 1.0
+        },
+        "350000.0": {
+          "n": 243,
+          "spearman_recognition_headroom": 1.0
+        },
+        "750000.0": {
+          "n": 360,
+          "spearman_recognition_headroom": 1.0
+        }
+      },
+      "share_in_top3_buckets_pct": 99.4,
+      "verdict": "CONFIRMED. Within every owners_mid bucket with n>=5, Spearman(recognition_raw, headroom_raw) = 1.0000 (to 4 decimal places). Headroom is Recognition minus a per-bucket constant -- the pooled +0.54 correlation is entirely between-bucket variation. This is a property of owners_mid having only 5-6 distinct values in this pool, not a scoring bug, and it is NOT fixable within the current data -- only disclosable."
+    },
+    "plain_statement": "Headroom is not a second independent pillar. owners_mid has only 5-6 distinct values in the eligible pool, and 3 buckets hold 99%+ of all titles. WITHIN every bucket that matters, Spearman(recognition_raw, headroom_raw) = 1.0000 exactly -- Headroom is Recognition minus a constant for every title sharing an ownership bucket. The pooled +0.54 (v2 pool) / +0.49 (v3 pool) correlation the earlier write-up cited as evidence of 'complementary, not redundant' pillars is entirely BETWEEN-bucket variation, a Simpson's-paradox-shaped artifact of aggregating across a coarse step function. The honest framing: this composite is Recognition (a continuous, 0.50-weighted term), banded by a THREE-LEVEL ownership step (not a fourth, continuous, independently-informative pillar). Within any given ownership tier, the ranking is Recognition, full stop. This cannot be fixed by re-deriving Headroom differently from the same owners_mid column -- the coarseness is in the underlying SteamSpy bucket data (documented since 01_profile.md), not in the formula. It can only be disclosed, which this document and 12_scoring_v2.md now do.",
+    "consequence_for_the_qualifying_list": "The model still correctly surfaces recognisable titles at the top (that part of the v2 rebuild is not undermined) -- but the ranking WITHIN each ownership tier should be read as 'most-reviewed first,' not as a genuine two-factor blend."
+  },
+  "b5_ceiling_echo_known_property_not_relitigated": {
+    "qualifying_list_share_in_750k_bucket_pct": 60.0,
+    "eligible_pool_share_in_750k_bucket_pct": 48.1,
+    "note": "Known property of the design, stated here per the coordinator's instruction; the downstream portfolio document is not reopened this round. The ownership ceiling concentrates the qualifying list toward its own bucket because Recognition is continuous and weighted 0.50-0.90 combined with Headroom, while ownership itself only acts as a coarse pre-screen step (A-3) -- the model reliably selects the most-owned titles that still clear the cut."
+  },
+  "eligibility_screen_v3": {
+    "sql_file": "sql/18_candidate_screen_v3.sql",
+    "unchanged_from_v2": [
+      "monetisation_model='paid' AND price_usd>0",
+      "review_positive_ratio>=0.70",
+      "no adult-content tag",
+      "owners_mid<=750000 (still bucket-equivalent to <=1,499,999)",
+      "has_controller_support=true (A-0: verified sound, corrects the critic's own erroneous ungated 926/13 yield)"
+    ],
+    "changed": "review_total floor 5,000 -> 4,000 (A-2)",
+    "eligible_pool_n": 802,
+    "eligible_pool_metacritic_pct": 47.3
+  },
+  "qualifying_bar": {
+    "value": 0.6,
+    "n_qualifying": 275,
+    "sensitivity": {
+      "0.5": 393,
+      "0.55": 324,
+      "0.6": 275,
+      "0.65": 230,
+      "0.7": 185,
+      "0.75": 144
+    }
+  },
+  "tiers": {
+    "Anchor": 157,
+    "Depth": 106,
+    "Low-cost option": 12
+  },
+  "monoculture_check": {
+    "n_qualifying_rows": 275,
+    "n_distinct_licensable_properties_after_collapsing_chapters": 273,
+    "serial_franchises_with_2plus_qualifying_rows": {
+      "Artefacts Studio / Garfield Kart": 2,
+      "Telltale Games / The Walking Dead": 2
+    },
+    "developers_with_2plus_qualifying_titles": {
+      "ATLUS": 3,
+      "Square Enix": 3,
+      "SEGA": 3,
+      "Telltale Games": 3,
+      "Total Mayhem Games": 3,
+      "Shiying Studio": 2,
+      "CAPCOM Co., Ltd.": 2,
+      "NEOWIZ": 2,
+      "BlackMill Games": 2,
+      "Artefacts Studio": 2,
+      "Square Enix, ACQUIRE Corp.": 2,
+      "RewindApp": 2,
+      "Sloclap": 2,
+      "DONTNOD Entertainment": 2,
+      "Capcom": 2,
+      "CyberConnect2 Co. Ltd.": 2,
+      "Teyon": 2,
+      "Team17": 2
+    },
+    "genre_share_of_qualifying_TITLES_pct": {
+      "Indie": 63.3,
+      "Adventure": 57.8,
+      "Action": 53.8,
+      "Casual": 18.2,
+      "Simulation": 20.7,
+      "Strategy": 13.8,
+      "RPG": 26.9,
+      "Free To Play": 0.0,
+      "Early Access": 7.3,
+      "Sports": 2.5,
+      "Racing": 5.1,
+      "Massively Multiplayer": 2.9
+    },
+    "price_band_distribution": {
+      "$10-20": 111,
+      "$20-40": 79,
+      "$5-10": 42,
+      ">$40": 23,
+      "<=$5": 20
+    }
+  },
+  "deep_rock_galactic_survivor_data_quality_check": {
+    "app_id": 2321470,
+    "name": "Deep Rock Galactic: Survivor",
+    "flags": {
+      "has_coop": false,
+      "has_multiplayer": false,
+      "has_singleplayer": true
+    },
+    "raw_categories": [
+      "Family Sharing",
+      "Full controller support",
+      "Single-player",
+      "Steam Achievements",
+      "Steam Cloud"
+    ],
+    "raw_tags_sample": [
+      "Action",
+      "Action Roguelike",
+      "Aliens",
+      "Arcade",
+      "Arena Shooter",
+      "Atmospheric",
+      "Bullet Hell",
+      "Combat",
+      "Dark",
+      "Dwarf"
+    ],
+    "verdict": "FLAGS ARE CORRECT, not a data defect. Raw categories are clean English text ('Single-player', 'Full controller support', ...) with NO Co-op/Multi-player category present, and no Co-op/Multiplayer tag either -- this is not an instance of the documented non-English-metadata undercount hazard (02_cleaning_report.md), since the source data is neither non-English nor ambiguous. Deep Rock Galactic: Survivor is a genuinely single-player roguelite spin-off, distinct from the base Deep Rock Galactic (app_id 548430, correctly flagged has_coop=True/has_multiplayer=True, a 4-player co-op game). The error was in the downstream portfolio artifact's alternate-title labelling, not in this dataset's cleaning or flags. No cleaning-stage fix needed."
+  },
+  "not_reopened_this_round_per_explicit_instruction": [
+    "B-1 (traceability claim overstatement)",
+    "B-2 (Tier 1 lead ordering)",
+    "B-3 (Tier 3 under-sold, Tier 4 relabelling to watchlist)",
+    "B-4 (concentration remedy correctness, Deep Rock Galactic: Survivor removal from the portfolio's alternate list, availability-screen extension to rank 120)",
+    "B-6 (sizing/cost-anchor framing)",
+    "These live in artifacts/15_redteam_portfolio.md Part B and belong to the downstream portfolio-construction stage, not this scoring stage."
+  ],
+  "hard_limits_carried_forward": [
+    "No engagement or playtime data exists in this dataset.",
+    "owners_mid is a SteamSpy BUCKET midpoint with only 5-6 distinct values in this pool -- this is now understood to be the direct cause of A-3 (Headroom is not independent of Recognition within a bucket), not just a resolution-limit caveat.",
+    "review counts are self-selected.",
+    "has_controller_support is a category-flag FLOOR (non-English-metadata hazard) -- used as a hard gate anyway per A-0/RT-11, evidence-backed.",
+    "price_usd is USD via steamspy, reported only, never scored.",
+    "release_date is right-truncated (nothing after 2024-10-28) and 20.4% missing.",
+    "Game Pass availability is NOT in this dataset. Every row in 16_candidates_v3.csv carries screen_gamepass_availability=PENDING_EXTERNAL_CHECK."
+  ]
+}

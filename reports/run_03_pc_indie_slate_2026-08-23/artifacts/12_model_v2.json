@@ -1,0 +1,355 @@
+{
+  "stage": "12 - scoring v2 (rebuild after red-team verdict REBUILD, artifacts/11_redteam_scoring.md)",
+  "question": "Which specific games from the Steam snapshot should Xbox ADD to the Game Pass portfolio?",
+  "verified_determinism": "sql/11v2_fit_model_population.sql adds ORDER BY app_id; scripts/11v2_build_fit_model.py additionally re-sorts by app_id in pandas before every train_test_split call. Re-running scripts/11v2_build_fit_model.py and scripts/12v2_score_candidates.py twice in this session produced IDENTICAL eligible_pool_n (638), n_qualifying (215), and top-20 order both times -- RT-01 is fixed. Canonical model artifacts (_ridge_coef_v2.npy, _ridge_intercept_v2.txt, _feature_cols_v2.json) are committed to artifacts/ so scripts/12v2_score_candidates.py runs end to end from a clean checkout without needing to refit.",
+  "reported_yield_verification": {
+    "coordinator_claimed_pool": 926,
+    "coordinator_claimed_pool_metacritic_pct": 44.2,
+    "verified_pool_WITHOUT_controller_gate": 926,
+    "verified_pool_WITH_controller_gate_as_literally_specified": 638,
+    "finding": "The coordinator-forwarded 'reported yield' (pool=926) matches EXACTLY the count with review_total>=5000, owners_mid<=750000, and no adult-content tag applied WITHOUT has_controller_support=true -- confirmed by direct query. The rebuild spec's own bullet list explicitly instructs adding the controller-support gate, and the named top-10 (Temtem, ICARUS) both have has_controller_support=False in this dataset -- they could not appear in a pool that actually applied the gate. This run implements the gate literally as instructed (pool=638) and flags the discrepancy rather than silently reproducing the ungated number."
+  },
+  "eligibility_screen": {
+    "sql_file": "sql/12v2_candidate_screen.sql",
+    "population_before_screen_n": 122191,
+    "thresholds": [
+      {
+        "rule": "monetisation_model='paid' AND price_usd>0",
+        "status": "unchanged from v1"
+      },
+      {
+        "rule": "review_positive_ratio>=0.70",
+        "status": "unchanged from v1 (Valve's own 'Mostly Positive' boundary)"
+      },
+      {
+        "rule": "no Sexual Content/Nudity/Hentai tag",
+        "status": "unchanged from v1"
+      },
+      {
+        "rule": "review_total >= 5,000 (was >= 50)",
+        "reason_this_run_gives_for_5000_specifically": "v1 borrowed Valve's own review-count floor (50), which answers a different question (is the rating statistically meaningful?) than the one the Proven/Recognition screen needs to answer (would a subscriber recognise this title?). 5,000 is justified here on its own terms by an elbow in metacritic-presence (a real press-coverage signal, unlike review count itself): metacritic share rises steeply with the floor from 33.4% (>=500) to 48.0% (>=5,000), then FLATTENS (47.4% at >=7,500, 47.6% at >=10,000) -- 5,000 sits right at the point where raising the floor further stops buying additional recognition-density and only shrinks the pool. It is also two clean orders of magnitude above Valve's 50-review nuance floor, making clear it is a deliberately different, higher bar chosen for a different purpose, not a re-use of the earlier number.",
+        "sensitivity_table_review_total_owners_fixed_at_750k_controller_gate_on": {
+          "500": {
+            "n": 3241,
+            "metacritic_pct": 33.4
+          },
+          "1000": {
+            "n": 2239,
+            "metacritic_pct": 38.2
+          },
+          "2000": {
+            "n": 1442,
+            "metacritic_pct": 42.2
+          },
+          "3000": {
+            "n": 1047,
+            "metacritic_pct": 44.6
+          },
+          "5000": {
+            "n": 638,
+            "metacritic_pct": 48.0
+          },
+          "7500": {
+            "n": 399,
+            "metacritic_pct": 47.4
+          },
+          "10000": {
+            "n": 271,
+            "metacritic_pct": 47.6
+          },
+          "15000": {
+            "n": 132,
+            "metacritic_pct": 44.7
+          }
+        },
+        "sql_file": "sql/17_threshold_sensitivity_v2.sql"
+      },
+      {
+        "rule": "owners_mid <= 750,000 (KEPT per explicit instruction)",
+        "reason": "Not re-justified from scratch since the instruction was to keep it, but stated honestly per RT-09: owners_mid has only 6 distinct values in the eligible pool, and there is NO value between 750,000 and 1,499,999 -- so this ceiling is bucket-equivalent to <=1,499,999, not a fine 750,000 cut. Sensitivity confirms: ceiling=750,000 and ceiling=1,000,000 give the IDENTICAL pool (n=638) because no title's owners_mid falls in between.",
+        "sensitivity_table_review_total_fixed_at_5000_controller_gate_on": {
+          "200000": 35,
+          "350000": 278,
+          "500000": 278,
+          "750000": 638,
+          "1000000": 638,
+          "1500000": 885,
+          "2000000": 885,
+          "3500000": 1063
+        },
+        "sql_file": "sql/17_threshold_sensitivity_v2.sql"
+      },
+      {
+        "rule": "has_controller_support = true (ADDED, per rebuild spec RT-11)",
+        "reason": "Evidence-backed, not a taste screen: has_controller_i is a consistently positive structural trait across both the v1 and v2 fit models. It is also the direct, stated Steam-PC to Xbox-console platform-fit gate the brief requires: a title with no controller support on Steam carries materially higher console-certification and control-scheme risk for a console subscription service.",
+        "effect_measured": "Applying this gate on top of the other 4 screens shrinks the pool from 926 to 638 (31.1% removed) and RAISES metacritic presence from 44.2% to 48.0% -- the gate concentrates recognition rather than diluting it."
+      }
+    ],
+    "eligible_pool_n": 638,
+    "eligible_pool_metacritic_share_pct": 48.0
+  },
+  "fit_model_v2": {
+    "target": "review_positive_ratio -- RECEPTION QUALITY, retargeted from v1's ln(1+review_total) per RT-05 (that target IS the Recognition pillar for every candidate row, so predicting it added noise, not information, and the noise outranked the measurement).",
+    "population": {
+      "definition": "is_demo=false AND review_total>=10 AND release_date IS NOT NULL, ORDER BY app_id (RT-01 fix)",
+      "n_total_rows_before_age_filter": 60502,
+      "n_used_for_modeling": 60502
+    },
+    "features": [
+      "genre_Indie",
+      "genre_Adventure",
+      "genre_Action",
+      "genre_Casual",
+      "genre_Simulation",
+      "genre_Strategy",
+      "genre_RPG",
+      "genre_Free To Play",
+      "genre_Early Access",
+      "genre_Sports",
+      "genre_Racing",
+      "genre_Massively Multiplayer",
+      "tag_Singleplayer",
+      "tag_2D",
+      "tag_Atmospheric",
+      "tag_Puzzle",
+      "tag_3D",
+      "tag_Story Rich",
+      "tag_Cute",
+      "tag_Colorful",
+      "tag_Exploration",
+      "tag_Pixel Graphics",
+      "tag_First-Person",
+      "tag_Multiplayer",
+      "tag_Anime",
+      "tag_Fantasy",
+      "tag_Funny",
+      "tag_Arcade",
+      "tag_Horror",
+      "tag_Relaxing",
+      "tag_Female Protagonist",
+      "tag_Shooter",
+      "tag_Retro",
+      "is_self_pub_i",
+      "has_singleplayer_i",
+      "has_multiplayer_i",
+      "has_coop_i",
+      "has_controller_i",
+      "has_vr_i",
+      "n_tags_filled",
+      "log_age_days"
+    ],
+    "features_removed_vs_v1": {
+      "price_usd_filled": "excluded so price cannot re-enter the composite through the Fit door after being removed from scoring per the rebuild spec",
+      "is_free_i": "excluded for the same reason (collinear with price regime)",
+      "is_indie_i": "dropped -- RT-05 found it perfectly collinear with genre_Indie in v1 (identical -0.1155 coefficients), double-counting indie status"
+    },
+    "model": "Ridge regression, alpha=5.0 (unchanged from v1)",
+    "determinism_fix": "df sorted by app_id (SQL ORDER BY + pandas re-sort) before every train_test_split call -- RT-01.",
+    "canonical_split": {
+      "random_state": 42,
+      "test_size": 0.3,
+      "n_train": 42351,
+      "n_test": 18151
+    },
+    "canonical_in_sample_performance": {
+      "n": 42351,
+      "r2": 0.1552,
+      "pearson_r": 0.3939,
+      "pearson_p": 0.0,
+      "spearman_r": 0.4088,
+      "spearman_p": 0.0
+    },
+    "canonical_out_of_sample_performance": {
+      "n": 18151,
+      "r2": 0.1418,
+      "pearson_r": 0.3771,
+      "pearson_p": 0.0,
+      "spearman_r": 0.3908,
+      "spearman_p": 0.0
+    },
+    "canonical_out_of_sample_scoped_to_v2_eligible_population": {
+      "n": 221,
+      "r2": -1.3387,
+      "pearson_r": 0.391,
+      "pearson_p": 1.7258273671195562e-09,
+      "spearman_r": 0.3989,
+      "spearman_p": 7.541849742271209e-10
+    },
+    "out_of_sample_range_across_5_seeds": {
+      "seeds": [
+        42,
+        7,
+        123,
+        2024,
+        99
+      ],
+      "pearson_r_per_seed": {
+        "42": 0.3771,
+        "7": 0.3847,
+        "123": 0.3853,
+        "2024": 0.3883,
+        "99": 0.3862
+      },
+      "r2_per_seed": {
+        "42": 0.1418,
+        "7": 0.1479,
+        "123": 0.1483,
+        "2024": 0.1507,
+        "99": 0.1491
+      },
+      "pearson_r_range": [
+        0.3771,
+        0.3883
+      ],
+      "pearson_r_mean": 0.3843,
+      "r2_range": [
+        0.1418,
+        0.1507
+      ],
+      "note": "This range is what should be quoted, not the canonical single-seed figure alone -- v1 published a single point estimate (0.564) that did not reproduce in any of the red-team's 3 re-runs because the input row order (and therefore the position-based split) was not fixed. With app_id-sorted input, re-running this exact script produces the SAME canonical figure every time (determinism restored); the range above instead captures genuine seed-to-seed VARIANCE, which is a different and honest source of uncertainty to report."
+    },
+    "coefficients_sorted_desc": {
+      "has_controller_i": 0.0387,
+      "tag_Pixel Graphics": 0.0327,
+      "tag_Funny": 0.0295,
+      "has_vr_i": 0.0252,
+      "tag_Story Rich": 0.0235,
+      "tag_Puzzle": 0.023,
+      "tag_Retro": 0.0201,
+      "tag_2D": 0.0168,
+      "tag_Cute": 0.0147,
+      "genre_Free To Play": 0.0094,
+      "tag_Colorful": 0.0094,
+      "tag_Anime": 0.0094,
+      "tag_Singleplayer": 0.0071,
+      "tag_Multiplayer": 0.007,
+      "is_self_pub_i": 0.0055,
+      "genre_Indie": 0.004,
+      "tag_Arcade": 0.0037,
+      "n_tags_filled": 0.0029,
+      "tag_Relaxing": 0.0026,
+      "tag_Atmospheric": 0.0025,
+      "tag_Shooter": 0.0013,
+      "tag_Fantasy": -0.0006,
+      "has_coop_i": -0.0021,
+      "has_singleplayer_i": -0.0035,
+      "tag_Female Protagonist": -0.0045,
+      "genre_Sports": -0.0059,
+      "genre_Casual": -0.0062,
+      "has_multiplayer_i": -0.0095,
+      "tag_Exploration": -0.0103,
+      "genre_Early Access": -0.0106,
+      "genre_Strategy": -0.0123,
+      "genre_Racing": -0.0135,
+      "tag_3D": -0.0143,
+      "genre_Adventure": -0.0161,
+      "tag_Horror": -0.0172,
+      "genre_RPG": -0.0173,
+      "tag_First-Person": -0.022,
+      "genre_Action": -0.0247,
+      "log_age_days": -0.03,
+      "genre_Simulation": -0.046,
+      "genre_Massively Multiplayer": -0.0851
+    }
+  },
+  "composite_scoring_v2": {
+    "formula": "composite_score = 0.45*recognition_pct + 0.35*headroom_pct + 0.20*fit_pct, each a percentile rank in [0,1] WITHIN the eligible pool (n=638)",
+    "pillars": {
+      "recognition_0.45": "percentile of ln(review_total) -- scale of proof/recognition. MEASURED.",
+      "headroom_0.35": "percentile of [ln(review_total) - ln(owners_mid)] -- 'reviews per owner', replacing v1's cancelling Proven+Scarcity pair with a single ratio that directly encodes 'punches above its weight'. DERIVED from two Measured quantities.",
+      "fit_0.20": "structural Ridge prediction, RETARGETED to predict review_positive_ratio (not review_total, per RT-05), price excluded from its features, is_indie_i dropped (RT-05 collinearity). DERIVED, out-of-sample validated, weak-to-moderate (see fit_model_v2 above).",
+      "price_REMOVED": "price_usd no longer appears anywhere in composite_score. Carried as a plain reported column and used only to assign the Low-cost option tier label -- never to compute rank, per the rebuild spec."
+    },
+    "rt02_fix_verification": {
+      "recognition_vs_headroom_spearman": 0.5422,
+      "pillar_influence_on_composite_spearman": {
+        "recognition": 0.8701,
+        "headroom": 0.8124,
+        "fit": 0.179
+      },
+      "interpretation": "Recognition and Headroom are now moderately POSITIVELY correlated (not the -0.762 cancellation in v1) and each pillar shows real, distinguishable influence on the composite -- the RT-02 defect (a pillar with ~0 effective weight) does not reproduce."
+    },
+    "rt10_fix_top30_jaccard_under_reweighting": {
+      "recognition_heavy_60_25_15": 0.875,
+      "headroom_heavy_25_60_15": 0.5789,
+      "fit_heavy_25_25_50": 0.4286
+    },
+    "rt10_fix_note": "Reported as top-30 SET OVERLAP (Jaccard), not full-pool Spearman, per RT-10's finding that Spearman across the whole eligible pool is nearly blind to reordering at the extreme -- the only region a shortlist decision uses. Recognition-heavy reweighting keeps 87.5% of the top-30 set; headroom-heavy keeps 57.9%; fit-heavy keeps 42.9% -- the published 45/35/20 weighting is closest to recognition-heavy and the least disruptive of the three re-weightings tested, which is a reason to prefer it over an equal-thirds default, not just an arbitrary pick."
+  },
+  "qualifying_bar": {
+    "value": 0.6,
+    "n_qualifying": 215,
+    "sensitivity": {
+      "0.5": 301,
+      "0.55": 261,
+      "0.6": 215,
+      "0.65": 172,
+      "0.7": 134,
+      "0.75": 84
+    }
+  },
+  "tiers_v2": {
+    "rule": "Anchor: review_total>=20,000 OR (metacritic_score IS NOT NULL AND owners_mid>=350,000). Else Low-cost option: price_usd<=$5. Else Depth. Recalibrated from v1's absolute thresholds (which were tuned to a review_total>=50 population) to the v2 population's own distribution (qualifying-list median review_total ~16,200) -- reusing v1's 1,000/10,000-review Anchor floor here would have made Anchor 90%+ of the list again, reproducing RT-07's complaint under new numbers.",
+    "counts": {
+      "Anchor": 131,
+      "Depth": 74,
+      "Low-cost option": 10
+    }
+  },
+  "monoculture_check_v2": {
+    "n_qualifying_rows": 215,
+    "n_distinct_licensable_properties_after_collapsing_chapters": 213,
+    "serial_franchises_with_2plus_qualifying_rows": {
+      "Artefacts Studio / Garfield Kart": 2,
+      "Telltale Games / The Walking Dead": 2
+    },
+    "developers_with_2plus_qualifying_titles": {
+      "Square Enix": 3,
+      "Telltale Games": 3,
+      "CAPCOM Co., Ltd.": 2,
+      "Shiying Studio": 2,
+      "NEOWIZ": 2,
+      "ATLUS": 2,
+      "Artefacts Studio": 2,
+      "SEGA": 2,
+      "Square Enix, ACQUIRE Corp.": 2,
+      "BlackMill Games": 2,
+      "Capcom": 2,
+      "DONTNOD Entertainment": 2,
+      "Total Mayhem Games": 2,
+      "Teyon": 2
+    },
+    "genre_share_of_qualifying_TITLES_pct": {
+      "Indie": 64.2,
+      "Adventure": 57.7,
+      "Action": 50.7,
+      "Casual": 19.5,
+      "Simulation": 20.0,
+      "Strategy": 13.0,
+      "RPG": 28.4,
+      "Free To Play": 0.0,
+      "Early Access": 8.4,
+      "Sports": 1.9,
+      "Racing": 5.6,
+      "Massively Multiplayer": 2.3
+    },
+    "price_band_distribution": {
+      "$10-20": 86,
+      "$20-40": 62,
+      "$5-10": 33,
+      ">$40": 19,
+      "<=$5": 15
+    }
+  },
+  "monoculture_check_v2_verdict": "RT-08 fixed on three axes. (1) By TITLE, not genre membership: genre shares are now reported as % of the 215 qualifying TITLES carrying each tag (Indie 64.2%, Adventure 57.7%, Action 50.7%, ...; these overlap because tagging is non-exclusive, and are reported as such, not summed to imply exhaustive coverage). No single genre is close to being the whole list. (2) Developer concentration: max is 3 qualifying titles from one developer (Square Enix, Telltale Games) -- nothing resembling v1's Randumb Studios (21 of 1,881). (3) Serial-chapter collapse: only 2 franchises contribute 2+ qualifying rows (Garfield Kart, The Walking Dead), and collapsing chapters to one licensable property per (developer, base-title) reduces 215 rows to 213 distinct properties -- negligible chapter-inflation, unlike v1's Higurashi (7 rows) or Randumb's The Test franchise. The 5,000-review floor structurally excludes most low-volume serialized short chapters, which is a side effect of RT-06's fix, not a separate intervention.",
+  "hard_limits_carried_forward": [
+    "No engagement or playtime data exists in this dataset.",
+    "owners_mid is a linear midpoint of a SteamSpy BUCKET (13 distinct values catalogue-wide, 6 within this eligible pool) -- not a measured sale count.",
+    "review counts are self-selected; not adjusted for genre/price/audience-size beyond the age-since-release control in the fit model.",
+    "has_controller_support (now a hard gate) is a category-flag FLOOR per 02_cleaning_report.md's non-English-metadata hazard -- some true controller-supporting titles may be flagged false and wrongly excluded; this gate trades that small false-exclusion risk for a real, evidence-backed platform-fit signal.",
+    "price_usd is USD via steamspy, never EUR -- reported column only, not scored.",
+    "release_date is right-truncated (nothing after 2024-10-28) and 20.4% missing.",
+    "Game Pass availability is NOT in this dataset and was NOT guessed. Every row in 12_candidates_v2.csv carries screen_gamepass_availability=PENDING_EXTERNAL_CHECK.",
+    "Steam-PC to Xbox-console population transfer (RT-11): stated explicitly here because the v1 model's winners were structurally the LEAST transferable segment (mouse/keyboard-only interactive fiction). The v2 has_controller_support gate directly addresses this for one dimension (control scheme) but does not address console certification history, regional pricing/discovery mechanics, or the genre-mix and ARPPU differences documented in artifacts/04_context.md s5."
+  ]
+}

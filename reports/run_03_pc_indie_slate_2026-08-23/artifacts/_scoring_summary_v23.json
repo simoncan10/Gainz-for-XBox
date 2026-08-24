@@ -1,0 +1,116 @@
+{
+  "eligible_pool_n": 573,
+  "eligible_pool_metacritic_pct": 42.8,
+  "a3_headroom_check": {
+    "n_distinct_owners_mid": 6,
+    "bucket_counts": {
+      "10000.0": 2,
+      "35000.0": 2,
+      "75000.0": 1,
+      "150000.0": 31,
+      "350000.0": 254,
+      "750000.0": 283
+    },
+    "pooled_spearman_recognition_headroom": 0.5055,
+    "within_bucket_spearman": {
+      "150000.0": {
+        "n": 31,
+        "spearman": 1.0
+      },
+      "350000.0": {
+        "n": 254,
+        "spearman": 1.0
+      },
+      "750000.0": {
+        "n": 283,
+        "spearman": 1.0
+      }
+    }
+  },
+  "a5_composite_degeneracy_check": {
+    "top20_distinct_owners_mid_values": [
+      350000.0,
+      750000.0
+    ],
+    "top20_n_distinct_owners_mid": 2,
+    "pooled_r2_composite_vs_log_review_total": 0.7749,
+    "note": "Within the eligible pool, recognition_pct is the percentile rank of log(review_total); headroom_pct is the percentile rank of log(review_total) minus log(a near-constant owners_mid bucket). At weights 0.50/0.40 these two pillars are highly collinear (see a3_headroom_check), so the composite is overwhelmingly a re-expression of log review count. Reported plainly, not buried: this is the same finding as Stage 15's A-3 and Stage 22's A-5, reconfirmed on the rebuilt pool."
+  },
+  "pillar_influence_on_composite": {
+    "recognition": 0.8864,
+    "headroom": 0.8281,
+    "fit": 0.1547
+  },
+  "qualifying_bar": 0.6,
+  "n_qualifying": 201,
+  "n_qualifying_without_controller_support_total": 52,
+  "n_qualifying_without_controller_support_by_tier": {
+    "Anchor": {
+      "n_no_controller": 45,
+      "tier_n": 178,
+      "pct": 25.3
+    },
+    "Depth": {
+      "n_no_controller": 2,
+      "tier_n": 12,
+      "pct": 16.7
+    },
+    "Low-cost option": {
+      "n_no_controller": 5,
+      "tier_n": 11,
+      "pct": 45.5
+    }
+  },
+  "bar_sensitivity_n_qualifying": {
+    "0.5": 270,
+    "0.55": 234,
+    "0.6": 201,
+    "0.65": 167,
+    "0.7": 134,
+    "0.75": 110
+  },
+  "tier_counts": {
+    "Anchor": 178,
+    "Depth": 12,
+    "Low-cost option": 11
+  },
+  "monoculture_check": {
+    "n_qualifying_rows": 201,
+    "n_distinct_licensable_properties_after_collapsing_chapters": 200,
+    "serial_franchises_with_2plus_qualifying_rows": {
+      "Scott Cawthon / Five Nights at Freddy's": 2
+    },
+    "developers_with_2plus_qualifying_titles": {
+      "Fireproof Games": 3,
+      "Total Mayhem Games": 3,
+      "Shiying Studio": 2,
+      "Nikita Kryukov": 2,
+      "BlackMill Games": 2,
+      "Scott Cawthon": 2,
+      "Killmonday Games AB": 2,
+      "Sloclap": 2,
+      "Jutsu Games": 2
+    },
+    "genre_share_of_qualifying_TITLES_pct": {
+      "Indie": 100.0,
+      "Adventure": 54.2,
+      "Action": 47.3,
+      "Casual": 24.9,
+      "Simulation": 28.4,
+      "Strategy": 18.9,
+      "RPG": 28.4,
+      "Free To Play": 0.0,
+      "Early Access": 11.4,
+      "Sports": 0.5,
+      "Racing": 2.5,
+      "Massively Multiplayer": 5.0
+    },
+    "price_band_distribution": {
+      "$10-20": 84,
+      "$20-40": 54,
+      "$5-10": 41,
+      "<=$5": 21,
+      ">$40": 1
+    }
+  }
+}

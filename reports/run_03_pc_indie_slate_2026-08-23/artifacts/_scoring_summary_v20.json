@@ -1,0 +1,92 @@
+{
+  "eligible_pool_n": 406,
+  "eligible_pool_metacritic_pct": 34.5,
+  "a3_headroom_check": {
+    "n_distinct_owners_mid": 6,
+    "bucket_counts": {
+      "10000.0": 1,
+      "35000.0": 1,
+      "75000.0": 6,
+      "150000.0": 35,
+      "350000.0": 190,
+      "750000.0": 173
+    },
+    "pooled_spearman_recognition_headroom": 0.4392,
+    "within_bucket_spearman": {
+      "75000.0": {
+        "n": 6,
+        "spearman": 1.0
+      },
+      "150000.0": {
+        "n": 35,
+        "spearman": 1.0
+      },
+      "350000.0": {
+        "n": 190,
+        "spearman": 1.0
+      },
+      "750000.0": {
+        "n": 173,
+        "spearman": 1.0
+      }
+    }
+  },
+  "pillar_influence_on_composite": {
+    "recognition": 0.8706,
+    "headroom": 0.8029,
+    "fit": 0.1215
+  },
+  "qualifying_bar": 0.6,
+  "n_qualifying": 138,
+  "n_qualifying_without_controller_support": 48,
+  "bar_sensitivity_n_qualifying": {
+    "0.5": 200,
+    "0.55": 166,
+    "0.6": 138,
+    "0.65": 111,
+    "0.7": 88,
+    "0.75": 70
+  },
+  "tier_counts": {
+    "Anchor": 106,
+    "Depth": 16,
+    "Low-cost option": 16
+  },
+  "monoculture_check": {
+    "n_qualifying_rows": 138,
+    "n_distinct_licensable_properties_after_collapsing_chapters": 137,
+    "serial_franchises_with_2plus_qualifying_rows": {
+      "Scott Cawthon / Five Nights at Freddy's": 2
+    },
+    "developers_with_2plus_qualifying_titles": {
+      "Fireproof Games": 3,
+      "Quiet River": 3,
+      "Total Mayhem Games": 3,
+      "BlackMill Games": 2,
+      "RewindApp": 2,
+      "Scott Cawthon": 2,
+      "Freebird Games": 2,
+      "Killmonday Games AB": 2
+    },
+    "genre_share_of_qualifying_TITLES_pct": {
+      "Indie": 100.0,
+      "Adventure": 44.9,
+      "Action": 47.8,
+      "Casual": 29.0,
+      "Simulation": 32.6,
+      "Strategy": 21.0,
+      "RPG": 24.6,
+      "Free To Play": 0.0,
+      "Early Access": 14.5,
+      "Sports": 0.7,
+      "Racing": 5.8,
+      "Massively Multiplayer": 4.3
+    },
+    "price_band_distribution": {
+      "$10-20": 43,
+      "$20-40": 37,
+      "$5-10": 34,
+      "<=$5": 24
+    }
+  }
+}

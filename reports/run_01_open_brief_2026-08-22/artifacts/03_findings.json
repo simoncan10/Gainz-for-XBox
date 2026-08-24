@@ -1,0 +1,155 @@
+{
+  "run": "run_2026-08-22",
+  "stage": 3,
+  "scope_reminder": "No playtime/engagement data exists anywhere in this dataset (all playtime columns constant zero). owners_mid is a linear midpoint of a SteamSpy bucketed range, not a measured count -- 83.2% of the catalogue sits in the single bottom bucket (0..20,000), so owners_mid has near-zero resolution below ~20k and all owners-based statistics below are dominated by the upper tail, not typical titles. All findings are Steam PC catalogue evidence; Stage 3's context establishes console ARPPU ~48% higher than PC and a genre-mix gap (PC skews shooter, Xbox console skews sports) -- direct transfer of any Steam-only finding to the Xbox console population is a stated limitation, not an assumption.",
+  "findings": [
+    {
+      "id": "F1",
+      "claim": "Estimated audience is extremely hit-concentrated across every major gaming genre: the top 10% of titles by owners_mid capture 78-93% of the genre's total estimated audience, while 75-86% of titles sit in SteamSpy's lowest resolution bucket (under ~20,000 owners).",
+      "metric": "pct_audience_in_top_decile / pct_titles_in_bottom_bucket",
+      "value": {"Action": {"top_decile_share_pct": 86.6, "bottom_bucket_share_pct": 79.6}, "RPG": {"top_decile_share_pct": 84.6, "bottom_bucket_share_pct": 76.8}, "Indie": {"top_decile_share_pct": 78.4, "bottom_bucket_share_pct": 81.0}, "Sports": {"top_decile_share_pct": 78.1, "bottom_bucket_share_pct": 81.7}, "Strategy": {"top_decile_share_pct": 80.2, "bottom_bucket_share_pct": 76.7}},
+      "n": {"Action": 50449, "RPG": 23271, "Indie": 82552, "Sports": 4732, "Strategy": 23129},
+      "segment": "genre, real games only (is_demo=false, app_type=game)",
+      "uncertainty": "owners_mid is a coarse bucket-midpoint proxy; the top-decile-share figure is directionally robust across genres despite the proxy's coarseness because it compares titles within the same measurement error, but exact percentages should be read as approximate.",
+      "method": "sum(owners_mid) over percent_rank>=0.90 within genre, divided by genre total; bottom-bucket share = fraction with owners_low=0.",
+      "caveats": [
+        "owners_mid, not measured sales; see scope_reminder.",
+        "This is reach/ownership concentration, not engagement or retention -- no playtime data exists in this dataset.",
+        "A game can carry multiple genre tags (fan-out is intentional here, not a join bug); a hit title's audience is counted once per genre it belongs to."
+      ],
+      "sql_file": "sql/11_reach_concentration.sql"
+    },
+    {
+      "id": "F2",
+      "claim": "Catalogue-wide title supply has grown steadily and substantially every year (2015-2024), roughly 6.5x from 2,487 titles in 2015 to a 10-month partial count of 16,050 in 2024 -- this is a real, robust supply-side (developer enthusiasm) signal, unaffected by right-censoring since it is a simple count of releases.",
+      "metric": "n_titles per release_year",
+      "value": {"2015": 2487, "2018": 7467, "2021": 11222, "2023": 15030, "2024_partial_10mo": 16050},
+      "n": 90858,
+      "segment": "release_year, real games only",
+      "uncertainty": "None for the count itself (a direct measurement); 2024's figure is a 10-month total (right-truncated at 2024-10-28, confirmed zero Nov/Dec rows) and understates the true full-year rate.",
+      "method": "COUNT(*) GROUP BY release_year, is_demo=false AND app_type='game' AND release_date IS NOT NULL.",
+      "caveats": [
+        "2024 is a partial year, not comparable 1:1 to prior full years.",
+        "20.4% of the catalogue has no release_date at all and is excluded from this cohort trend entirely -- if that missingness is not random across years, the true growth curve could differ."
+      ],
+      "sql_file": "sql/17_cohort_trend.sql"
+    },
+    {
+      "id": "F3",
+      "claim": "Over the same 2015-2024 window, both mean owners_mid (199,630 to 32,096 by 2023) and median raw review_total (147 to 11 by 2023) fall sharply cohort-over-cohort. This decline is very largely a right-censoring artifact -- older cohorts have simply had more years to accumulate owners and reviews -- not clear evidence that per-title demand for new releases is falling; the true demand trend cannot be cleanly separated from time-since-release in this dataset.",
+      "metric": "mean_owners_mid, median_review_total by release_year",
+      "value": {"2015": {"mean_owners_mid": 199630, "median_review_total": 147}, "2019": {"mean_owners_mid": 73662, "median_review_total": 22}, "2023": {"mean_owners_mid": 32096, "median_review_total": 11}},
+      "n": {"2015": 2487, "2019": 7293, "2023": 15030},
+      "segment": "release_year, real games only",
+      "uncertainty": "High -- this is explicitly a Simpson's-paradox / right-censoring risk named in the task brief. A partial correction (review_total annualized by days-since-release) reverses direction for the most recent cohorts (see F-minor below) but that correction is itself unstable for very young titles.",
+      "method": "AVG/MEDIAN owners_mid and review_total GROUP BY release_year.",
+      "caveats": [
+        "Do not read the declining trend line as 'the market for new titles is shrinking' -- it is confounded with time-since-release by construction.",
+        "owners_mid proxy caveat as in scope_reminder."
+      ],
+      "sql_file": "sql/17_cohort_trend.sql"
+    },
+    {
+      "id": "F4",
+      "claim": "Out-of-sample, a simple segment-expectation model (mean owners_mid by primary-genre x price-band, fit on a random 50% of titles and evaluated on the other, unseen half) has a real but weak positive relationship to actual holdout performance (Pearson r=0.114, Spearman-rank approx=0.297, n=57,522 holdout titles). Within that weak-but-real model, publisher-level residuals show existing Xbox-owned studios already outperforming their segment's expectation: Xbox Game Studios titles beat expectation by a median of 5.80x (n=32 holdout titles) and Bethesda Softworks by 6.23x (n=25) -- both comfortably above the >=5 holdout-title threshold set to exclude single-hit noise.",
+      "metric": "pearson_r / spearman_rank (validation); median_residual_ratio (publisher)",
+      "value": {"validation_pearson_r": 0.114, "validation_spearman_approx": 0.297, "validation_n_holdout": 57522, "Xbox Game Studios": {"median_residual_ratio": 5.80, "n": 32}, "Bethesda Softworks": {"median_residual_ratio": 6.23, "n": 25}, "2K": {"median_residual_ratio": 5.12, "n": 31}, "Focus Entertainment": {"median_residual_ratio": 4.15, "n": 34}},
+      "n": 57522,
+      "segment": "publisher, holdout half of catalogue only",
+      "uncertainty": "The overall model explains a small share of variance (r^2~0.01, rank corr ~0.30) -- genre and price band alone are weak predictors of reach; publisher-level residuals should be read as 'these publishers cleared a low, noisy bar consistently across >=5 titles the model never saw,' not as a precise multiplier.",
+      "method": "50/50 hash(app_id) split; FIT-half mean owners_mid per (primary_genre, price_band) cell (n_fit>=30); primary_genre = each app's rarest global genre tag to avoid Indie/Action fan-out inflating title counts; residual = actual_owners_mid / FIT expectation, computed only on HOLDOUT rows the model never trained on.",
+      "caveats": [
+        "owners_mid proxy caveat as in scope_reminder -- residual ratios inherit its coarseness.",
+        "Circularity check passed: publishers were not used to build the expectation model, and residuals are computed only on the held-out half never seen during fitting.",
+        "Lower-n publishers in the fuller table (n=5-9, e.g. Hi-Rez Studios 28.2x, Frozenbyte 7.26x) are directionally suggestive but noisier than the n>=25 entries highlighted here -- see sql_file for the full ranked list.",
+        "This is a Steam PC signal about Xbox's own existing first-party catalogue's PC performance, not a direct measurement of console/Game Pass performance."
+      ],
+      "sql_file": "sql/15_developer_outperformance.sql; sql/16_publisher_outperformance.sql"
+    },
+    {
+      "id": "F5",
+      "claim": "Controlling for genre and price band via the same out-of-sample segment model, titles with a distinct publisher (developer != publisher) outperform self-published titles: mean residual ratio 1.610 vs 0.904, median 0.307 vs 0.250.",
+      "metric": "median_residual_ratio / mean_residual_ratio by is_self_published",
+      "value": {"distinct_publisher": {"median_residual_ratio": 0.307, "mean_residual_ratio": 1.610, "n": 12594}, "self_published": {"median_residual_ratio": 0.250, "mean_residual_ratio": 0.904, "n": 29148}},
+      "n": 41742,
+      "segment": "is_self_published (proxy), holdout half only",
+      "uncertainty": "is_self_published (developer==publisher string match) is an explicit proxy for 'has a distinct publisher backing it', not a real first/third-party field -- see DECISIONS.md. Reverse causality is plausible and not excludable with this data: a game that is already turning out well pre-launch may attract a publisher, rather than the publisher causing the outperformance.",
+      "method": "Same FIT/HOLDOUT segment-expectation model as F4, grouped by is_self_published on the holdout half only.",
+      "caveats": [
+        "Observational association only, not causal -- cannot separate 'publisher backing helped' from 'publishers select projects that were already going to do well'.",
+        "owners_mid proxy caveat as in scope_reminder."
+      ],
+      "sql_file": "sql/19_selfpublished_vs_backed.sql"
+    },
+    {
+      "id": "F6",
+      "claim": "A large pool of well-reviewed, high-ownership 'proven hit' titles already exists per major genre across release vintages -- e.g. Action alone has 198 pre-2015, 217 from 2015-2019, 117 from 2020-2022 and 42 from 2023+ titles meeting a strict bar (owners_low>=1,000,000, review_total>=50, review_positive_ratio>=0.7). Sports, by contrast, has only 31 such titles across its entire history -- too thin to break out by vintage (n<30 in every bucket).",
+      "metric": "count of proven-hit titles by genre x vintage",
+      "value": {"Action": {"pre_2015": 198, "2015_2019": 217, "2020_2022": 117, "2023_plus": 42}, "RPG": {"pre_2015": 70, "2015_2019": 75, "2020_2022": 50}, "Indie": {"pre_2015": 89, "2015_2019": 173, "2020_2022": 95, "2023_plus": 34}, "Sports_all_vintages_combined": 31},
+      "n": "see value; every cell shown meets n>=30 except Sports, shown suppressed/flagged per its total",
+      "segment": "genre x vintage bucket",
+      "uncertainty": "This sizes a licensing candidate pool by catalogue inventory, not licensability, price, or exclusivity terms -- Xbox does not control which of these are actually available to license and at what cost.",
+      "method": "COUNT(DISTINCT app_id) meeting the hit bar, grouped by genre and a 4-bucket vintage split; cells with n<30 suppressed from the genre x vintage breakdown.",
+      "caveats": [
+        "owners_low is a SteamSpy bucket floor (a coarse threshold, not a precise count) and review_positive_ratio depends on self-selected reviewers, which vary systematically by genre and audience size.",
+        "Sports' thinness on Steam is directly consistent with Stage 3's context finding that Steam's PC audience skews away from sports while Xbox's console audience skews toward it -- this dataset likely UNDERSTATES the real sports back-catalogue opportunity precisely because it is Steam/PC-only, not because sports games underperform.",
+        "A licensing decision needs console-side ownership data this dataset does not contain; treat this as a lower bound on genre coverage available on PC, not a console-transferable count."
+      ],
+      "sql_file": "sql/20_licensing_candidate_inventory.sql"
+    },
+    {
+      "id": "F7",
+      "claim": "Higher price bands associate with a larger estimated audience and far higher review volume up through $30-60, e.g. median review_total rises from 12 (under $5) to 456 ($30-60), before collapsing in the small $60+ band (n=353, median review_total 17) -- this is an observational, not causal, relationship: price is confounded with production budget/quality/marketing spend in this data and elasticity cannot be estimated causally here.",
+      "metric": "median_review_total, mean_owners_mid by price band",
+      "value": {"under_5": {"median_review_total": 12.0, "mean_owners_mid": 38539, "n": 39122}, "10_to_15": {"median_review_total": 46.0, "mean_owners_mid": 100824, "n": 8053}, "20_to_30": {"median_review_total": 216.0, "mean_owners_mid": 301463, "n": 2761}, "30_to_60": {"median_review_total": 456.0, "mean_owners_mid": 744792, "n": 1542}, "60_plus": {"median_review_total": 17.0, "mean_owners_mid": 309929, "n": 353}},
+      "n": 91709,
+      "segment": "price band, paid titles with resolved USD price only",
+      "uncertainty": "Cannot separate price effect from quality/budget/marketing effect; treat as descriptive, not a demand curve.",
+      "method": "GROUP BY price band (paid titles, price_usd resolved via steamspy-primary/games.csv-fallback per DECISIONS.md), median/mean of owners_mid and review_total.",
+      "caveats": [
+        "The $60+ band's collapse (n=353, low median reviews) is plausibly driven by a mix of older legacy-priced titles and a handful of anomalous listings rather than a real 'premium AAA underperforms' effect -- flagged as needing more investigation, not a board-ready claim on its own.",
+        "24.5% of nominally-paid titles (paid_price_unknown) are excluded entirely from every price-band statistic, not zeroed or imputed."
+      ],
+      "sql_file": "sql/13_price_band_vs_audience.sql"
+    },
+    {
+      "id": "F8",
+      "claim": "On Steam, shooter-family tags (Shooter 13,281 + FPS 7,789 + sub-genres) outnumber sports-family tags (Sports 4,983 + eSports 1,128) by roughly 3.5x -- a direct, catalogue-level confirmation of Stage 3's context claim that Steam's PC population skews toward shooters while Xbox's console population skews toward sports.",
+      "metric": "count of app-tag rows",
+      "value": {"Shooter": 13281, "FPS": 7789, "Sports": 4983, "eSports": 1128},
+      "n": 1744632,
+      "segment": "tag (from tags_long, not mutually exclusive per app)",
+      "uncertainty": "Tag counts measure how often creators/Steam's tagging system apply a label, not player population size directly, but at this scale (tens of thousands of tag rows) the shooter-vs-sports gap is not a small-sample artifact.",
+      "method": "COUNT(*) GROUP BY tag, filtered to shooter/sports/fps-family tag strings.",
+      "caveats": [
+        "This is supply-side tag prevalence on PC/Steam, presented specifically as corroboration for a platform-population-mix caveat already established in Stage 3 -- it is not a new claim about player demand."
+      ],
+      "sql_file": "sql/09_shooter_vs_sports_tags.sql"
+    },
+    {
+      "id": "F9_minor",
+      "claim": "Discount behavior at the single Dec-2024 snapshot is fairly uniform across genres: 5-8.5% of paid titles were on sale that day, at a mean depth of 45-65% when discounted, with no genre a clear outlier.",
+      "metric": "pct_on_sale_at_snapshot, mean_discount_pct_when_on_sale",
+      "value": {"Casual": {"pct_on_sale": 8.5, "mean_depth": 54.8, "n": 33526}, "Action": {"pct_on_sale": 6.8, "mean_depth": 58.2, "n": 33237}, "RPG": {"pct_on_sale": 6.7, "mean_depth": 54.7, "n": 14566}},
+      "n": 91709,
+      "segment": "genre, paid titles",
+      "uncertainty": "This is a single point-in-time observation, not discount frequency or a discount calendar -- the dataset has exactly one snapshot per app, so seasonal or promotional-cycle discount behavior cannot be measured at all.",
+      "method": "steamspy_stage.discount_pct_steamspy at snapshot, joined to genre.",
+      "caveats": [
+        "Not decision-relevant on its own -- included for completeness, not as a headline finding.",
+        "Cannot distinguish 'genre discounts rarely' from 'the snapshot simply missed this genre's sale window'."
+      ],
+      "sql_file": "sql/18_discount_depth_by_genre.sql"
+    }
+  ],
+  "interesting_not_yet_defensible": [
+    {
+      "note": "A handful of developers show extreme out-of-sample residual ratios (e.g. Gas Powered Games 38.05x, Sometimes You 29.95x) but at n=3-4 holdout titles -- the minimum threshold used to exclude single-hit luck. Given the overall model's weak fit (r=0.114), these point estimates are highly noisy and should not be presented as board-grade evidence of repeat outperformance without a larger n or a longer observation window.",
+      "sql_file": "sql/15_developer_outperformance.sql"
+    },
+    {
+      "note": "The 2023-2024 uptick in median reviews-per-year-since-release (7.9 in 2023, 15.5 in 2024, up from a 2018-2019 trough of ~4.1) looks like re-accelerating engagement velocity but is plausibly an artifact of review activity being front-loaded at launch: young titles' 'per-year' rate is annualized from only weeks of observed data, which mechanically inflates the rate versus mature cohorts where launch-week spikes are diluted by years of subsequent quiet. Needs a stricter minimum-age cutoff (e.g. >=180 days since release) before this can be treated as a real trend.",
+      "sql_file": "sql/17_cohort_trend.sql"
+    }
+  ]
+}

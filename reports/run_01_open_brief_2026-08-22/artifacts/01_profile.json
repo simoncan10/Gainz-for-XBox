@@ -1,0 +1,167 @@
+{
+  "snapshot_context": "Steam catalogue snapshot, ~140k apps, dated approximately December 2024",
+  "app_universe": {
+    "canonical_table": "games.csv",
+    "canonical_key": "app_id",
+    "n_apps": 140082,
+    "note": "games.csv is the only table whose app_id is a verified 1:1 primary key covering the full catalogue. All other tables are subsets (categories, genres, tags) or near-total co-extensive sets (reviews, steamspy_insights) of this universe -- zero orphan app_ids were found in any table pointing outside games.csv."
+  },
+  "files": [
+    {
+      "path": "/mnt/user-data/uploads/Gainz-for-XBox/data/raw/super raw/games.csv",
+      "bytes": 33633019,
+      "rows": 140082,
+      "encoding": "utf-8",
+      "read_recipe": "read_csv(path, header=true, quote='\"', escape='\\\\', sep=',', sample_size=-1) -- or read_csv_auto, which auto-detects escape='\\\\' correctly via its sniffer",
+      "columns": [
+        {"name": "app_id", "type": "BIGINT", "null_rate": 0.0, "distinct": 140082, "min": null, "max": null},
+        {"name": "name", "type": "VARCHAR", "null_rate": 0.00014, "distinct": null, "min": null, "max": null, "note": "20 rows have literal '\\N' as the name value -- true missing identifier, not a real null in the raw file"},
+        {"name": "release_date", "type": "VARCHAR (should be DATE)", "null_rate": 0.2036, "distinct": null, "min": "1997-06-30", "max": "2024-10-28", "note": "28518/140082 rows (20.36%) are literal string '\\N'; of the remaining 111564 castable dates, max date is 2024-10-28 -- no Nov/Dec 2024 rows despite the ~Dec-2024 snapshot date, i.e. right-truncated"},
+        {"name": "is_free", "type": "BIGINT (0/1)", "null_rate": 0.0, "distinct": 2, "min": 0, "max": 1},
+        {"name": "price_overview", "type": "VARCHAR (embedded JSON)", "null_rate": 0.4551, "distinct": null, "min": null, "max": null, "note": "63748/140082 (45.5%) are literal '\\N'; of the 33661 is_free=1 rows, 33659 lack price_overview (expected); of the 106421 is_free=0 (paid) rows, 30089 (28.3%) ALSO lack price_overview -- pricing coverage on paid titles is materially incomplete. JSON values use backslash-escaped quotes (\\\") not doubled CSV quotes -- see hazards."},
+        {"name": "languages", "type": "VARCHAR", "null_rate": 0.0516, "distinct": null, "min": null, "max": null, "note": "7229/140082 rows are literal '\\N'"},
+        {"name": "type", "type": "VARCHAR", "null_rate": 0.0, "distinct": 2, "min": null, "max": null, "note": "distribution: game=122191 (87.2%), demo=17891 (12.8%)"}
+      ],
+      "primary_key": {"columns": ["app_id"], "unique": true, "evidence": "count(*) = count(DISTINCT app_id) = 140082; zero full-row duplicates on all 7 columns"},
+      "date_coverage": {
+        "column": "release_date",
+        "castable_rows": 111564,
+        "uncastable_literal_null_rows": 28518,
+        "min": "1997-06-30",
+        "max": "2024-10-28",
+        "per_year_counts": {
+          "1997": 2, "1998": 1, "1999": 2, "2000": 2, "2001": 4, "2003": 3, "2004": 6, "2005": 6,
+          "2006": 67, "2007": 112, "2008": 196, "2009": 395, "2010": 320, "2011": 315, "2012": 389,
+          "2013": 494, "2014": 1649, "2015": 2688, "2016": 4529, "2017": 6442, "2018": 8029,
+          "2019": 7902, "2020": 10197, "2021": 12833, "2022": 14742, "2023": 18217, "2024": 22022
+        },
+        "2024_monthly_counts": {
+          "2024-01": 1773, "2024-02": 2015, "2024-03": 1896, "2024-04": 1916, "2024-05": 2383,
+          "2024-06": 2359, "2024-07": 2253, "2024-08": 2431, "2024-09": 2494, "2024-10": 2502,
+          "2024-11": 0, "2024-12": 0
+        },
+        "warning": "2024 total of 22022 is a 10-month figure (Jan-Oct only); treating it as a full year undercounts true 2024 releases and will misread as a YoY decline versus 2023's full-year 18217."
+      },
+      "hazards": [
+        "price_overview contains JSON with backslash-escaped quotes (\\\"), not doubled CSV quotes. A naive parser (Python csv.reader/pandas default, no escapechar) misaligns columns on 76334/140082 rows (54.49%). Extracting the 'type' column positionally (row[6]) after misalignment drops the correctly-identified game count from 122191 to 45857 -- a 62% loss that silently ejects well-known titles from any type=='game' filter. VERIFIED via direct row-by-row reproduction with Python's csv module. DuckDB's read_csv_auto sniffer auto-detects escape='\\\\' correctly on its own and needs no special handling; confirmed identical row counts and type distributions between naive auto-detect and explicit escape parsing.",
+        "'\\N' is used as the null sentinel but is a literal 2-character string, not recognized as NULL by default CSV parsing, and cannot be combined with escape='\\\\' in DuckDB (mutually exclusive parser options) -- clean with NULLIF(col,'\\N') then CAST, never trust default type inference on this file.",
+        "20 rows have name = '\\N' (true missing identifier).",
+        "45.5% of rows are missing price_overview entirely, including 28.3% of nominally-paid (is_free=0) titles.",
+        "release_date is right-truncated at 2024-10-28 with zero Nov/Dec 2024 rows; 20.4% of all rows have no release_date at all."
+      ]
+    },
+    {
+      "path": "/mnt/user-data/uploads/Gainz-for-XBox/data/raw/super raw/categories.csv",
+      "bytes": 14307957,
+      "rows": 522582,
+      "encoding": "utf-8",
+      "read_recipe": "read_csv_auto(path, sample_size=-1)",
+      "columns": [
+        {"name": "app_id", "type": "BIGINT", "null_rate": 0.0, "distinct": 134393, "min": null, "max": null},
+        {"name": "category", "type": "VARCHAR", "null_rate": 0.0, "distinct": 315, "min": null, "max": null}
+      ],
+      "primary_key": {"columns": ["app_id", "category"], "unique": true, "evidence": "count(*) - count(DISTINCT (app_id,category)) = 0; app_id alone is NOT unique (avg 3.9 category-rows per app)"},
+      "top_values": [["Single-player", 125253], ["Family Sharing", 75782], ["Steam Achievements", 54520], ["Full controller support", 32908], ["Steam Cloud", 28761]],
+      "hazards": ["Long/tag table: joining on app_id alone fans rows out ~3.9x on average; use (app_id,category) or pre-aggregate before joining to games.csv."]
+    },
+    {
+      "path": "/mnt/user-data/uploads/Gainz-for-XBox/data/raw/super raw/genres.csv",
+      "bytes": 6986851,
+      "rows": 353339,
+      "encoding": "utf-8",
+      "read_recipe": "read_csv_auto(path, sample_size=-1)",
+      "columns": [
+        {"name": "app_id", "type": "BIGINT", "null_rate": 0.0, "distinct": 122458, "min": null, "max": null},
+        {"name": "genre", "type": "VARCHAR", "null_rate": 0.0, "distinct": 121, "min": null, "max": null}
+      ],
+      "primary_key": {"columns": ["app_id", "genre"], "unique": true, "evidence": "count(*) - count(DISTINCT (app_id,genre)) = 0"},
+      "top_values": [["Indie", 86425], ["Action", 52753], ["Adventure", 50835], ["Casual", 48633], ["Simulation", 24916], ["RPG", 24510], ["Strategy", 24146]],
+      "hazards": ["Long/tag table: joining on app_id alone fans rows out ~2.9x on average.", "12.58% of games.csv apps (17624 of 140082) have no genre row at all -- an inner join silently drops them."]
+    },
+    {
+      "path": "/mnt/user-data/uploads/Gainz-for-XBox/data/raw/super raw/tags.csv",
+      "bytes": 38195484,
+      "rows": 1744632,
+      "encoding": "us-ascii (subset of utf-8)",
+      "read_recipe": "read_csv_auto(path, sample_size=-1)",
+      "columns": [
+        {"name": "app_id", "type": "BIGINT", "null_rate": 0.0, "distinct": 117505, "min": null, "max": null},
+        {"name": "tag", "type": "VARCHAR", "null_rate": 0.0, "distinct": 447, "min": null, "max": null}
+      ],
+      "primary_key": {"columns": ["app_id", "tag"], "unique": true, "evidence": "count(*) - count(DISTINCT (app_id,tag)) = 0"},
+      "hazards": ["Long/tag table: joining on app_id alone fans rows out ~14.8x on average (1744632 rows over 117505 apps) -- the single biggest fan-out risk in this dataset. 16.12% of games.csv apps (22577 of 140082) have no tag row at all."]
+    },
+    {
+      "path": "/mnt/user-data/uploads/Gainz-for-XBox/data/raw/super raw/reviews.csv",
+      "bytes": 14104049,
+      "rows": 140082,
+      "encoding": "utf-8",
+      "read_recipe": "read_csv_auto(path, sample_size=-1); NULLIF each numeric-looking column against literal '\\N' before casting",
+      "columns": [
+        {"name": "app_id", "type": "BIGINT", "null_rate": 0.0, "distinct": 140082, "min": null, "max": null},
+        {"name": "review_score", "type": "VARCHAR (should be TINYINT 0-9)", "null_rate": 0.0000357, "distinct": 10, "min": 0, "max": 9},
+        {"name": "review_score_description", "type": "VARCHAR", "null_rate": 0.0000357, "distinct": 19, "min": null, "max": null},
+        {"name": "positive", "type": "VARCHAR (should be BIGINT)", "null_rate": 0.0000357, "distinct": null, "min": 0, "max": 7271193},
+        {"name": "negative", "type": "VARCHAR (should be BIGINT)", "null_rate": 0.0000357, "distinct": null, "min": 0, "max": 1089297},
+        {"name": "total", "type": "VARCHAR (should be BIGINT)", "null_rate": 0.0000357, "distinct": null, "min": 0, "max": 8360490},
+        {"name": "metacritic_score", "type": "VARCHAR (should be TINYINT)", "null_rate": 0.9661, "distinct": null, "min": 20, "max": 97, "note": "only 4745/140082 rows (3.4%) have a Metacritic score at all -- effectively unusable as a broad-coverage signal"},
+        {"name": "reviews", "type": "VARCHAR (free text, embedded HTML)", "null_rate": 0.9160, "distinct": null, "min": null, "max": null, "note": "only 11765/140082 rows (8.4%) carry a curator/press-quote blurb; contains backslash-escaped quotes like games.csv's price_overview and breaks strict-mode CSV parsing if escape is misconfigured"},
+        {"name": "recommendations", "type": "VARCHAR (should be BIGINT)", "null_rate": 0.8766, "distinct": null, "min": 101, "max": 4248820, "note": "87.66% null -- Steam-native recommendation counts only populated for a minority of apps"},
+        {"name": "steamspy_user_score", "type": "VARCHAR (should be DOUBLE 0-100)", "null_rate": 0.0000357, "distinct": null, "min": 0, "max": 100},
+        {"name": "steamspy_score_rank", "type": "VARCHAR", "null_rate": 0.9996, "distinct": null, "min": 98, "max": 100, "note": "only 51/140082 rows populated -- effectively an empty column"},
+        {"name": "steamspy_positive", "type": "VARCHAR (should be BIGINT)", "null_rate": 0.0000357, "distinct": null, "min": 0, "max": 7271086},
+        {"name": "steamspy_negative", "type": "VARCHAR (should be BIGINT)", "null_rate": 0.0000357, "distinct": null, "min": 0, "max": 1088861}
+      ],
+      "primary_key": {"columns": ["app_id"], "unique": true, "evidence": "count(*) = count(DISTINCT app_id) = 140082"},
+      "hazards": [
+        "All ten numeric-looking columns are typed VARCHAR by default because they contain literal '\\N' sentinels -- NULLIF+CAST required, cannot combine nullstr='\\N' with escape='\\\\' in DuckDB's read_csv (raises a Binder Error), so the fix must be applied post-read in SQL, not at read_csv time.",
+        "metacritic_score (96.6% null), recommendations (87.7% null), and steamspy_score_rank (99.96% null, essentially a dead column) are far too sparse to use as primary signals across the catalogue -- fine for spot-checks on AAA titles only.",
+        "review_score_description has 5 rows with literal '\\N' alongside 19 real category labels including odd small-sample buckets like '1 user reviews' through '9 user reviews' that should be folded into a coarser bucket before any aggregation."
+      ]
+    },
+    {
+      "path": "/mnt/user-data/uploads/Gainz-for-XBox/data/raw/super raw/steamspy_insights.csv",
+      "bytes": 18172366,
+      "rows": 140077,
+      "encoding": "us-ascii (subset of utf-8)",
+      "read_recipe": "read_csv_auto(path, sample_size=-1); NULLIF numeric-looking columns against literal '\\N' before casting",
+      "columns": [
+        {"name": "app_id", "type": "BIGINT", "null_rate": 0.0, "distinct": 140077, "min": null, "max": null},
+        {"name": "developer", "type": "VARCHAR", "null_rate": 0.3537, "distinct": null, "min": null, "max": null, "note": "49546/140077 (35.4%) missing"},
+        {"name": "publisher", "type": "VARCHAR", "null_rate": 0.3546, "distinct": null, "min": null, "max": null, "note": "49672/140077 (35.5%) missing"},
+        {"name": "owners_range", "type": "VARCHAR (bucketed range string, not numeric)", "null_rate": 0.0, "distinct": 10, "min": null, "max": null, "note": "116582/140077 (83.2%) of ALL apps fall in the lowest bucket '0 .. 20,000' -- this column has almost no discriminating power above the bottom bucket and cannot support fine-grained owner-count analysis"},
+        {"name": "concurrent_users_yesterday", "type": "BIGINT", "null_rate": 0.0, "distinct": null, "min": 0, "max": 1180219},
+        {"name": "playtime_average_forever", "type": "BIGINT", "null_rate": 0.0, "distinct": 1, "min": 0, "max": 0, "note": "CONSTANT ZERO across all 140077 rows -- column carries no information"},
+        {"name": "playtime_average_2weeks", "type": "BIGINT", "null_rate": 0.0, "distinct": 1, "min": 0, "max": 0, "note": "CONSTANT ZERO across all 140077 rows"},
+        {"name": "playtime_median_forever", "type": "BIGINT", "null_rate": 0.0, "distinct": 1, "min": 0, "max": 0, "note": "CONSTANT ZERO across all 140077 rows"},
+        {"name": "playtime_median_2weeks", "type": "BIGINT", "null_rate": 0.0, "distinct": 1, "min": 0, "max": 0, "note": "CONSTANT ZERO across all 140077 rows"},
+        {"name": "price", "type": "VARCHAR (should be numeric, cents)", "null_rate": 0.3512, "distinct": null, "min": 0, "max": 99998, "note": "49187/140077 (35.1%) missing"},
+        {"name": "initial_price", "type": "VARCHAR (should be numeric, cents)", "null_rate": null, "distinct": null, "min": null, "max": null},
+        {"name": "discount", "type": "VARCHAR (should be numeric)", "null_rate": null, "distinct": null, "min": null, "max": null},
+        {"name": "languages", "type": "VARCHAR", "null_rate": null, "distinct": null, "min": null, "max": null},
+        {"name": "genres", "type": "VARCHAR (comma-joined, redundant with genres.csv)", "null_rate": null, "distinct": null, "min": null, "max": null}
+      ],
+      "primary_key": {"columns": ["app_id"], "unique": true, "evidence": "count(*) = count(DISTINCT app_id) = 140077"},
+      "hazards": [
+        "playtime_average_forever, playtime_average_2weeks, playtime_median_forever and playtime_median_2weeks are 0 for literally every one of 140077 rows. This is the single most consequential hazard for an Xbox/Game Pass investment analysis: engagement/playtime is the metric most relevant to a subscription business, and it is entirely absent from this dataset despite the columns existing and looking populated. Do not compute any engagement metric from this file; playtime is not observable here at all.",
+        "owners_range buckets 83.2% of the entire catalogue into a single lowest bin ('0..20,000') -- cannot distinguish a niche title from a mid-size hit within that bin.",
+        "developer/publisher missing for ~35% of apps -- studio-level rollups will undercount by roughly a third unless backfilled from another source.",
+        "5 rows in this file (140082 - 140077) exist in games.csv but have no steamspy_insights row at all."
+      ]
+    }
+  ],
+  "join_coverage": [
+    {"pair": "games -> categories", "base": "games.csv (140082 apps)", "matched": 134393, "pct": 95.94, "reverse_pct_categories_in_games": 100.00, "note": "134393/140082 games have >=1 category row; every category row's app_id exists in games (no orphans)"},
+    {"pair": "games -> genres", "base": "games.csv (140082 apps)", "matched": 122458, "pct": 87.42, "reverse_pct_genres_in_games": 100.00, "note": "17624 games (12.58%) have zero genre rows"},
+    {"pair": "games -> tags", "base": "games.csv (140082 apps)", "matched": 117505, "pct": 83.88, "reverse_pct_tags_in_games": 100.00, "note": "22577 games (16.12%) have zero tag rows -- lowest coverage of the six files"},
+    {"pair": "games -> reviews", "base": "games.csv (140082 apps)", "matched": 140082, "pct": 100.00, "reverse_pct_reviews_in_games": 100.00, "note": "perfect 1:1 coverage, both tables built from the same 140082-app list"},
+    {"pair": "games -> steamspy_insights", "base": "games.csv (140082 apps)", "matched": 140077, "pct": 99.996, "reverse_pct_steamspy_in_games": 100.00, "note": "only 5 games missing a steamspy row"}
+  ],
+  "hazards_summary_ranked": [
+    "1. price_overview (games.csv) and reviews (reviews.csv) contain JSON/HTML with backslash-escaped quotes (\\\"). A naive CSV parser without escapechar handling misaligns 76334/140082 games.csv rows (54.5%); positional extraction of 'type' after misalignment drops the correct game count from 122191 to 45857 (62% loss), silently dropping named indie titles from any type=='game' filter. DuckDB's read_csv_auto handles this correctly on its own -- verified.",
+    "2. steamspy_insights.csv's four playtime columns are a constant 0 for all 140077 rows -- there is no usable engagement/playtime signal anywhere in this dataset, which directly undercuts any Game Pass-relevant engagement analysis.",
+    "3. release_date is right-truncated at 2024-10-28 (zero Nov/Dec 2024 rows) and missing entirely ('\\N') for 20.4% of all games -- any 2024 or recency-based trend must be caveated as a 10-month year and a ~1-in-5 unknown-date population.",
+    "4. The literal string '\\N' is used as a null sentinel across five of six files and defeats default numeric type inference; it cannot be combined with escape='\\\\' in DuckDB's read_csv and must be cleaned with NULLIF+CAST after reading, file by file.",
+    "5. categories.csv/genres.csv/tags.csv are long tables (natural key = app_id+value, not app_id alone); naive joins on app_id fan out rows 3.9x / 2.9x / 14.8x respectively, and 4-16% of games have zero rows in each of these tables, so inner joins silently shrink the catalogue."
+  ]
+}

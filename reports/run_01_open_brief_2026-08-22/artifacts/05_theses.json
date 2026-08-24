@@ -1,0 +1,254 @@
+{
+  "run": "run_2026-08-22",
+  "stage": 5,
+  "date": "2026-08-22",
+  "target": "Xbox / Microsoft Gaming",
+  "audience": "Microsoft/Xbox board",
+  "objective_function_assumed": {
+    "statement": "Game Pass subscription margin and retention, plus console attach — NOT unit sales and NOT breadth of catalogue.",
+    "basis": "04_context.md s2 [ANALYSIS] + claim_ids gp-price-history-2025-2026 (Ultimate $29.99 -> $22.99 rollback after churn, April 2026), xbox-studio-closures-2026-07 (July 2026 concentration on flagship franchises), msft-ceo-pressure-console-profit-2027. Confidence MEDIUM: the FY26 Q4 call transcript that would state this explicitly could not be retrieved (403).",
+    "consequence": "Any thesis is scored on retention/margin per dollar, not on titles added or copies sold. Recommending unit-sales or catalogue-breadth maximisation to this business would be the standard way this analysis fails."
+  },
+  "standing_evidence_limits": {
+    "no_engagement_data": "This dataset contains ZERO playtime/engagement signal (all four SteamSpy playtime columns are constant 0 across 140,077 rows; dropped in Stage 2). Nothing below measures or infers retention, session length or engagement from the data. For a subscription business this is the central limitation, and it is why every thesis here is staged behind a measurement step rather than committed up front.",
+    "owners_is_a_bucket_proxy": "owners_mid is the linear midpoint of a SteamSpy bucketed range, not a count. 83.2% of the catalogue sits in the single bottom bucket (0..20,000), so owners-based statistics resolve only the upper tail.",
+    "model_is_weak": "The genre x price-band expectation model behind F4/F5 validates out of sample at Pearson r=0.114 / Spearman ~0.297 (n=57,522 holdout). It explains ~1% of variance. It is used below only as a coarse consistency check, never as a ranking or selection engine.",
+    "population_validity": "This is Steam PC data. Console ARPPU is ~48% higher than PC ($81.68 vs $55.47, arppu-console-vs-pc-2024) and the genre mix differs materially (F8: Steam shooter tags outnumber sports ~3.5x; pc-vs-console-genre-2024: sports is the top Xbox console genre). Steam genre mix must not be used as a proxy for Xbox console genre mix. This is the single most load-bearing caveat in the document."
+  },
+  "ranking_rationale": "Ranked by expected value adjusted for confidence, not by interest. T1 is first because it is the only thesis that generates revenue and its own first step is small, reversible and self-instrumenting. T2 has higher confidence and arguably better ROI, but its return is entirely contingent on T1 or something like it being done — measurement with no decision downstream is worth nothing, so it cannot rank first on its own. T3 is a negative recommendation (decline capital) and ranks third because its value is avoided loss, not gain; it is included because it is the alternative that will be proposed in the room and the board deserves the counter-argument in writing. The null option is evaluated explicitly in null_option_assessment below.",
+  "theses": [
+    {
+      "rank": 1,
+      "id": "T1",
+      "claim": "Commit up to $90M/year of operating expenditure to license a tightly curated tranche of ~60 already-proven back-catalogue titles per year into Game Pass, but approve only the first $23M / 20-title / 12-month instrumented tranche now, with continuation gated on a measured churn readout.",
+      "evidence": [
+        "F6 — a large licensable inventory of already-proven titles exists and is countable: Action alone has 574 titles meeting a strict hit bar (owners_low>=1M, review_total>=50, positive ratio>=0.7) spread across vintages (198 pre-2015 / 217 2015-19 / 117 2020-22 / 42 2023+); RPG ~195, Indie ~391. This sizes the candidate pool, not its licensability or price.",
+        "F1 — reach is extremely hit-concentrated: the top decile of titles captures 78-93% of a genre's estimated audience while 75-86% of titles sit in the bottom owners bucket. Buying breadth is therefore near-worthless; buying the already-identified top decile is where all the reach is.",
+        "F2 — supply grew ~6.5x from 2,487 titles (2015) to 16,050 (2024, 10-month partial). This is a direct count, immune to right-censoring. Content is abundant and getting more so; scarcity sits in curation and in rights, not in supply.",
+        "F3 — the apparent per-title demand decline across cohorts is very largely a right-censoring artifact, NOT falling demand. This matters because the naive reading ('newer games perform worse, so buy old catalogue') would be a false argument for this thesis. The correct argument is F1+F6, not F3.",
+        "gp-deal-cost-range — Game Pass licensing deals negotiated by a former Xbox BD lead spanned $50K to over $50M across 500+ deals, confirming that a genuine low-cost end of the deal range exists.",
+        "gp-price-history-2025-2026 — the Ultimate $29.99 -> $22.99 rollback after churn establishes that perceived catalogue value per dollar is the live constraint on this business right now.",
+        "silksong-2025-sales — day-one Game Pass inclusion did not fully cannibalise premium sales for a strong title (7M+ copies in four months), weak but real evidence that subscription inclusion and rights-holder economics are not strictly zero-sum."
+      ],
+      "mechanism": "A subscription is renewed on perceived catalogue value, not on catalogue size. F1 establishes that audience reach in every genre is concentrated in a top decile that has already been identified by the market; F6 establishes that several hundred such titles exist per genre and are, in principle, licensable. Licensing them converts capital into recognisable, already-de-risked catalogue density at a marginal cost far below producing equivalent titles — because the discovery risk, the production risk and the marketing spend were all borne by someone else and have already resolved. The causal chain to the objective function is: recognisable titles a subscriber already wanted -> higher perceived value at the renewal decision -> lower churn and higher win-back. The weak link in that chain is the final arrow, which this dataset cannot observe at all (no engagement data), and which is precisely what the first step is designed to measure. Critically, this is an operating-expense commitment against time-boxed licence windows, not an acquisition: it is reversible at renewal, carries no headcount, no writedown risk and no integration cost. That risk profile is what distinguishes it from the studio-portfolio strategy the board exited in July 2026 (xbox-studio-closures-2026-07) — it is not the same bet in a different wrapper.",
+      "size": {
+        "first_tranche": "$23M for 12 months — 20 titles at an assumed $0.5-1.5M each for a non-exclusive 12-24 month catalogue window (~$20M), plus ~$3M for the retention instrumentation described in T2's minimum viable form.",
+        "steady_state_if_continued": "$90M/year — ~60 titles/year at a $1.5M central assumption.",
+        "basis": "Per-title price is anchored on gp-deal-cost-range ($50K to >$50M across 500+ deals); non-exclusive, non-day-one, 3+ year old proven titles sit at the low end of that range, so $0.5-1.5M is the assumed band with $1.5M as the conservative central case. Title count is anchored on F6's candidate pool (574 Action + ~195 RPG + ~391 Indie proven hits), of which 60/year is roughly 5% — deliberately small relative to inventory so that selection can be genuinely top-decile rather than volume-driven. CONFIDENCE IN SIZE IS LOW-TO-MEDIUM, for three compounding reasons: (1) F6 counts catalogue inventory, not licensability — Xbox does not control which of these titles are available, at what price, or on what exclusivity terms, and a material share will be tied to competing platform holders; (2) the pool is NOT netted against the ~500+ titles already in the Game Pass catalogue (gp-tiers-2026-04), and the overlap is unknown and plausibly large, since both Game Pass's existing catalogue and F6's bar select for the same already-proven titles; (3) F6's bar uses owners_low, a SteamSpy bucket FLOOR, so the pool's boundary is coarse. The netted, available, affordable pool could be a small fraction of the counted pool, and establishing its true size is a precondition of the first step, not an output of this analysis.",
+        "sensitivity": "Deal price is the dominant variable and is unknown to this analysis. At a $0.75M average the annual tranche is $45M; at $1.5M it is $90M; at $3M it is $180M and the thesis likely fails on the hurdle below. Establishing the true average deal price for this specific title profile is the second job of the first step, after the churn readout."
+      },
+      "return": {
+        "horizon": "18-30 months to a decision-grade readout; 3-5 years to full value if continued.",
+        "expected_outcome": "The hurdle, stated as a checkable number rather than a projection: at ~30M subscribers (gp-subscribers-estimate-2026, LOW confidence, band 30-34M) and a blended ~$14/month across the four-tier structure (gp-tiers-2026-04: Essential $9.99 / Premium $14.99 / PC $13.99 / Ultimate $22.99), one percentage point of annual churn is worth roughly 300,000 subscribers x $168/year = ~$50M/year of gross revenue. A $90M/year tranche therefore needs roughly 1.8pp of annual churn improvement to break even on gross revenue, or roughly 3pp on contribution margin at an assumed 60% margin. At a $45M/year tranche (the $0.75M deal-price case) the hurdle falls to ~0.9pp gross.",
+        "assumptions": [
+          "Subscriber base ~30M — a third-party estimate, not a Microsoft disclosure. Microsoft does not publish this. If the true base is materially larger the hurdle falls proportionally.",
+          "Blended ARPU ~$14/month — derived from the published tier prices, NOT from a published mix. The tier mix is unknown to this analysis.",
+          "60% contribution margin — an assumption, not sourced.",
+          "That churn is responsive to catalogue composition at all. THIS IS THE UNTESTED PREMISE AND THIS DATASET CANNOT TEST IT."
+        ],
+        "honest_statement": "This is a hurdle, not a forecast. I am not forecasting the churn delta, because no evidence available to this analysis supports a point estimate of it. A ~2-3pp annual churn improvement from a 60-title catalogue addition is plausible but unproven, and I would not defend it in the room as more than plausible. That is exactly why the ask is $23M staged, not $90M committed."
+      },
+      "confidence": {
+        "level": "medium",
+        "drivers_up": [
+          "F6's inventory count and F1's concentration are among the most robust findings in the run — both are directionally stable across genres and do not depend on the weak F4 model.",
+          "The capital is operating expense against time-boxed windows: reversible, no headcount, no writedown, no integration risk. Downside is bounded at the tranche size.",
+          "It does not contradict the board's July 2026 direction. Concentrating first-party production on flagship franchises and licensing third-party back catalogue into the subscription are complementary, not competing."
+        ],
+        "drivers_down": [
+          "The causal link from catalogue composition to churn is entirely unobserved in this dataset and unpublished externally (04_context.md s3: no credible primary source quantifies Game Pass acquisition vs retention value by genre).",
+          "F6 sizes inventory, not licensability. The real available pool at an acceptable price could be a small fraction of the counted pool.",
+          "Selection of WHICH titles is a Steam-PC-derived judgement being applied to a console-skewed audience (F8, pc-vs-console-genre-2024). Selection must be made on console-side data, which is why T2 exists."
+        ]
+      },
+      "falsifier": "The instrumented 20-title tranche shows no statistically significant difference in 90-day churn or win-back between the exposed subscriber cohort and a matched control cohort — or, equivalently, the measured cost per incremental retained subscriber-year exceeds CONTRIBUTION MARGIN per subscriber-year (~$100 at a 60% assumed margin on ~$168 gross), not gross ARPU. The gross-ARPU bar would be too generous: the tranche also carries platform, certification and marketing cost beyond the licence fee. Either observation kills the thesis and the remaining $67M is not committed. A second, independent falsifier: if the realised average licensing price for this title profile comes in above ~$3M, the arithmetic fails even at a favourable churn delta.",
+      "first_step": {
+        "action": "Approve a single $23M, 12-month, 20-title instrumented tranche, subject to a pre-commitment screen: (a) exclude titles already in the Game Pass catalogue — the ~500+ existing titles overlap F6's pool by an unknown and possibly large amount, so the candidate pool must be netted against the current catalogue before it can be treated as available; (b) confirm rights availability and indicative price on ~60 candidates before committing to 20; (c) screen the survivors on console-side ownership and genre fit, NOT on Steam rank. Then ship to a randomly assigned ~10% subscriber holdout design (or a staggered regional rollout where a clean holdout is not legally available), and instrument per-title cohort retention, win-back and time-to-cancel from day one.",
+        "cost": "$23M ($20M licensing + $3M instrumentation)",
+        "why_this_is_the_right_first_step": "It is ~0.5% of the segment's reported annual revenue scale, it is reversible at the licence window's expiry, and it produces the single piece of evidence neither this dataset nor any public source contains — a measured link between catalogue composition and subscriber retention. It also converts the largest unknown in the sizing (real deal price) from an assumption into a measured number. A board approves a staged $23M far more readily than a $90M commitment, and in this case the staging is not a presentational device: without the readout there is genuinely no basis to commit the larger sum."
+      },
+      "risks": [
+        {
+          "risk": "The churn link does not exist and $23M is spent to learn that.",
+          "severity": "medium",
+          "mitigation": "That is the intended and acceptable cost of the test. $23M to avoid a mis-specified $90M/year recurring commitment is a favourable trade. The instrumentation built (T2) retains its value for every other catalogue decision even if T1 fails."
+        },
+        {
+          "risk": "Titles are selected on Steam-PC evidence and land badly with a console audience that skews sports and shooters.",
+          "severity": "high",
+          "mitigation": "Do not select on Steam rank. F6's pool is a candidate list, not a ranking; final selection must be screened against Xbox console-side ownership and genre data, which this dataset does not contain (F8, pc-vs-console-genre-2024). If that console-side screen cannot be run internally, T1's first step should not proceed until T2 delivers it."
+        },
+        {
+          "risk": "The genuinely desirable titles are unavailable — locked to competing platforms, or priced at the top of the gp-deal-cost-range band.",
+          "severity": "high",
+          "mitigation": "Run rights availability and indicative pricing on ~60 candidates BEFORE committing the tranche. This is a low-cost BD exercise and it should precede the $20M. If fewer than ~30 acceptable titles clear at under $1.5M, do not proceed."
+        },
+        {
+          "risk": "Cannibalisation of premium sales on Xbox's own storefront.",
+          "severity": "low",
+          "mitigation": "silksong-2025-sales is weak but real counter-evidence (7M+ copies despite day-one inclusion), and it applies more strongly here: these are 3+ year-old back-catalogue titles whose premium sales curve has already decayed. Cannibalisation risk is structurally lower for back catalogue than for day-one."
+        },
+        {
+          "risk": "Reads externally as a return to the breadth strategy the board just exited, damaging the credibility of the July 2026 message.",
+          "severity": "medium",
+          "mitigation": "It is a materially different instrument and should be communicated as one: time-boxed third-party licences with no headcount and no equity, versus owned studios with permanent cost. Frame publicly as subscriber value, not as portfolio expansion."
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "T2",
+      "claim": "Spend $8M over 18 months building console-side, per-title cohort retention attribution for Game Pass — the capability to answer 'which titles kept which subscribers subscribed' — before allocating any further catalogue or greenlight capital by genre.",
+      "evidence": [
+        "The Stage 1/2 finding underneath every finding in this run: all four SteamSpy playtime columns are constant 0 across 140,077 rows and were dropped entirely in cleaning. There is no engagement or retention signal anywhere in the available data. Every retention claim in this document is therefore an assumption, not a measurement.",
+        "04_context.md s3 [NOT VERIFIED] — no credible primary source was found quantifying subscriber acquisition versus retention value by genre for Game Pass. This gap is not an artifact of this dataset; it is not published anywhere.",
+        "F8 — Steam shooter-family tags outnumber sports-family tags ~3.5x (21,070 vs 6,111 tag rows), combined with pc-vs-console-genre-2024 (sports is the top genre on Xbox console). The evidence base available to this analysis is systematically blind to the single largest genre on Xbox's own console.",
+        "F6 — Sports has only 31 proven-hit titles on Steam across its entire history, too thin to break out by vintage. This is a PC-skew artifact, explicitly NOT evidence about sports. It is a direct, concrete demonstration of the blindness: the genre that matters most on console is the genre this data can say least about.",
+        "arppu-console-vs-pc-2024 — console ARPPU $81.68 vs PC $55.47 (~48% higher), so the population the data covers is not the population whose economics matter most.",
+        "F4 — the segment expectation model validates at Pearson r=0.114 out of sample (n=57,522). Genre and price band together explain roughly 1% of variance in reach. Catalogue metadata alone is a demonstrably poor basis for title-level allocation decisions, quantified."
+      ],
+      "mechanism": "Xbox is allocating capital in a subscription business against an outcome — retention — it cannot currently attribute to individual titles, and no external source supplies that attribution either. Every catalogue decision (which of F6's several hundred licensable titles, which licences to renew, whether sports back catalogue is the console blind spot F6/F8 suggest, which flagship to greenlight) is therefore being made on inference rather than measurement. The causal argument is one of option value, not revenue: a per-title cohort retention readout converts a recurring series of blind bets into a series of staged ones, and the value of that conversion scales with the size of the capital flowing through it. This is why it ranks second rather than first despite better arithmetic — measurement with no decision downstream is worth nothing, so it is only valuable in conjunction with T1 or with the existing renewal and greenlight flow. It is also the correct response to the July 2026 closures: the board has just paid the cost of a portfolio strategy it could not evaluate title by title, and this is the cheapest instrument that prevents a repeat in the licensing column instead of the studio column.",
+      "size": {
+        "amount": "$8M over 18 months (band $5-12M)",
+        "basis": "Approximately 15-25 FTE-equivalent of data engineering, telemetry and analytics at a fully loaded ~$300-400K/year for 12-18 months, plus experiment-platform and holdout-design work. This is an internal build estimate, not sourced from any artifact in this run, and should be treated as order-of-magnitude with a stated basis rather than a costed plan. It assumes the underlying console telemetry already exists and the gap is attribution and experiment design, not instrumentation from zero — if that assumption is wrong the figure is materially too low."
+      },
+      "return": {
+        "horizon": "12-18 months to first decision-grade readout.",
+        "expected_outcome": "Option value on the capital it gates. On T1 alone: if attribution improves title selection efficiency by 20% against a $45-90M/year tranche, that is $9-18M/year against a one-time $8M — payback inside a year on that thesis alone. It additionally gates the existing licence renewal book and the far larger flagship greenlight envelope, where the same 20% framing implies considerably more.",
+        "named_first_deliverable_sports": "The capability's first assigned question should be sports, because it is the largest identified blind spot in this entire run. Sports is the top genre on Xbox console (pc-vs-console-genre-2024) and has only 31 proven-hit titles on Steam across its whole history (F6) against a ~3.5x shooter-over-sports tag skew (F8) — i.e. the genre that matters most on the platform is the genre the available evidence can say least about, and the F6 number is a measurement artifact that must never be read as a finding about sports. This gap was deliberately NOT made a standalone thesis: a sports investment recommendation would rest on one secondary Newzoo citation plus an artifact, which is not an evidence base. It is instead the single highest-value question to put to a console-side readout the moment one exists.",
+        "assumptions": [
+          "That the console telemetry needed for cohort attribution exists and is retained. If it does not, this is a larger and slower build than $8M/18 months.",
+          "The 20% selection-efficiency improvement is an illustrative framing, not a measured or forecast figure. I have no evidence for its magnitude.",
+          "That the organisation will actually route catalogue decisions through the readout once it exists. Capability without decision rights delivers nothing."
+        ]
+      },
+      "confidence": {
+        "level": "high",
+        "drivers_up": [
+          "The premise — that no per-title retention attribution is available to this analysis or in public sources — is directly verified rather than inferred: the playtime columns were confirmed constant-zero at the row level, and Stage 4 searched for and failed to find any external equivalent.",
+          "Small, bounded, non-strategic spend with no market-facing risk and no lock-in.",
+          "Its value survives T1's failure — the capability is reusable across renewals, greenlights and the sports question regardless of what T1's readout shows."
+        ],
+        "drivers_down": [
+          "Confidence is high that the capability is ABSENT FROM THE EVIDENCE AVAILABLE TO THIS ANALYSIS. It is materially lower that it is absent from Microsoft. An external analysis cannot see internal telemetry, and this may already exist in some form.",
+          "The $8M figure is an internal-build estimate with no source in this run's artifacts.",
+          "Delivers no revenue directly; a board under margin pressure (msft-ceo-pressure-console-profit-2027) may reasonably regard it as overhead."
+        ]
+      },
+      "falsifier": "Xbox already holds console-side per-title cohort retention attribution and it already answers the genre-allocation question — in which case this spend is redundant and should not be made. This is unusually cheap to check: one internal review, at effectively zero cost, before any money moves. A weaker falsifier: the required console telemetry was never retained at the necessary grain, in which case the build is far larger than $8M and must be re-scoped rather than approved as sized.",
+      "first_step": {
+        "action": "A two-week internal audit, at essentially zero incremental cost, answering three questions: (1) does per-title cohort retention attribution already exist internally in any form; (2) is the underlying console telemetry retained at sufficient grain to build it; (3) can a randomised subscriber holdout be run legally and technically in Xbox's main markets. Approve the $8M only if the answers are no, yes, yes.",
+        "cost": "~$0 (internal review)",
+        "why_this_is_the_right_first_step": "The thesis rests on an absence, and an absence observed from outside the company is the weakest kind of evidence. Two weeks of internal review either kills the thesis for free or converts its premise from inference to fact. No thesis in this document has a cheaper or more decisive test, and it should run before T1's tranche is approved."
+      },
+      "risks": [
+        {
+          "risk": "The capability already exists internally and the spend is redundant.",
+          "severity": "medium",
+          "mitigation": "The first step is precisely this check, at zero cost, before any commitment."
+        },
+        {
+          "risk": "Built but not used — attribution exists and decisions continue to be made on conviction.",
+          "severity": "high",
+          "mitigation": "Tie the build to a specific standing decision it must feed: make the T1 continuation gate and the annual licence renewal book formally contingent on its output. A capability with no decision rights attached will not survive a margin review."
+        },
+        {
+          "risk": "Randomised subscriber holdouts are unacceptable commercially or legally in key markets.",
+          "severity": "medium",
+          "mitigation": "Fall back to staggered regional rollout with a difference-in-differences readout. Weaker identification, materially cheaper than no measurement, and the first step establishes upfront which design is available."
+        },
+        {
+          "risk": "Reads as analysis paralysis to a board that has just acted decisively.",
+          "severity": "medium",
+          "mitigation": "Present it inside T1's first step rather than as a standalone research programme — it is $3M of a $23M decision, with the remaining $5M being the extension to renewals and greenlights. It is instrumentation on a live bet, not a study."
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "T3",
+      "claim": "Decline any studio-side capital deployment above $50M in FY27 — no acquisitions, no equity funding of external studios, no new internal studio formation — and hold or return that capital instead; the evidence available does not support an ability to identify winners before the market does.",
+      "evidence": [
+        "F1 — reach is extremely hit-concentrated (top decile takes 78-93% of genre audience; 75-86% of titles sit in the bottom owners bucket). The base rate of a title mattering at all is very low, so ex-ante selection ability is the entire value of a studio investment strategy, not a refinement of it.",
+        "F4 — SUPPORTING CONTEXT ONLY, NOT LOAD-BEARING. The genre x price-band model validates at Pearson r=0.114 / Spearman ~0.297 out of sample (n=57,522), so catalogue metadata predicts reach very poorly. This is deliberately demoted from the thesis's evidence base: it measures whether GENRE AND PRICE predict reach, which no greenlight committee claims, and using it to argue about an experienced selection process would be a category error. It establishes only that the observable-characteristics route to selection is closed, not that judgement-based selection fails.",
+        "F4's noise floor (03_findings.json, interesting_not_yet_defensible) — the most extreme apparent outperformers (Gas Powered Games 38.05x, Sometimes You 29.95x) sit at n=3-4 holdout titles and are explicitly named as not board-grade. The strongest-looking selection signals in the data dissolve under sample-size scrutiny.",
+        "F5 — the distinct-publisher advantage over self-published (mean residual 1.610 vs 0.904) has an explicitly unexcludable reverse-causality reading: publishers may select projects already trending well rather than causing outperformance. Medians are 0.307 vs 0.250 — both far below 1.0, i.e. both groups underperform expectation, and the mean gap is tail-driven. This is the finding a 'become a publisher instead of an owner' proposal would rest on, and it does not bear the weight.",
+        "04_context.md s4 [ANALYSIS] — the 2025-26 breakouts (silksong-2025-sales, schedule1-2025-revenue, meccha-chameleon-10m) share a structural feature: none was funded or acquired pre-launch by a platform holder; all broke out organically on Steam first. Meccha Chameleon was built by two developers in ~2 months at $5.99 and reached 10M copies in 16 days. NOTE THE LIMIT OF THIS EVIDENCE: n=3, selected on the outcome, so it CANNOT establish a base rate and is not used as one. What it establishes is narrower and still decision-relevant — an existence proof about the TEMPO and ORIGIN of recent hits. A two-person, two-month, $5.99 project reaching 10M copies in 16 days is not a target any multi-month acquisition diligence process could have reached in time, whatever its selection skill.",
+        "xbox-studio-closures-2026-07 — the July 2026 closure of Ninja Theory, Double Fine and Compulsion Games is the board's own revealed judgement on the returns of the prior portfolio strategy, at a cost of roughly 325 staff across three studios.",
+        "msft-ceo-pressure-console-profit-2027 — [SPECULATION, low confidence] reported pressure for a more profitable console business in 2027, consistent with the direction above but not independently verified."
+      ],
+      "mechanism": "A studio investment strategy is a bet that you can identify a hit before the market prices it. The argument runs on three legs, in order of weight. First, F1 sets the base rate very low: the top decile takes 78-93% of a genre's audience while 75-86% of titles never leave the bottom bucket, so selection ability is the entire value of the strategy rather than a refinement of it, and a strategy whose whole value sits in one unverified capability deserves a high burden of proof. Second, the tempo argument: the 2025-26 hits arrived from two-person teams in two months, which no multi-month diligence and acquisition process can reach in time regardless of how good its judgement is — this is a structural constraint on the instrument, not a claim about skill. Third, and least: the observable-characteristics route to selection is measurably closed (F4, r=0.114), which does not prove judgement-based selection fails but does remove the one route that could have been verified from outside. Against all three, studio capital is the most irreversible instrument available — permanent headcount, multi-year commitments, and an exit cost the board has just paid three times over (xbox-studio-closures-2026-07). The asymmetry is the argument: capital held is worth its cost of capital with certainty, while capital deployed into studio equity on an unverified selection ability has a wide, left-skewed distribution. This is the null option, and on the studio side of the ledger it wins. Note the boundary precisely: this argues against paying for EX-ANTE SELECTION of unknowns, NOT against Xbox's existing owned franchises or against acquiring an already-proven brand, both of which rest on de-risked assets rather than on picking winners.",
+      "size": {
+        "amount": "Capital NOT deployed. Formally: decline the studio-side envelope in FY27 above a $50M threshold, and hold or return it.",
+        "basis": "Deliberately framed as a decision rule and a threshold rather than a headline number, because I have no sourced figure for the FY27 studio-side envelope and will not fabricate one. The $50M threshold is set at roughly the top of the observed Game Pass per-deal range (gp-deal-cost-range: up to $50M+ per deal), so that any studio-side proposal larger than the largest single content deal Xbox is known to have done must clear the board rather than a divisional sign-off. The order of magnitude at stake is implied by the three studios divested in July 2026 (~325 staff), but I do not have their acquisition prices and do not assert them."
+      },
+      "return": {
+        "horizon": "FY27, reviewed annually.",
+        "expected_outcome": "Avoided loss plus the cost of capital on the retained sum. The positive case is not that holding capital earns more than a successful studio investment — it plainly does not — but that the probability-weighted studio outcome is not demonstrably positive on the evidence available, while holding is certain. Its second return is optionality: capital not committed to a five-year studio position in FY27 remains available for T1's continuation, for a proven-franchise acquisition where the brand is already de-risked, or for return to shareholders under the margin pressure the context describes.",
+        "assumptions": [
+          "That Xbox's internal selection ability is not materially better than what catalogue data can demonstrate. This is the weak point of the thesis — internal greenlight processes see pitches, prototypes and teams, none of which appear in any dataset available here. It is entirely possible Xbox picks better than r=0.114 and I cannot observe it.",
+          "That msft-ceo-pressure-console-profit-2027 (low-confidence, speculative) is directionally right about margin priority. The thesis does not depend on it but is consistent with it.",
+          "That no franchise-level opportunity arises whose value rests on a proven brand rather than on ex-ante selection. Such an opportunity would be outside this thesis's scope, not a counterexample to it."
+        ]
+      },
+      "confidence": {
+        "level": "medium",
+        "drivers_up": [
+          "It is the only thesis here that agrees with the board's own most recent revealed decision (xbox-studio-closures-2026-07) rather than asking them to revisit it.",
+          "F1 and F4 are mutually reinforcing and point the same way: low base rate, weak predictability from observables.",
+          "The 2025-26 breakout record is a structural, not statistical, argument and does not depend on the weak model."
+        ],
+        "drivers_down": [
+          "F4's r=0.114 measures how poorly GENRE AND PRICE BAND predict reach. It does not measure how well an experienced greenlight committee predicts reach. Treating the former as evidence about the latter is an inference, and it is this thesis's principal vulnerability — I flag it rather than resting on it.",
+          "The breakout evidence is n=3 titles, selected because they broke out. That is survivorship-selected and cannot establish a base rate.",
+          "A negative recommendation is unfalsifiable in the ordinary course: declining to invest generates no counterfactual. The falsifier below is deliberately constructed to be checkable despite that."
+        ]
+      },
+      "falsifier": "A retrospective backtest of Xbox's own greenlight and acquisition pipeline over 2020-2026 shows it identified eventual breakout titles pre-launch at materially better than the base rate implied by F1 — i.e. that internal selection genuinely beats what observable catalogue characteristics can do. That observation kills this thesis, and it is checkable from internal records without spending anything. A second falsifier: a specific acquisition target whose value rests on an already-proven franchise rather than on ex-ante hit selection, which falls outside this thesis's premise entirely and should be judged on its own terms.",
+      "first_step": {
+        "action": "Before FY27 planning closes, run the retrospective backtest named in the falsifier: take every studio acquisition and internal greenlight decision from 2020-2026, record what was known at the decision date, and score the hit rate against F1's base rate. Then set the $50M board threshold as standing policy for FY27, reviewed at year end against that backtest.",
+        "cost": "~$0-1M (internal analysis)",
+        "why_this_is_the_right_first_step": "It tests the thesis's one genuinely weak assumption — that internal selection is no better than observable characteristics — using evidence only Microsoft holds, and it costs nothing. If internal selection does beat the base rate, the board should know that and this thesis should be withdrawn. If it does not, the board has a defensible, documented basis for the threshold when the FY27 proposals arrive."
+      },
+      "risks": [
+        {
+          "risk": "Xbox forgoes a genuinely good studio opportunity while the threshold is in force.",
+          "severity": "medium",
+          "mitigation": "The threshold escalates rather than prohibits: proposals above $50M go to the board with the backtest attached, they are not banned. A proven-franchise acquisition is explicitly outside the thesis's premise and should be judged on brand value, not on selection ability."
+        },
+        {
+          "risk": "Talent and developer-relations damage from a visible 'we are not investing in studios' posture, following the July 2026 closures.",
+          "severity": "high",
+          "mitigation": "This is an internal capital-allocation threshold, not a public statement, and should never be communicated as one. Pair it externally with T1, which visibly increases money flowing to third-party developers rather than decreasing it."
+        },
+        {
+          "risk": "The thesis is right about the average case and wrong about the specific case in front of the board.",
+          "severity": "medium",
+          "mitigation": "This is a base-rate argument and should be presented as one. It sets the prior a specific proposal must overcome; it does not decide the specific proposal."
+        },
+        {
+          "risk": "Anchoring on the weak F4 model to argue an organisational capability it does not measure.",
+          "severity": "high",
+          "mitigation": "Named explicitly in confidence.drivers_down above and tested directly by the first step. The thesis should be presented with this vulnerability stated, not concealed."
+        }
+      ]
+    }
+  ],
+  "null_option_assessment": {
+    "question": "Does the best thesis clearly beat doing nothing and returning the capital?",
+    "verdict": "Partially, and only at the staged size. T3 IS the null option applied to the studio side of the ledger, and there it wins outright — the evidence does not support paying for ex-ante hit selection, so that capital should be held or returned. On the licensing side, T1's staged first step ($23M) beats the null because it is small relative to the segment, reversible, and buys the one piece of information no available source contains. T1 at full scale ($90M/year) does NOT yet clearly beat the null: its break-even requires roughly 1.8-3pp of annual churn improvement, and I have no evidence for the magnitude of that delta. Stating this plainly is the honest position. If the board wants a single sentence: approve $23M staged and $8M of instrumentation (~$31M combined), decline everything on the studio side above $50M, and revisit the $90M/year question in 18 months when the readout exists.",
+    "what_would_change_this": "A measured churn delta from T1's first tranche. That single number determines whether the $90M/year commitment beats returning the capital, and nothing available today substitutes for it."
+  },
+  "materiality_objection_answered": {
+    "objection": "The recommended deployment is ~$31M against a gaming segment reported at ~$21.8B of annual revenue (xbox-revenue-fall-2026, low confidence) — roughly 0.14%. That is a divisional decision, not a board decision. This analysis has optimised for defensibility over materiality.",
+    "response": "This is the strongest objection to the set and it deserves a direct answer rather than a larger number. Two parts. First, the board-scale content here is not the $31M: it is T3, a standing threshold on the studio-side capital envelope, which is board-scale by construction and is the item most likely to change what Microsoft actually does in FY27. The $31M is the price of the option to spend $90M/year credibly; the threshold is the decision worth the board's time. Second, and more important: the reason no large number is recommended is that the evidence cannot support one. This dataset has no engagement or retention signal at all, and no external source supplies the equivalent — so a board-scale recommendation derived from it would be a board-scale recommendation derived from an assumption. Inventing a material-looking number to match the size of the room is precisely the failure mode this analysis is trying to avoid, and it is how the last portfolio strategy was arrived at. The honest board-level output of an analysis whose data cannot observe its objective function is a threshold plus a measurement gate. If the board wants a materially larger recommendation, the correct sequence is to fund the measurement first and return in 18 months with one that is evidenced."
+  },
+  "discarded_candidates_summary": "Six further candidates were generated and killed; full reasoning is recorded in DECISIONS.md under Stage 5. In brief: (C2) broad indie acquisition/funding slate — contradicted by F1's base rate, by the structural fact that no 2025-26 breakout was pre-acquired by a platform holder, and by the board's own July 2026 decision; (C3) increase spend on the already-outperforming Xbox Game Studios and Bethesda (F4: 5.80x / 6.23x) — not distinctive, this is already the stated strategy, and the underlying model is too weak (r=0.114, n=32/25, Steam PC only) to justify incremental capital; (C6) build a third-party publishing arm on F5's distinct-publisher advantage — reverse causality unexcludable, medians 0.307 vs 0.250 both below expectation, mean gap tail-driven, and it is a softer version of the strategy just exited; (C7) reprice Game Pass tiers on F7's price-band evidence — F7 is unit-price data for premium titles, structurally unable to speak to subscription price elasticity, and the confounding with production budget is explicitly unresolvable; (C9) invest in discovery/curation as a Game Pass differentiator on F2's 6.5x supply growth — good mechanism, no evidence in this dataset that Xbox's curation is deficient or that curation quality moves retention, folded into T1's selection discipline instead of standing alone; (C10) buy day-one exclusivity on a proven third-party franchise on the silksong-2025-sales evidence — n=1, and the cost sits at the $50M top of gp-deal-cost-range against a single non-replicable observation.",
+  "what_this_analysis_cannot_tell_the_board": [
+    "Whether any title, genre or catalogue composition affects Game Pass retention. No engagement or playtime data exists in this dataset and no public source supplies the equivalent. Every retention number in this document is a stated assumption or a break-even hurdle, never a measurement.",
+    "Anything reliable about Xbox's console audience by genre. The evidence is Steam PC (F8: 3.5x shooter-over-sports skew) and the console audience skews the other way (pc-vs-console-genre-2024). Sports — the top Xbox console genre — has only 31 proven-hit titles on Steam (F6), which is a measurement artifact, not a finding about sports.",
+    "The true cost or availability of any licensing deal. gp-deal-cost-range gives a $50K-$50M+ span across 500+ deals with no breakdown; F6 counts inventory, not licensability.",
+    "The current Game Pass subscriber count. Microsoft does not disclose it; the ~30-34M figure used in T1's arithmetic is a low-confidence third-party estimate and every figure derived from it inherits that.",
+    "Whether Microsoft already possesses the attribution capability T2 proposes building. That is an internal fact, invisible from outside, and is the first thing T2's first step checks."
+  ]
+}

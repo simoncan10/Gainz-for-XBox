@@ -1,0 +1,444 @@
+[
+  {
+    "rank": 1,
+    "app_id": 787480,
+    "name": "Phoenix Wright: Ace Attorney Trilogy",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "Capcom Co., Ltd.",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Added to Xbox Game Pass Sept 26, 2023. Confirmed no longer included as of this check (2026); exact departure date not pinned to a single dated article but multiple secondary sources (podcast episode title, absence from current Aug 2026 lineup trackers) agree it has left. Cheaper 're-add' case, not a fresh licence.",
+    "sources": [
+      {"claim": "Added to Game Pass Sept 26, 2023", "source": "TrueAchievements", "url": "https://www.trueachievements.com/n55100/phoenix-wright-ace-attorney-trilogy-xbox-game-pass", "date": "2023-09-26", "type": "secondary", "confidence": "high"},
+      {"claim": "Added to Game Pass Sept 26, 2023 (day of release announcement)", "source": "Gematsu", "url": "https://www.gematsu.com/2023/09/phoenix-wright-ace-attorney-trilogy-coming-to-xbox-game-pass-on-september-26", "date": "2023-09-19", "type": "secondary", "confidence": "high"},
+      {"claim": "No longer on Game Pass", "source": "Game Pass Grab Bag (podcast)", "url": "https://creators.spotify.com/pod/profile/andrew-milton6/episodes/Phoenix-Wright-Ace-Attorney-Trilogy-No-longer-on-Game-Pass-e31a69n", "date": "not dated on page", "type": "secondary", "confidence": "medium"},
+      {"claim": "Not present in current (Aug 2026) Game Pass lineup", "source": "Beebom Game Pass list", "url": "https://beebom.com/xbox-game-pass-games-list/", "date": "2026-08", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 2,
+    "app_id": 1288310,
+    "name": "Firework",
+    "on_gamepass": "unknown",
+    "publisher_now": "Gamera Games",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Added to Game Pass June 4, 2024, day-and-date with Xbox Series X|S / Xbox One console release (not PC-only despite one aggregator's 'Xbox for PC' category tag). Not found in Aug 2026 current lineup checks; departure not independently confirmed with a dated article, so current status is 'unknown' rather than confirmed rotated-out.",
+    "sources": [
+      {"claim": "Added to Game Pass June 4, 2024", "source": "ScreenRant", "url": "https://screenrant.com/game-pass-firework-horror/", "date": "2024-05-30", "type": "secondary", "confidence": "high"},
+      {"claim": "Xbox Series X|S, Xbox One, PC and Game Pass release confirmed", "source": "VGChartz", "url": "https://www.vgchartz.com/article/460817/gamera-games-announces-several-titles-coming-xbox-series-xs-xbox-one-pc-and-game-pass/", "date": "not fully dated on page (pre-launch announcement)", "type": "secondary", "confidence": "medium"},
+      {"claim": "Not found in current Aug 2026 lineup", "source": "Beebom Game Pass list", "url": "https://beebom.com/xbox-game-pass-games-list/", "date": "2026-08", "type": "secondary", "confidence": "low"}
+    ]
+  },
+  {
+    "rank": 3,
+    "app_id": 1135690,
+    "name": "Unpacking",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "Humble Games",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Confirmed leaving Xbox Game Pass in late June 2026 (approx. two months before this check) per Pure Xbox's dated rotation article. Recent departure means it is likely a cheaper re-negotiation than a cold licence.",
+    "sources": [
+      {"claim": "Unpacking among titles leaving Xbox Game Pass in late June 2026", "source": "Pure Xbox", "url": "https://www.purexbox.com/news/2026/06/eight-games-are-leaving-xbox-game-pass-in-late-june-2026", "date": "2026-06", "type": "secondary", "confidence": "medium"},
+      {"claim": "'You've still (probably) got time to beat Unpacking before it leaves Xbox Game Pass'", "source": "TrueAchievements", "url": "https://www.trueachievements.com/news/unpacking-leaving-xbox-game-pass", "date": "not fully dated on page", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 4,
+    "app_id": 1562700,
+    "name": "SANABI",
+    "on_gamepass": "not_verified",
+    "publisher_now": "NEOWIZ",
+    "publisher_bloc": "third_party",
+    "xbox_version": "not_verified",
+    "blockers": [],
+    "notes": "No evidence found of any Game Pass listing, past or present. Confirmed PC (Steam) and Nintendo Switch releases; no Xbox store listing or Xbox console release was located in searches. Treat as PC/Switch title needing a port unless contradicted by a direct Xbox store check.",
+    "sources": [
+      {"claim": "PC and Nintendo Switch release confirmed, no Xbox release found", "source": "Worthplaying", "url": "https://worthplaying.com/article/2023/10/26/news/139516-sanabi-gets-nintendo-switch-and-pc-release-date-trailer/", "date": "2023-10-26", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 5,
+    "app_id": 253230,
+    "name": "A Hat in Time",
+    "on_gamepass": "no",
+    "publisher_now": "Gears for Breakfast",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Currently listed 'Not Included' on both Xbox Game Pass for PC and for Xbox by a subscription tracker; no evidence found that it was ever added. Native Xbox release exists (purchasable, cloud-playable).",
+    "sources": [
+      {"claim": "Not Included on Xbox Game Pass (PC or console), current status", "source": "GamePassCompare", "url": "https://gamepasscompare.com/app/6705/a-hat-in-time", "date": "accessed 2026-08-22", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 6,
+    "app_id": 2273430,
+    "name": "BlazBlue Entropy Effect",
+    "on_gamepass": "yes",
+    "publisher_now": "91Act / Arc System Works (console publishing partner)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": ["already_on_gamepass"],
+    "notes": "IMPORTANT CAVEAT: the Xbox/Game Pass release is distributed under the title 'BlazBlue Entropy Effect X' (an enhanced console edition), added to Xbox Game Pass Premium tier Feb 12, 2026 — a different storefront SKU from the Steam app_id (2273430) scored in the dataset, but the same underlying game/franchise. For licensing purposes this is already in the subscription; there is no deal to do.",
+    "sources": [
+      {"claim": "BlazBlue Entropy Effect X added to Xbox Game Pass Feb 12, 2026", "source": "ScreenRant", "url": "https://screenrant.com/xbox-game-pass-free-blazblue-february-2026/", "date": "2026-02", "type": "secondary", "confidence": "high"},
+      {"claim": "Added to Game Pass Premium tier alongside Relooted", "source": "TheXboxHub", "url": "https://www.thexboxhub.com/stylish-roguelite-action-blazblue-entropy-effect-x-is-now-on-xbox-and-game-pass/", "date": "2026-02", "type": "secondary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 7,
+    "app_id": 2593370,
+    "name": "The Hungry Lamb: Traveling in the Late Ming Dynasty",
+    "on_gamepass": "not_verified",
+    "publisher_now": "Zerocreation Game / 2P Games",
+    "publisher_bloc": "third_party",
+    "xbox_version": "not_verified",
+    "blockers": [],
+    "notes": "No Game Pass mentions found in any source. Confirmed Steam and Nintendo Switch releases; no Xbox storefront listing located. Treat as needing verification of a console port before costing a deal.",
+    "sources": [
+      {"claim": "Nintendo Switch release confirmed, no Xbox release found in search", "source": "GamesPress", "url": "https://www.gamespress.com/Harrowing-Visual-Novel-The-Hungry-Lamb-Launches-on-Nintendo-Switch-Tod", "date": "not fully dated on page", "type": "secondary", "confidence": "low"}
+    ]
+  },
+  {
+    "rank": 8,
+    "app_id": 413420,
+    "name": "Danganronpa 2: Goodbye Despair",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "Spike Chunsoft Co., Ltd.",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Anniversary Edition added to Xbox/PC Game Pass May 9-10, 2022; confirmed leaving Game Pass by May 2023 rotation coverage.",
+    "sources": [
+      {"claim": "Danganronpa 2 Anniversary Edition launches for Xbox and Game Pass", "source": "Xbox Wire", "url": "https://news.xbox.com/en-us/2022/05/09/danganronpa-2-goodbye-despair-anniversary-edition-is-now-available-for-pc-xbox-one-and-xbox-series-xs-game-pass/", "date": "2022-05-09", "type": "primary", "confidence": "high"},
+      {"claim": "Danganronpa 2 among games leaving Xbox Game Pass in May 2023", "source": "Game Freaks 365", "url": "https://gamefreaks365.com/danganronpa-2-hearts-of-iron-iv-and-more-games-leaving-xbox-game-pass-in-may-2023/", "date": "2023-05", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 9,
+    "app_id": 1055540,
+    "name": "A Short Hike",
+    "on_gamepass": "unknown",
+    "publisher_now": "adamgryu (self-published)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Added to Xbox Game Pass Aug 3, 2023, day-and-date with native Xbox release. Not found in current Aug 2026 lineup check; no dated departure article located, so current status is unknown rather than confirmed rotated-out.",
+    "sources": [
+      {"claim": "A Short Hike available today with Xbox Game Pass, Aug 3, 2023", "source": "Pure Xbox", "url": "https://www.purexbox.com/news/2023/08/a-short-hike-is-available-today-with-xbox-game-pass-august-3", "date": "2023-08-03", "type": "secondary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 10,
+    "app_id": 960170,
+    "name": "DJMAX RESPECT V",
+    "on_gamepass": "unknown",
+    "publisher_now": "NEOWIZ",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Confirmed day-one on Xbox Game Pass and PC Game Pass, July 7, 2022. Ongoing content seasons continue to ship on Xbox as of Aug 2026 (Season 20, Aug 20 2026), which shows an active publishing relationship, but this is not proof the base game remains in the Game Pass subscription today — that specific fact was not independently reconfirmed.",
+    "sources": [
+      {"claim": "DJMAX Respect V available today with Xbox Game Pass and PC Game Pass", "source": "Xbox Wire", "url": "https://news.xbox.com/en-us/2022/07/07/djmax-respect-v-available-today/", "date": "2022-07-07", "type": "primary", "confidence": "high"},
+      {"claim": "Season 20 Clear Pass goes up today, across Steam & Xbox", "source": "DayOne (playday.one)", "url": "https://playday.one/2026/08/20/djmax-respect-v-clear-pass-season-20-goes-up-today/", "date": "2026-08-20", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 11,
+    "app_id": 1659420,
+    "name": "UNCHARTED: Legacy of Thieves Collection",
+    "on_gamepass": "no",
+    "publisher_now": "PlayStation Publishing LLC (Naughty Dog / Sony Interactive Entertainment)",
+    "publisher_bloc": "sony",
+    "xbox_version": "no",
+    "blockers": ["sony_owned_platform_exclusive"],
+    "notes": "Structural exclusion, not a preference. Published by PlayStation Publishing LLC; PC port exists on Steam, but no Xbox console version exists and none has been announced. Sony's PlayStation Studios titles are not licensed to competing subscription services. Verified rather than merely assumed per instruction.",
+    "sources": [
+      {"claim": "Published by PlayStation Publishing LLC / Naughty Dog", "source": "PlayStation Studios Wiki / PlayStation.com product page", "url": "https://www.playstation.com/en-us/games/uncharted-legacy-of-thieves-collection/", "date": "accessed 2026-08-22", "type": "primary", "confidence": "high"},
+      {"claim": "PC release exists via Steam; no Xbox listing found", "source": "Steam store page", "url": "https://store.steampowered.com/app/1659420/UNCHARTED_Legacy_of_Thieves_Collection/", "date": "accessed 2026-08-22", "type": "primary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 12,
+    "app_id": 1256670,
+    "name": "Library Of Ruina",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "ProjectMoon",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Launched day-and-date on Windows, Xbox One, Xbox Series X|S and Xbox Game Pass, Aug 10, 2021 (Xbox Wire, primary source). Steam community threads from players confirm it later left Game Pass (PC), though no dated departure article was found to pin the exact date.",
+    "sources": [
+      {"claim": "Library of Ruina now available for Windows, Xbox One, Xbox Series X|S and Xbox Game Pass", "source": "Xbox Wire", "url": "https://news.xbox.com/en-us/2021/08/10/library-of-ruina-is-now-available-for-windows-10-xbox-one-and-xbox-series-xs-xbox-game-pass/", "date": "2021-08-10", "type": "primary", "confidence": "high"},
+      {"claim": "Player discussion confirming the game left PC Game Pass at some point after launch", "source": "Steam Community discussion", "url": "https://steamcommunity.com/app/1256670/discussions/0/3454842785109754019/", "date": "undated forum post", "type": "speculative", "confidence": "low"}
+    ]
+  },
+  {
+    "rank": 13,
+    "app_id": 1876890,
+    "name": "Wandering Sword",
+    "on_gamepass": "not_verified",
+    "publisher_now": "Spiral Up Games",
+    "publisher_bloc": "third_party",
+    "xbox_version": "other_console_only",
+    "blockers": ["no_xbox_port_exists_yet"],
+    "notes": "Major cost/timing finding: as of Aug 2026 Wandering Sword has NO Xbox console release. Console versions (PS5, Switch/Switch 2, and Xbox Series) were delayed from an earlier 2026 window to January 21, 2027. It is currently PC-only on the platforms this dataset covers. A Game Pass deal today would either be PC Game Pass only, or would have to wait for the 2027 console port.",
+    "sources": [
+      {"claim": "Wandering Sword delayed to January 21, 2027, launching for Switch 2, PS5, Xbox Series, and Switch", "source": "VGChartz", "url": "https://www.vgchartz.com/article/467889/wandering-sword-delayed-to-january-21-2027-launches-for-switch-2-ps5-xbox-series-and-switch/", "date": "2026-05", "type": "secondary", "confidence": "high"},
+      {"claim": "Console launch pushed to 2027 for full multi-platform debut", "source": "AllKeyShop", "url": "https://www.allkeyshop.com/blog/wandering-sword-console-2027-delay-news-r/", "date": "2026", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 14,
+    "app_id": 1880330,
+    "name": "Sanfu",
+    "on_gamepass": "not_verified",
+    "publisher_now": "Gamera Games",
+    "publisher_bloc": "third_party",
+    "xbox_version": "not_verified",
+    "blockers": [],
+    "notes": "No evidence located of a Game Pass listing or an Xbox console release; searches return only Steam-focused coverage. Treat as PC-only pending direct confirmation.",
+    "sources": [
+      {"claim": "No Xbox-specific coverage found; Steam release confirmed", "source": "Steam store page", "url": "https://store.steampowered.com/app/1880330/Sanfu/", "date": "accessed 2026-08-22", "type": "primary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 15,
+    "app_id": 1931770,
+    "name": "Chants of Sennaar",
+    "on_gamepass": "unknown",
+    "publisher_now": "Focus Entertainment",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Confirmed added to Xbox Game Pass (Focus Entertainment's own support page lists it as a Game Pass title; contemporaneous press coverage). Current status (still in service as of Aug 2026) not independently reconfirmed with a dated source either way.",
+    "sources": [
+      {"claim": "Chants of Sennaar joins Xbox Game Pass", "source": "TrueAchievements", "url": "https://www.trueachievements.com/news/chants-of-sennaar-joins-xbox-game-pass", "date": "not fully dated on page", "type": "secondary", "confidence": "medium"},
+      {"claim": "Listed among Focus Entertainment titles on PC Microsoft Store / Xbox Game Pass", "source": "Focus Entertainment support center", "url": "https://support.focus-entmt.com/hc/en-us/articles/18964749983122-PC-MICROSOFT-STORE-XBOX-GAME-PASS", "date": "accessed 2026-08-22", "type": "primary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 16,
+    "app_id": 501300,
+    "name": "What Remains of Edith Finch",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "Annapurna Interactive",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Long-running Game Pass title (present since at least 2019, with a next-gen upgrade added July 2022) confirmed to have left the subscription in a later rotation ('Hades, NBA 2K22, Edith Finch, Twelve Minutes and others leave Game Pass this month').",
+    "sources": [
+      {"claim": "Next-gen upgrade now available on Xbox Game Pass", "source": "Pure Xbox", "url": "https://www.purexbox.com/news/2022/07/what-remains-of-edith-finch-next-gen-upgrade-now-available-on-xbox-game-pass", "date": "2022-07", "type": "secondary", "confidence": "high"},
+      {"claim": "Edith Finch among titles leaving Game Pass", "source": "Video Games Chronicle", "url": "https://www.videogameschronicle.com/news/hades-nba-2k22-edith-finch-twelve-minutes-and-others-leave-game-pass-this-month/", "date": "not fully dated on page (references NBA 2K22, dating it to roughly 2022-23)", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 17,
+    "app_id": 653530,
+    "name": "Return of the Obra Dinn",
+    "on_gamepass": "no",
+    "publisher_now": "3909 (self-published, Lucas Pope)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Not currently on Game Pass (PC or Xbox) per subscription tracker; no evidence found that it was ever added. Native Xbox release exists (purchasable on Microsoft Store).",
+    "sources": [
+      {"claim": "Not Included on Xbox Game Pass (PC or console)", "source": "GamePassCompare", "url": "https://gamepasscompare.com/app/9643/return-of-the-obra-dinn", "date": "accessed 2026-08-22", "type": "secondary", "confidence": "medium"},
+      {"claim": "Xbox One/Series storefront listing confirms native release", "source": "Xbox.com store page", "url": "https://www.xbox.com/en-US/games/store/return-of-the-obra-dinn/9N185QL77D27", "date": "accessed 2026-08-22", "type": "primary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 18,
+    "app_id": 736260,
+    "name": "Baba Is You",
+    "on_gamepass": "no",
+    "publisher_now": "Hempuli Oy (self-published)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Not currently on Game Pass per subscription tracker; no evidence found of prior inclusion. Native Xbox release exists.",
+    "sources": [
+      {"claim": "Not Included on Xbox Game Pass (PC or console)", "source": "GamePassCompare", "url": "https://gamepasscompare.com/app/76638/baba-is-you", "date": "accessed 2026-08-22", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 19,
+    "app_id": 1817230,
+    "name": "Hi-Fi RUSH",
+    "on_gamepass": "yes",
+    "publisher_now": "Krafton, Inc. (via Tango Gameworks)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": ["already_on_gamepass"],
+    "notes": "This is the flagged case, and it resolves against the naive assumption. Hi-Fi RUSH originated as an Xbox Game Studios / Bethesda title, but after Tango Gameworks' 2024 closure, Microsoft SOLD Tango Gameworks AND the Hi-Fi RUSH franchise to Krafton (announced Aug 2024). Ownership is now third-party (Krafton), not Microsoft. Despite that, the title is confirmed CURRENTLY on Xbox Game Pass Premium tier as of the Aug 2026 lineup check — Microsoft evidently retained or renegotiated a distribution licence with Krafton. Net effect for the board: no acquisition or new licence is needed or even available in the usual sense; it is already in the subscription under an existing arrangement with the new rights-holder.",
+    "sources": [
+      {"claim": "Krafton acquires Tango Gameworks and Hi-Fi Rush franchise from Microsoft", "source": "Game Developer (gamedeveloper.com)", "url": "https://www.gamedeveloper.com/business/krafton-acquires-tango-gameworks-and-hi-fi-rush-franchise-from-microsoft", "date": "2024-08", "type": "secondary", "confidence": "high"},
+      {"claim": "Krafton snaps up Tango Gameworks and Hi-Fi Rush IP", "source": "Game World Observer", "url": "https://gameworldobserver.com/2024/08/12/krafton-acquires-tango-gameworks-hi-fi-rush-rights", "date": "2024-08-12", "type": "secondary", "confidence": "high"},
+      {"claim": "Hi-Fi RUSH currently listed on Xbox Game Pass Premium tier", "source": "Beebom Game Pass list", "url": "https://beebom.com/xbox-game-pass-games-list/", "date": "2026-08", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 20,
+    "app_id": 1369630,
+    "name": "ENDER LILIES: Quietus of the Knights",
+    "on_gamepass": "not_verified",
+    "publisher_now": "Binary Haze Interactive",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Native Xbox Series X|S and Xbox One release confirmed. No Game Pass listing (past or present) was found in searches; treat as not verified rather than assuming absence.",
+    "sources": [
+      {"claim": "Ender Lilies: Quietus of the Knights out now for Xbox Series X/S and Xbox One", "source": "GamingBolt", "url": "https://gamingbolt.com/ender-lilies-quietus-of-the-knights-out-now-for-xbox-series-x-s-and-xbox-one", "date": "not fully dated on page", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 21,
+    "app_id": 774181,
+    "name": "Rhythm Doctor",
+    "on_gamepass": "not_verified",
+    "publisher_now": "7th Beat Games / indienova",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Launched as an Xbox console exclusive in September 2025 (per Pure Xbox), i.e. an Xbox/PC release exists but it is reported as absent from PlayStation/Switch. No source confirms or denies Game Pass inclusion specifically.",
+    "sources": [
+      {"claim": "Rhythm Doctor launching as an Xbox console exclusive", "source": "Pure Xbox", "url": "https://www.purexbox.com/news/2025/09/rhythm-doctor-looks-insane-in-the-best-way-launching-as-an-xbox-console-exclusive", "date": "2025-09", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 22,
+    "app_id": 2218750,
+    "name": "Halls of Torment",
+    "on_gamepass": "yes",
+    "publisher_now": "Chasing Carrots",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": ["already_on_gamepass"],
+    "notes": "Currently listed on Xbox Game Pass Premium tier as of Aug 2026. Already in the subscription; not a licensing decision.",
+    "sources": [
+      {"claim": "Halls of Torment currently on Xbox Game Pass Premium tier", "source": "Beebom Game Pass list", "url": "https://beebom.com/xbox-game-pass-games-list/", "date": "2026-08", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 23,
+    "app_id": 1189630,
+    "name": "Path Of Wuxia",
+    "on_gamepass": "not_verified",
+    "publisher_now": "河洛工作室 (Heluo Studio / publisher of the same name)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "not_verified",
+    "blockers": [],
+    "notes": "No evidence of any Xbox console release or Game Pass listing found; coverage is limited to Steam/PC. Treat as PC-only pending direct confirmation.",
+    "sources": [
+      {"claim": "No Xbox-specific coverage found; Steam-focused release history", "source": "Steam store page", "url": "https://store.steampowered.com/app/1189630/Path_Of_Wuxia/", "date": "accessed 2026-08-22", "type": "primary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 24,
+    "app_id": 953490,
+    "name": "CARRION",
+    "on_gamepass": "unknown",
+    "publisher_now": "Devolver Digital",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Launched day-and-date on Xbox, Xbox Game Pass, Switch and PC, July 2020 (primary Xbox-adjacent trade coverage). Six years on, current subscription status was not reconfirmed with a dated source; treat as unknown, not assumed-present.",
+    "sources": [
+      {"claim": "Carrion lands on Xbox, Xbox Game Pass, Switch and PC", "source": "TheXboxHub", "url": "https://www.thexboxhub.com/keep-calm-and-carrion-as-devolvers-2d-horror-lands-on-xbox-xbox-game-pass-switch-and-pc/", "date": "2020-07", "type": "secondary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 25,
+    "app_id": 638230,
+    "name": "Journey",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "Annapurna Interactive",
+    "publisher_bloc": "third_party",
+    "xbox_version": "not_verified",
+    "blockers": [],
+    "notes": "Added to PC Game Pass around July 2024 (press specifically frames this as a 'PC Game Pass' addition, and Xbox Wire's own recap uses the phrase 'PC Game Pass' rather than 'Xbox Game Pass'). Currently listed 'Not Included' on both PC and Xbox tiers per a subscription tracker. Whether Journey has a native Xbox Series console release (versus PC-only) was not conclusively established in this pass — flagged for the next stage to confirm directly against the Xbox storefront.",
+    "sources": [
+      {"claim": "Journey added, framed as a PC Game Pass addition", "source": "Gamerant", "url": "https://gamerant.com/xbox-game-pass-july-2024-games-journey-nickelodeon-all-star-brawl-2/", "date": "2024-07", "type": "secondary", "confidence": "medium"},
+      {"claim": "Not Included on Xbox Game Pass (PC or console), current status", "source": "GamePassCompare", "url": "https://gamepasscompare.com/app/1352/journey", "date": "accessed 2026-08-22", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 26,
+    "app_id": 578650,
+    "name": "The Outer Worlds",
+    "on_gamepass": "yes",
+    "publisher_now": "Private Division (Take-Two) for legacy distribution; IP owned by Microsoft",
+    "publisher_bloc": "microsoft",
+    "xbox_version": "yes",
+    "blockers": ["already_on_gamepass", "microsoft_owned_developer"],
+    "notes": "Double exclusion. Developer Obsidian Entertainment is Xbox Game Studios (Microsoft acquired Obsidian in 2018); Private Division/Take-Two clarified publicly that Microsoft owns The Outer Worlds IP itself, even though Private Division retained distribution duties under a pre-acquisition agreement. The title is also confirmed currently on Xbox Game Pass (Premium tier, Aug 2026). Not a licensing decision on either count.",
+    "sources": [
+      {"claim": "Private Division clarifies Microsoft owns The Outer Worlds after Obsidian acquisition", "source": "KitGuru", "url": "https://www.kitguru.net/gaming/matthew-wilson/private-division-clarifies-microsoft-owns-the-outer-worlds-after-obsidian-acquisition/", "date": "not fully dated on page (contemporaneous with 2018 Obsidian acquisition coverage)", "type": "secondary", "confidence": "high"},
+      {"claim": "The Outer Worlds currently on Xbox Game Pass Premium tier", "source": "Beebom Game Pass list", "url": "https://beebom.com/xbox-game-pass-games-list/", "date": "2026-08", "type": "secondary", "confidence": "medium"}
+    ]
+  },
+  {
+    "rank": 27,
+    "app_id": 1144400,
+    "name": "Senren＊Banka",
+    "on_gamepass": "not_verified",
+    "publisher_now": "NekoNyan Ltd. / HIKARI FIELD",
+    "publisher_bloc": "third_party",
+    "xbox_version": "not_verified",
+    "blockers": [],
+    "notes": "No Xbox console release or Game Pass reference found in any source; coverage is entirely PC (Steam)-focused. Treat as PC-only pending direct confirmation.",
+    "sources": [
+      {"claim": "No Xbox-specific coverage found in search results", "source": "search survey (Wikipedia, Kotaku, NekoNyan official site)", "url": "https://en.wikipedia.org/wiki/Senren_Banka", "date": "accessed 2026-08-22", "type": "secondary", "confidence": "low"}
+    ]
+  },
+  {
+    "rank": 28,
+    "app_id": 1088850,
+    "name": "Marvel's Guardians of the Galaxy",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "Eidos-Montréal (developer) / publishing rights now under Embracer Group",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "On Xbox Game Pass March 2022 - March 2023, then removed. Note the ownership shift the dataset's 'Eidos Interactive Corp.' publisher field doesn't capture: Embracer Group acquired Crystal Dynamics, Eidos-Montréal and Square Enix Montréal (and their back catalogue IP, ~$300M) in 2022, so any renewed deal is now with Embracer, not Square Enix.",
+    "sources": [
+      {"claim": "Coming to Xbox Game Pass March 2022", "source": "Xbox Wire", "url": "https://news.xbox.com/en-us/2022/03/01/xbox-game-pass-march-update-2022/", "date": "2022-03-01", "type": "primary", "confidence": "high"},
+      {"claim": "Guardians of the Galaxy among 8 games leaving Game Pass, March 15, 2023", "source": "TrueAchievements", "url": "https://www.trueachievements.com/n53049/game-pass-leaving-soon-march-2023", "date": "2023-03", "type": "secondary", "confidence": "high"},
+      {"claim": "Embracer Group agrees to acquire Crystal Dynamics, Eidos-Montréal, Square Enix Montréal and their IP", "source": "Embracer Group press release", "url": "https://embracer.com/releases/embracer-group-enters-into-an-agreement-to-acquire-eidos-crystal-dynamics-and-square-enix-montreal-amongst-other-assets/", "date": "2022-05", "type": "primary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 29,
+    "app_id": 2161700,
+    "name": "Persona 3 Reload",
+    "on_gamepass": "rotated_out",
+    "publisher_now": "SEGA (Atlus)",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Day-one Game Pass release, Feb 2, 2024. Confirmed to have left the subscription on August 15, 2025.",
+    "sources": [
+      {"claim": "Persona 3 Reload confirmed for Game Pass as day-one", "source": "AllKeyShop", "url": "https://www.allkeyshop.com/blog/en-us/persona-3-reload-confirmed-for-game-pass-as-day-one-subscriptions-2023-news-n/", "date": "2023", "type": "secondary", "confidence": "medium"},
+      {"claim": "Persona 3 Reload leaves Xbox Game Pass on August 15", "source": "Rectify Gaming", "url": "https://www.rectifygaming.com/persona-3-reload-leaves-xbox-game-pass-on-august-15/", "date": "2025-08", "type": "secondary", "confidence": "high"}
+    ]
+  },
+  {
+    "rank": 30,
+    "app_id": 1210320,
+    "name": "Potion Craft: Alchemist Simulator",
+    "on_gamepass": "unknown",
+    "publisher_now": "tinyBuild",
+    "publisher_bloc": "third_party",
+    "xbox_version": "yes",
+    "blockers": [],
+    "notes": "Version 1.0 launched day-and-date on PC, Xbox and Game Pass, Dec 13, 2022 (Xbox Wire, primary). Current subscription status not reconfirmed with a dated source either way.",
+    "sources": [
+      {"claim": "Potion Craft is now available on Xbox (and Game Pass)", "source": "Xbox Wire", "url": "https://news.xbox.com/en-us/2022/12/16/potion-craft-is-now-available-on-xbox/", "date": "2022-12-16", "type": "primary", "confidence": "high"}
+    ]
+  }
+]

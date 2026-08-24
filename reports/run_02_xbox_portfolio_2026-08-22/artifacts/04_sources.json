@@ -1,0 +1,174 @@
+[
+  {
+    "claim_id": "gp-tiers-2026-04",
+    "claim": "Game Pass tiers as of April 2026: Essential $9.99, Premium $14.99, PC Game Pass $13.99, Ultimate $22.99",
+    "source": "Xbox Wire - Xbox Game Pass Ultimate Price Update",
+    "url": "https://news.xbox.com/en-us/2026/04/21/xbox-game-pass-update/",
+    "date": "2026-04-21",
+    "type": "primary",
+    "confidence": "high"
+  },
+  {
+    "claim_id": "gp-price-history-2025-2026",
+    "claim": "Ultimate raised to $29.99 in late 2025, rolled back to $22.99 in April 2026; PC Game Pass cut from $16.49 to $13.99; multiplayer included at all tiers",
+    "source": "Tech Insider - Xbox Game Pass Tiers [2026]",
+    "url": "https://tech-insider.org/xbox-game-pass-tiers-2026/",
+    "date": "2026-08-16",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "gp-subscribers-estimate-2026",
+    "claim": "Game Pass subscribers estimated around 30-34 million in 2026, reported dip to ~30M then return to growth",
+    "source": "SQ Magazine / Tech Insider aggregator pages",
+    "url": "https://sqmagazine.co.uk/xbox-game-pass-subscriber/ ; https://tech-insider.org/xbox-game-pass-30-million-subscribers-2026/",
+    "date": "2026 (exact date unclear)",
+    "type": "secondary",
+    "confidence": "low"
+  },
+  {
+    "claim_id": "msft-q4-fy26-earnings",
+    "claim": "Microsoft reported FY2026 Q4 earnings",
+    "source": "CNBC - Microsoft (MSFT) Q4 earnings report 2026",
+    "url": "https://www.cnbc.com/2026/07/29/microsoft-msft-q4-earnings-report-2026.html",
+    "date": "2026-07-29",
+    "type": "secondary",
+    "confidence": "low",
+    "note": "Full content not retrievable (403 error); specific gaming segment commentary not verified in this session"
+  },
+  {
+    "claim_id": "xbox-revenue-fall-2026",
+    "claim": "Xbox revenue fell 7% to $21.8B despite 200M players",
+    "source": "Tech Insider - Xbox Revenue Falls 7% to $21.8B Despite 200M Players",
+    "url": "https://tech-insider.org/xbox-revenue-falls-2026/",
+    "date": "2026 (exact date unclear)",
+    "type": "secondary",
+    "confidence": "low"
+  },
+  {
+    "claim_id": "xbox-studio-closures-2026-07",
+    "claim": "Xbox Reset: closures/divestitures of Ninja Theory, Double Fine, Compulsion Games; Undead Labs and Arkane Lyon under review; Marvel's Blade reportedly cancelled; focus shifted to flagship franchises",
+    "source": "Tech Times - Xbox Fires Thousands, Shuts Five Studios in Largest Gaming Layoff in Years",
+    "url": "https://www.techtimes.com/articles/319765/20260706/xbox-fires-thousands-shuts-five-studios-largest-gaming-layoff-years.htm",
+    "date": "2026-07-06",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "xbox-multiplatform-reconsideration-2026",
+    "claim": "Xbox reconsidering full multiplatform strategy; multiplayer titles multiplatform, single-player 'case by case'",
+    "source": "KitGuru; ThisWeekInVideoGames",
+    "url": "https://www.kitguru.net/gaming/matthew-wilson/xbox-reconsiders-multiplatform-approach-may-pull-future-games-from-ps5/ ; https://thisweekinvideogames.com/news/xbox-says-its-multiplayer-games-will-be-multiplatform-other-titles-case-by-case/",
+    "date": "2026 (exact date unclear)",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "msft-ceo-pressure-console-profit-2027",
+    "claim": "Microsoft CEO pressuring Xbox for more profitable console business in 2027",
+    "source": "TechPowerUp",
+    "url": "https://www.techpowerup.com/351250/microsoft-ceo-pressures-xbox-for-more-profitable-console-business-in-2027",
+    "date": "2026 (exact date unclear)",
+    "type": "speculative",
+    "confidence": "low"
+  },
+  {
+    "claim_id": "gp-deal-cost-range",
+    "claim": "Game Pass licensing deals negotiated by ex-Xbox exec Iain MacIntyre ranged from $50K to over $50M across 500+ deals",
+    "source": "TweakTown - Report: Microsoft pays up to $50 million per game when making Game Pass deals",
+    "url": "https://www.tweaktown.com/news/106345/report-microsoft-pays-up-to-50-million-per-game-when-making-pass-deals/index.html",
+    "date": "2025-07-13",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "silksong-2025-sales",
+    "claim": "Hollow Knight: Silksong sold 7M+ copies across platforms in first four months of 2025 despite day-one Game Pass availability, ranking among Steam's top 12 sellers of 2025",
+    "source": "Dexerto - Steam's best-selling games of 2025 reveal 2 indie hits that made it big",
+    "url": "https://www.dexerto.com/gaming/steams-best-selling-games-of-2025-reveal-2-indie-hits-that-made-it-big-3298767/",
+    "date": "2025 (exact date unclear)",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "schedule1-2025-revenue",
+    "claim": "Schedule I (solo Australian dev, Early Access March 2025) generated tens of millions in revenue, ranked top 12 Steam sellers 2025",
+    "source": "Dexerto",
+    "url": "https://www.dexerto.com/gaming/steams-best-selling-games-of-2025-reveal-2-indie-hits-that-made-it-big-3298767/",
+    "date": "2025",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "meccha-chameleon-1m",
+    "claim": "Meccha Chameleon reached 1 million copies sold",
+    "source": "Official Steam News post (developer)",
+    "url": "https://store.steampowered.com/news/app/4704690/view/667242081733838690",
+    "date": "2026 (post-2026-06-10 launch)",
+    "type": "primary",
+    "confidence": "high"
+  },
+  {
+    "claim_id": "meccha-chameleon-7m",
+    "claim": "Meccha Chameleon reached 7 million copies sold",
+    "source": "Official Steam News post (developer)",
+    "url": "https://store.steampowered.com/news/app/4704690/view/710026912607505791",
+    "date": "2026-06-21",
+    "type": "primary",
+    "confidence": "high"
+  },
+  {
+    "claim_id": "meccha-chameleon-10m",
+    "claim": "Meccha Chameleon reached 10 million copies sold, peak concurrent players 340,535, launched 2026-06-10, priced $5.99, made by 2 developers in ~2 months",
+    "source": "TheGamer - Meccha Chameleon Tops Steam Charts With Ten Million Copies Sold In Two Weeks",
+    "url": "https://www.thegamer.com/meccha-chameleon-10-million-copies-sold-steam-top-5/",
+    "date": "2026-06-26",
+    "type": "secondary",
+    "confidence": "high"
+  },
+  {
+    "claim_id": "meccha-chameleon-15m-unverified",
+    "claim": "Meccha Chameleon sold 15 million copies in under a month (figure cited in earlier draft)",
+    "source": "NOT VERIFIED - no supporting source found; highest credible figure is 10M copies at ~16 days",
+    "url": "n/a",
+    "date": "n/a",
+    "type": "speculative",
+    "confidence": "none - flagged as likely fabrication/overstatement, recommend removal"
+  },
+  {
+    "claim_id": "pc-vs-console-genre-2024",
+    "claim": "Shooters are top genre on PC by playtime (>25%) in 2024; sports overtook action-adventure as top genre on Xbox console in 2024",
+    "source": "Newzoo data, cited via Plarium blog",
+    "url": "https://plarium.com/en/blog/pc-gaming-vs-console-gaming-statistics/",
+    "date": "2025 (citing 2024 data)",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "arppu-console-vs-pc-2024",
+    "claim": "Console ARPPU $81.68 vs PC ARPPU $55.47 in 2024",
+    "source": "MIDiA Research, cited via Plarium blog",
+    "url": "https://plarium.com/en/blog/pc-gaming-vs-console-gaming-statistics/",
+    "date": "2025 (citing 2024 data)",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "console-vs-pc-growth-projection",
+    "claim": "Console revenue growth +7.0% (2024-2027) vs PC +2.6%",
+    "source": "Newzoo, cited via Plarium blog",
+    "url": "https://plarium.com/en/blog/pc-gaming-vs-console-gaming-statistics/",
+    "date": "2025",
+    "type": "secondary",
+    "confidence": "medium"
+  },
+  {
+    "claim_id": "age-demographics-pc-console",
+    "claim": "Gen Z/Alpha ~54% of PC players, ~58% of console players (2024)",
+    "source": "ESA 2024 data, cited via Plarium blog",
+    "url": "https://plarium.com/en/blog/pc-gaming-vs-console-gaming-statistics/",
+    "date": "2025 (citing 2024 data)",
+    "type": "secondary",
+    "confidence": "medium"
+  }
+]
