@@ -24,7 +24,7 @@ Underdog filter, applied to indie_candidates_scored.csv (85,632 rows):
   - ranked by profile_fit_score descending (similarity to the winning profile)
 
 gamepass_status is then attached from GAMEPASS_STATUS_OVERRIDES: a hand-checked
-lookup (web search, see reports/session_log_2026-08-21.md entry 4 for sources
+lookup (web search, see reports/logs/session_log_2026-08-21.md entry 4 for sources
 and date), since indie_candidates_scored.csv has no such column and the game's
 own metadata predates most Xbox ports. Rows already confirmed on Game Pass are
 kept in the output (visible, flagged) but excluded from the final top-5 pick.
