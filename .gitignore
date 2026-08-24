@@ -1,1 +1,53 @@
-data/
+# ---------------------------------------------------------------------------
+# Data
+# ---------------------------------------------------------------------------
+# data/ is excluded: raw is large (~1.1 GB) and not ours to redistribute, and
+# everything in data/processed/ is regenerable by a script in src/.
+#
+# ONE EXCEPTION: data/reference/*.csv is hand-curated research that NO script
+# can rebuild. If it is lost, the work behind it is lost. It stays in git.
+/data/*
+!/data/reference/
+/data/reference/*
+!/data/reference/*.csv
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------------------------
+# Agent-run scratch
+# ---------------------------------------------------------------------------
+# DuckDB spill directories and databases created during a multi-agent run.
+# The .sql that produced a result is the record; the database is not.
+**/duck_tmp/
+*.duckdb
+*.duckdb.wal
+
+# ---------------------------------------------------------------------------
+# Archives
+# ---------------------------------------------------------------------------
+# Run outputs belong in reports/<run>/ as files, not as a zip. Zipping them
+# hides them from grep, from diff, and from anyone reading the repo.
+*.zip
+
+# ---------------------------------------------------------------------------
+# Local tooling and editor state
+# ---------------------------------------------------------------------------
+.claude/settings.local.json
+.claude/*.lock
+.vscode/
+.idea/
+
+# ---------------------------------------------------------------------------
+# OS junk
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
