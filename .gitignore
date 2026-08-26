@@ -1,15 +1,22 @@
 # ---------------------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------------------
-# data/ is excluded: raw is large (~1.1 GB) and not ours to redistribute, and
-# everything in data/processed/ is regenerable by a script in src/.
+# data/ is excluded: raw is large (~1.1 GB) and not ours to redistribute.
 #
-# ONE EXCEPTION: data/reference/*.csv is hand-curated research that NO script
-# can rebuild. If it is lost, the work behind it is lost. It stays in git.
+# EXCEPTIONS:
+# - data/reference/*.csv is hand-curated research that NO script can rebuild.
+#   If it is lost, the work behind it is lost. It stays in git.
+# - data/processed/*.csv is the pipeline's output. It is regenerable, but
+#   kept in git so results are visible without re-running the pipeline.
 /data/*
 !/data/reference/
 /data/reference/*
 !/data/reference/*.csv
+!/data/processed/
+/data/processed/*
+!/data/processed/*.csv
+# Exception to the exception: exceeds GitHub's 100 MB push limit.
+/data/processed/pipeline_dataset.csv
 
 # ---------------------------------------------------------------------------
 # Python
